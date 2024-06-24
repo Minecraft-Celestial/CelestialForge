@@ -1,0 +1,17 @@
+{
+  "name": "broke",
+  "type": "tool",
+  "weight": 120,
+  "attributes": [
+    {
+      "attribute": "minecraft:generic.attack_damage",
+      "amount": -0.2,
+      "operation": "mult_base"
+    },
+    {
+      "attribute": "minecraft:generic.attack_speed",
+      "amount": -0.1,
+      "operation": "mult_base"
+    }
+  ]
+}

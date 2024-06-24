@@ -1,0 +1,12 @@
+{
+  "name": "sinister",
+  "type": "tool",
+  "weight": 200,
+  "attributes": [
+    {
+      "attribute": "minecraft:generic.attack_damage",
+      "amount": 4.0,
+      "operation": "add"
+    }
+  ]
+}

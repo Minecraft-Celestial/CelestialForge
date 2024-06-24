@@ -1,0 +1,12 @@
+{
+  "name": "reckless",
+  "type": "tool",
+  "weight": 300,
+  "attributes": [
+    {
+      "attribute": "minecraft:generic.attack_speed",
+      "amount": 0.02,
+      "operation": "mult_base"
+    }
+  ]
+}

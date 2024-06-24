@@ -1,0 +1,17 @@
+{
+  "name": "accurate",
+  "type": "bow",
+  "weight": 150,
+  "attributes": [
+    {
+      "attribute": "celestial_core:arrow_speed",
+      "amount": 0.1,
+      "operation": "mult_base"
+    },
+    {
+      "attribute": "l2damagetracker:crit_rate",
+      "amount": 0.03,
+      "operation": "mult_base"
+    }
+  ]
+}

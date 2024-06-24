@@ -1,0 +1,12 @@
+{
+  "name": "armor",
+  "type": "armor",
+  "weight": 250,
+  "attributes": [
+    {
+      "attribute": "minecraft:generic.armor_toughness",
+      "amount": 1.0,
+      "operation": "add"
+    }
+  ]
+}

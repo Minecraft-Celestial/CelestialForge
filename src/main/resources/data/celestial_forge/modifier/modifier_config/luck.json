@@ -1,0 +1,12 @@
+{
+  "name": "luck",
+  "type": "tool",
+  "weight": 200,
+  "attributes": [
+    {
+      "attribute": "l2damagetracker:crit_rate",
+      "amount": 0.04,
+      "operation": "mult_base"
+    }
+  ]
+}

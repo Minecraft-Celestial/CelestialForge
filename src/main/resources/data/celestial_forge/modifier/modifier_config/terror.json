@@ -1,0 +1,17 @@
+{
+  "name": "terror",
+  "type": "bow",
+  "weight": 150,
+  "attributes": [
+    {
+      "attribute": "celestial_core:arrow_knock",
+      "amount": 0.1,
+      "operation": "mult_base"
+    },
+    {
+      "attribute": "celestial_core:arrow_speed",
+      "amount": 0.05,
+      "operation": "mult_base"
+    }
+  ]
+}

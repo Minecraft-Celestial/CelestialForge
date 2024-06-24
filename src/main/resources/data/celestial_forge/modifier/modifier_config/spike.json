@@ -1,0 +1,12 @@
+{
+  "name": "spike",
+  "type": "tool",
+  "weight": 300,
+  "attributes": [
+    {
+      "attribute": "minecraft:generic.attack_damage",
+      "amount": 2.0,
+      "operation": "add"
+    }
+  ]
+}

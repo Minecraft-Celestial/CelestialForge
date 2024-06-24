@@ -1,0 +1,12 @@
+{
+  "name": "woe",
+  "type": "tool",
+  "weight": 200,
+  "attributes": [
+    {
+      "attribute": "minecraft:generic.attack_speed",
+      "amount": -0.05,
+      "operation": "mult_base"
+    }
+  ]
+}

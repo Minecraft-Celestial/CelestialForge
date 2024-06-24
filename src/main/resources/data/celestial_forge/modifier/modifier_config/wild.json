@@ -1,0 +1,12 @@
+{
+  "name": "wild",
+  "type": "tool",
+  "weight": 400,
+  "attributes": [
+    {
+      "attribute": "minecraft:generic.attack_speed",
+      "amount": 0.01,
+      "operation": "mult_base"
+    }
+  ]
+}

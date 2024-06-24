@@ -1,0 +1,12 @@
+{
+  "name": "sharp",
+  "type": "tool",
+  "weight": 80,
+  "attributes": [
+    {
+      "attribute": "minecraft:generic.attack_damage",
+      "amount": 0.15,
+      "operation": "mult_base"
+    }
+  ]
+}

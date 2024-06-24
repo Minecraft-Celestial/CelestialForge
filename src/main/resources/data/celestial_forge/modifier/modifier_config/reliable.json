@@ -1,0 +1,17 @@
+{
+  "name": "reliable",
+  "type": "bow",
+  "weight": 120,
+  "attributes": [
+    {
+      "attribute": "l2damagetracker:bow_strength",
+      "amount": 0.1,
+      "operation": "mult_base"
+    },
+    {
+      "attribute": "celestial_core:arrow_knock",
+      "amount": 0.15,
+      "operation": "mult_base"
+    }
+  ]
+}

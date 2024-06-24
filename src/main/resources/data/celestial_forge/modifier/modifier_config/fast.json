@@ -1,0 +1,12 @@
+{
+  "name": "fast",
+  "type": "all",
+  "weight": 300,
+  "attributes": [
+    {
+      "attribute": "minecraft:generic.movement_speed",
+      "amount": 0.02,
+      "operation": "mult_base"
+    }
+  ]
+}
