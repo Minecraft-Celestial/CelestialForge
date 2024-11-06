@@ -1,0 +1,46 @@
+{
+  "map": {
+    "ARMOR": {
+      "celestial_forge:armor": {
+        "modifiers": [
+          {
+            "amount": 4.0,
+            "attr": "minecraft:generic.armor",
+            "op": "ADDITION"
+          }
+        ],
+        "weight": 100
+      },
+      "celestial_forge:guarding": {
+        "modifiers": [
+          {
+            "amount": 2.0,
+            "attr": "minecraft:generic.armor",
+            "op": "ADDITION"
+          }
+        ],
+        "weight": 200
+      },
+      "celestial_forge:hard": {
+        "modifiers": [
+          {
+            "amount": 1.0,
+            "attr": "minecraft:generic.armor",
+            "op": "ADDITION"
+          }
+        ],
+        "weight": 300
+      },
+      "celestial_forge:protect": {
+        "modifiers": [
+          {
+            "amount": 2.0,
+            "attr": "minecraft:generic.armor_toughness",
+            "op": "ADDITION"
+          }
+        ],
+        "weight": 150
+      }
+    }
+  }
+}

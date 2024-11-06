@@ -2,31 +2,63 @@ package com.xiaoyue.celestial_forge;
 
 import com.mojang.logging.LogUtils;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.xiaoyue.celestial_forge.config.CommonConfig;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
+import com.xiaoyue.celestial_forge.content.modifier.ModifierConfig;
+import com.xiaoyue.celestial_forge.data.CFConfigGen;
+import com.xiaoyue.celestial_forge.data.CommonConfig;
 import com.xiaoyue.celestial_forge.register.CFItems;
 import dev.xkmc.l2library.base.L2Registrate;
+import dev.xkmc.l2library.serial.config.ConfigTypeEntry;
+import dev.xkmc.l2library.serial.config.PacketHandlerWithConfig;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraftforge.data.event.GatherDataEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.slf4j.Logger;
 
+import static com.xiaoyue.celestial_forge.CelestialForge.MODID;
+
 @Mod(CelestialForge.MODID)
+@Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CelestialForge {
 
-    public static final String MODID = "celestial_forge";
-    public static final Logger LOGGER = LogUtils.getLogger();
-    public static final L2Registrate REGISTRATE = new L2Registrate(MODID);
+	public static final String MODID = "celestial_forge";
+	public static final Logger LOGGER = LogUtils.getLogger();
+	public static final L2Registrate REGISTRATE = new L2Registrate(MODID);
+	public static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(
+			loc("main"), 1
+	);
 
-    public static final RegistryEntry<CreativeModeTab> MODIFIER_TAB = REGISTRATE.buildModCreativeTab(
-            "modifier_books", "Celestial Forge Modifier Book", e ->
-                    e.icon(() -> CFItems.MODIFIER_BOOK.get().getDefaultInstance())
-                            .displayItems((parameters, output) ->
-                                    output.acceptAll(ModifierBook.getStacksForCreativeTab())).build());
+	public static final ConfigTypeEntry<ModifierConfig> MODIFIER = new ConfigTypeEntry<>(HANDLER, "modifier", ModifierConfig.class);
 
-    public CelestialForge() {
-        CFItems.register();
+	public static final RegistryEntry<CreativeModeTab> MODIFIER_TAB = REGISTRATE.buildModCreativeTab(
+			"modifier_books", "Celestial Forge Modifier Book", e ->
+					e.icon(() -> CFItems.MODIFIER_BOOK.get().getDefaultInstance())
+							.displayItems((parameters, output) ->
+									output.acceptAll(ModifierBook.getStacksForCreativeTab())).build());
 
-        CommonConfig.initConfig();
-        CommonConfig.initModifierAllConfig();
-    }
+	public CelestialForge() {
+		CFItems.register();
+		CommonConfig.initConfig();
+	}
+
+	public static ResourceLocation loc(String id) {
+		return new ResourceLocation(MODID, id);
+	}
+
+	@SubscribeEvent(priority = EventPriority.HIGH)
+	public static void gatherData(GatherDataEvent event) {
+		event.getGenerator().addProvider(event.includeServer(), new CFConfigGen(event.getGenerator()));
+		REGISTRATE.addRawLang("base.celestial_forge.modifier_book", "%1$s Modifier Book");
+		REGISTRATE.addRawLang("celestial_forge.tooltip.type.equipped", "§7Applicable to: §9Armor");
+		REGISTRATE.addRawLang("celestial_forge.tooltip.type.tool", "§7Applicable to: §9Tools");
+		REGISTRATE.addRawLang("celestial_forge.tooltip.type.ranged", "§7Applicable to: §9Ranged");
+		REGISTRATE.addRawLang("celestial_forge.tooltip.type.curio", "§7Applicable to: §9Accessories");
+		REGISTRATE.addRawLang("celestial_forge.tooltip.type.all", "§7Applicable to: §9All");
+		REGISTRATE.addRawLang("celestial_forge.tooltip.modifier_book", "§7Use 22 levels of experience on the anvil to change the quality of the item");
+
+	}
+
 }

@@ -1,0 +1,15 @@
+{
+  "base.celestial_forge.modifier_book": "%1$s Modifier Book",
+  "celestial_forge.tooltip.modifier_book": "§7Use 22 levels of experience on the anvil to change the quality of the item",
+  "celestial_forge.tooltip.type.all": "§7Applicable to: §9All",
+  "celestial_forge.tooltip.type.curio": "§7Applicable to: §9Accessories",
+  "celestial_forge.tooltip.type.equipped": "§7Applicable to: §9Armor",
+  "celestial_forge.tooltip.type.ranged": "§7Applicable to: §9Ranged",
+  "celestial_forge.tooltip.type.tool": "§7Applicable to: §9Tools",
+  "item.celestial_forge.modifier_book": "Modifier Book",
+  "itemGroup.celestial_forge.modifier_books": "Celestial Forge Modifier Book",
+  "modifier.celestial_forge.armor": "Armor",
+  "modifier.celestial_forge.guarding": "Guarding",
+  "modifier.celestial_forge.hard": "Hard",
+  "modifier.celestial_forge.protect": "Protect"
+}

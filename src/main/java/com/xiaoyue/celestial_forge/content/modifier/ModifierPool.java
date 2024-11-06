@@ -1,38 +1,32 @@
 package com.xiaoyue.celestial_forge.content.modifier;
 
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
-public class ModifierPool {
+public record ModifierPool(ModifierType type, int totalWeight, List<ModifierHolder> modifiers) {
 
-    public Predicate<ItemStack> isApplicable;
-    public int totalWeight = 0;
-    public int poolWeight = 0;
-    public List<Modifier> modifiers = new ArrayList<>();
+	public static ModifierPool construct(ModifierType type, List<ModifierHolder> modifiers) {
+		int total = 0;
+		for (var e : modifiers) {
+			total += e.data().weight();
+		}
+		return new ModifierPool(type, total, modifiers);
+	}
 
-    public ModifierPool(Predicate<ItemStack> isApplicable) {
-        this.isApplicable = isApplicable;
-    }
+	@Nullable
+	public ModifierHolder roll(RandomSource random) {
+		if (totalWeight == 0 || modifiers.isEmpty()) return null;
+		int i = random.nextInt(totalWeight);
+		int j = 0;
+		for (ModifierHolder modifier : modifiers) {
+			j += modifier.data().weight();
+			if (i < j) {
+				return modifier;
+			}
+		}
+		return null;
+	}
 
-    public void add(Modifier mod) {
-        modifiers.add(mod);
-        totalWeight += mod.weight;
-    }
-
-    public Modifier roll(RandomSource random) {
-        if (totalWeight == 0 || modifiers.isEmpty()) return null;
-        int i = random.nextInt(totalWeight);
-        int j = 0;
-        for (Modifier modifier : modifiers) {
-            j += modifier.weight;
-            if (i < j) {
-                return modifier;
-            }
-        }
-        return null;
-    }
 }
