@@ -1,9 +1,9 @@
 package com.xiaoyue.celestial_forge.content.item;
 
-import com.xiaoyue.celestial_core.utils.ToolTipUtils;
+import com.xiaoyue.celestial_core.utils.ItemUtils;
+import com.xiaoyue.celestial_forge.content.modifier.CModifiers;
 import com.xiaoyue.celestial_forge.content.modifier.Modifier;
 import com.xiaoyue.celestial_forge.register.CFItems;
-import com.xiaoyue.celestial_forge.register.CModifiers;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -25,19 +25,12 @@ public class ModifierBook extends Item {
     }
 
     @Override
-    public boolean isFoil(ItemStack stack) {
-        if (!stack.hasTag()) return false;
-        CompoundTag tag = stack.getTag();
-        return tag.contains(ModifierUtils.bookTagName) && !tag.getString(ModifierUtils.bookTagName).equals("modifiers:none");
-    }
-
-    @Override
     public Component getName(ItemStack stack) {
         var base = super.getName(stack);
         if (!stack.hasTag() || !stack.getTag().contains(ModifierUtils.bookTagName)) return base;
         Modifier mod = CModifiers.modifiers.get(new ResourceLocation(stack.getTag().getString(ModifierUtils.bookTagName)));
         if (mod == null) return base;
-        return ToolTipUtils.addLocalTooltip("base.celestial_forge.modifier_book", mod.getFormattedName());
+        return ItemUtils.addTranslatable("base.celestial_forge.modifier_book", null, mod.getFormattedName());
     }
 
     @Override
@@ -46,12 +39,12 @@ public class ModifierBook extends Item {
             Modifier mod = CModifiers.modifiers.get(new ResourceLocation(stack.getTag().getString(ModifierUtils.bookTagName)));
             if (mod != null) {
                 list.addAll(mod.getInfoLines());
-                ToolTipUtils.addLocalTooltip(list, "tooltip.celestial_forge.modifier_book.tooltip");
+                ItemUtils.addTranslatable(list, "celestial_forge.tooltip.modifier_book", null);
                 list.add(ModifierUtils.addModifierTypeTip(mod));
                 return;
             }
         }
-        ToolTipUtils.addLocalTooltip(list, "tooltip.celestial_forge.modifier_book.tooltip");
+        ItemUtils.addTranslatable(list, "celestial_forge.tooltip.modifier_book", null);
     }
 
     public static List<ItemStack> getStacksForCreativeTab() {

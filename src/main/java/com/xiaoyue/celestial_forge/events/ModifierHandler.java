@@ -2,8 +2,8 @@ package com.xiaoyue.celestial_forge.events;
 
 import com.xiaoyue.celestial_forge.config.CommonConfig;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
+import com.xiaoyue.celestial_forge.content.modifier.CModifiers;
 import com.xiaoyue.celestial_forge.content.modifier.Modifier;
-import com.xiaoyue.celestial_forge.register.CModifiers;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;

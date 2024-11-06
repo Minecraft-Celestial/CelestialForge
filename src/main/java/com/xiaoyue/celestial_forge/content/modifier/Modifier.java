@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -35,7 +36,7 @@ public class Modifier {
     }
 
     public MutableComponent getFormattedName() {
-        return Component.translatable("modifier."+name.getNamespace()+"."+name.getPath());
+        return Component.translatable("modifier." + name.getNamespace() + "." + name.getPath()).withStyle(ChatFormatting.AQUA);
     }
 
     @Nullable
@@ -91,7 +92,7 @@ public class Modifier {
     }
 
     public enum ModifierType {
-        EQUIPPED, HELD, CURIO, ALL
+        EQUIPPED, HELD, RANGED, CURIO, ALL
     }
 
     public static class ModifierBuilder {
@@ -117,15 +118,16 @@ public class Modifier {
             return this;
         }
 
-        public ModifierBuilder addModifier(Attribute attribute, AttributeModifierSupplier modifier) {
-            modifiers.add(new ImmutablePair<>(attribute, modifier));
+        public ModifierBuilder addModifier(String attribute, AttributeModifierSupplier modifier) {
+            modifiers.add(new ImmutablePair<>(ForgeRegistries.ATTRIBUTES.getValue(new ResourceLocation(attribute)), modifier));
             return this;
         }
 
-        public ModifierBuilder addModifiers(Attribute[] attributes, AttributeModifierSupplier[] modifier) {
+        public ModifierBuilder addModifiers(String[] attributes, AttributeModifierSupplier[] modifier) {
             for (int index = 0; index < attributes.length; index++) {
-                Attribute attribute = attributes[index];
-                modifiers.add(new ImmutablePair<>(attribute, modifier[index]));
+                String attribute = attributes[index];
+                Attribute attributesValue = ForgeRegistries.ATTRIBUTES.getValue(new ResourceLocation(attribute));
+                modifiers.add(new ImmutablePair<>(attributesValue, modifier[index]));
             }
             return this;
         }

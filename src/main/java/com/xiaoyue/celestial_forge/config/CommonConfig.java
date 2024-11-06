@@ -1,5 +1,6 @@
 package com.xiaoyue.celestial_forge.config;
 
+import com.xiaoyue.celestial_forge.config.modifier.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -44,12 +45,21 @@ public class CommonConfig {
     }
 
     @SubscribeEvent
-    public static void onLoad(ModConfigEvent.Reloading event) {
+    public static void onReload(ModConfigEvent.Reloading event) {
         getConfig();
     }
 
     public static void initConfig() {
         String path = "celestial_configs/" + MODID + ".toml";
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC, path);
+    }
+
+    public static void initModifierAllConfig( ) {
+        ModLoadingContext context = ModLoadingContext.get();
+        context.registerConfig(ModConfig.Type.COMMON, AllConfig.CONFIG, "celestial_configs/celestial_modifier/" + MODID + ".all.toml");
+        context.registerConfig(ModConfig.Type.COMMON, ArmorConfig.CONFIG, "celestial_configs/celestial_modifier/" + MODID + ".armor.toml");
+        context.registerConfig(ModConfig.Type.COMMON, BowConfig.CONFIG, "celestial_configs/celestial_modifier/" + MODID + ".bow.toml");
+        context.registerConfig(ModConfig.Type.COMMON, CuriosConfig.CONFIG, "celestial_configs/celestial_modifier/" + MODID + ".curio.toml");
+        context.registerConfig(ModConfig.Type.COMMON, ToolConfig.CONFIG, "celestial_configs/celestial_modifier/" + MODID + ".tool.toml");
     }
 }
