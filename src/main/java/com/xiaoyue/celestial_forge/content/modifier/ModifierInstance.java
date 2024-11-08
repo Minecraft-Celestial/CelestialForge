@@ -1,5 +1,6 @@
 package com.xiaoyue.celestial_forge.content.modifier;
 
+import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -12,7 +13,11 @@ import java.util.List;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
-public record ModifierInstance(ModifierHolder holder, int level) {
+public record ModifierInstance(ModifierHolder holder, int level, int exp) {
+
+	public static ModifierInstance of(ModifierHolder ins) {
+		return new ModifierInstance(ins, 0, 0);
+	}
 
 	@Nullable
 	private static MutableComponent getModifierDescription(ModifierInstanceEntry entry) {
@@ -64,13 +69,30 @@ public record ModifierInstance(ModifierHolder holder, int level) {
 		return lines;
 	}
 
-
 	public int size() {
 		return holder.data().modifiers().size();
 	}
 
 	public ModifierInstanceEntry get(int i) {
 		return new ModifierInstanceEntry(holder.data().modifiers().get(i), level);
+	}
+
+	public boolean canUpgrade() {
+		return level * 10 < holder.gate().list().size();
+	}
+
+	public ModifierInstance addExp(int toAdd) {
+		int lv = level;
+		int xp = toAdd + exp;
+		int maxLv = (lv > 0 && lv % 10 == 0) ? lv : lv / 10 * 10 + 10;
+		while (true) {
+			if (lv >= maxLv) break;
+			int next = ModifierUtils.getMaxExp(lv);
+			if (xp < next) break;
+			lv++;
+			xp -= next;
+		}
+		return new ModifierInstance(holder, lv, xp);
 	}
 
 }

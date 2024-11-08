@@ -39,7 +39,7 @@ public class ModifierBook extends Item {
 		if (stack.hasTag() && stack.getTag().contains(ModifierUtils.bookTagName)) {
 			ModifierHolder mod = ModifierConfig.getAll().byId(new ResourceLocation(stack.getTag().getString(ModifierUtils.bookTagName)));
 			if (mod != null) {
-				list.addAll(new ModifierInstance(mod, 0).getInfoLines());
+				list.addAll(ModifierInstance.of(mod).getInfoLines());
 				ItemUtils.addTranslatable(list, "celestial_forge.tooltip.modifier_book", null);
 				list.add(ModifierUtils.addModifierTypeTip(mod));
 				return;

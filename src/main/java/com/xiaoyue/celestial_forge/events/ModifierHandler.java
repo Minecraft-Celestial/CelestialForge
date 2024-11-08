@@ -5,7 +5,6 @@ import com.xiaoyue.celestial_forge.content.data.ModifierType;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
-import com.xiaoyue.celestial_forge.data.CommonConfig;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import dev.xkmc.l2library.util.math.MathHelper;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +12,9 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
+import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.event.CurioAttributeModifierEvent;
@@ -60,6 +61,33 @@ public class ModifierHandler {
 		}
 	}
 
+	@SubscribeEvent(priority = EventPriority.LOW)
+	public static void onMobExpDrop(LivingExperienceDropEvent event) {
+		var player = event.getAttackingPlayer();
+		if (player == null) return;
+		var list = ModifierUtils.getAllOnPlayer(player);
+		int total = event.getDroppedExperience();
+		int n = list.size();
+		int base = total / n;
+		int avail = total - base;
+		var r = event.getAttackingPlayer().getRandom();
+		for (int i = 0; i < n; i++) {
+			int a = r.nextInt(n);
+			int b = r.nextInt(n);
+			var t = list.get(a);
+			list.set(a, list.get(b));
+			list.set(b, t);
+		}
+		for (var e : list) {
+			int toAdd = base;
+			if (avail > 0) {
+				toAdd++;
+				avail--;
+			}
+			ModifierUtils.addExp(e.getFirst(), e.getSecond(), toAdd);
+		}
+	}
+
 	@SubscribeEvent
 	public static void addTooltip(ItemTooltipEvent event) {
 		ItemStack stack = event.getItemStack();
@@ -77,19 +105,10 @@ public class ModifierHandler {
 			if (right.getItem() instanceof ModifierBook) {
 				ModifierHolder modifier = ModifierConfig.getAll().byId(new ResourceLocation(right.getTag().getString(ModifierUtils.bookTagName)));
 				if (modifier == null) return;
-				ModifierUtils.setModifier(left, new ModifierInstance(modifier, 0));
+				ModifierUtils.setModifier(left, ModifierInstance.of(modifier));
 				event.setMaterialCost(1);
 				event.setOutput(left);
 				event.setCost(22);
-			}
-		}
-
-		if (ModifierUtils.hasModifier(left)) {
-			if (CommonConfig.TEMPLATE_CACHE.contains(right.getItem())) {
-				ModifierUtils.prepareReroll(left);
-				event.setMaterialCost(1);
-				event.setOutput(left);
-				event.setCost(1);
 			}
 		}
 	}
