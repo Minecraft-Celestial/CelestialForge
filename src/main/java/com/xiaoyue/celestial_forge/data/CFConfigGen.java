@@ -6,9 +6,15 @@ import com.xiaoyue.celestial_forge.content.modifier.ModifierConfig;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierEntry;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierType;
 import dev.xkmc.l2damagetracker.init.L2DamageTracker;
+import com.xiaoyue.celestial_forge.content.data.*;
 import dev.xkmc.l2library.serial.config.ConfigDataProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION;
 import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.MULTIPLY_BASE;
@@ -19,6 +25,20 @@ public class CFConfigGen extends ConfigDataProvider {
 
 	static {
 		CONFIG = new ModifierConfig()
+				.put(ModifierType.ARMOR, new LevelGater(new ArrayList<>(List.of(
+						new UpgradeRecipe(3, new ArrayList<>(List.of(Ingredient.of(Items.COPPER_INGOT)))),
+						new UpgradeRecipe(5, new ArrayList<>(List.of(Ingredient.of(Items.IRON_INGOT)))),
+						new UpgradeRecipe(8, new ArrayList<>(List.of(Ingredient.of(Items.DIAMOND)))),
+						new UpgradeRecipe(12, new ArrayList<>(List.of(Ingredient.of(Items.TURTLE_HELMET)))),
+						new UpgradeRecipe(17, new ArrayList<>(List.of(Ingredient.of(Items.NETHERITE_SCRAP))))
+				))))
+				.put(CelestialForge.loc("hard"), 300, new ModifierEntry(Attributes.ARMOR, 2, 0.04, ADDITION))
+				.put(CelestialForge.loc("guarding"), 200, new ModifierEntry(Attributes.ARMOR, 0.05, 0.04, MULTIPLY_BASE))
+				.put(CelestialForge.loc("armor"), 100, new ModifierEntry(Attributes.ARMOR_TOUGHNESS, 1, 0.04, ADDITION))
+				.put(CelestialForge.loc("protect"), 150, new ModifierEntry(Attributes.ARMOR_TOUGHNESS, 0.05, 0.04, MULTIPLY_BASE))
+				.end()
+		;
+		//TODO add others
 				// generic
 				.put(ModifierType.ARMOR, CelestialForge.loc("hard"), 300, Attributes.ARMOR, 1, ADDITION)
 				.put(ModifierType.ARMOR, CelestialForge.loc("guarding"), 200, Attributes.ARMOR, 2, ADDITION)
