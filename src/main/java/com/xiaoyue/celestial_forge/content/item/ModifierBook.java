@@ -3,6 +3,7 @@ package com.xiaoyue.celestial_forge.content.item;
 import com.xiaoyue.celestial_core.utils.ItemUtils;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierConfig;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
+import com.xiaoyue.celestial_forge.data.CFLang;
 import com.xiaoyue.celestial_forge.register.CFItems;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import net.minecraft.nbt.CompoundTag;
@@ -30,7 +31,7 @@ public class ModifierBook extends Item {
 		if (!stack.hasTag() || !stack.getTag().contains(ModifierUtils.bookTagName)) return base;
 		ModifierHolder mod = ModifierConfig.getAll().byId(new ResourceLocation(stack.getTag().getString(ModifierUtils.bookTagName)));
 		if (mod == null) return base;
-		return ItemUtils.addTranslatable("base.celestial_forge.modifier_book", null, mod.getFormattedName());
+		return CFLang.MODIFIER_BOOK.get(mod.getFormattedName());
 	}
 
 	@Override
@@ -39,17 +40,14 @@ public class ModifierBook extends Item {
 			ModifierHolder mod = ModifierConfig.getAll().byId(new ResourceLocation(stack.getTag().getString(ModifierUtils.bookTagName)));
 			if (mod != null) {
 				list.addAll(mod.getInfoLines());
-				ItemUtils.addTranslatable(list, "celestial_forge.tooltip.modifier_book", null);
+				list.add(CFLang.MODIFIER_BOOK_INFO.get());
 				list.add(ModifierUtils.addModifierTypeTip(mod));
-				return;
-			}
+            }
 		}
-		ItemUtils.addTranslatable(list, "celestial_forge.tooltip.modifier_book", null);
 	}
 
 	public static List<ItemStack> getStacksForCreativeTab() {
-		List<ModifierHolder> modifiers = new ArrayList<>();
-		List<ItemStack> stacks = new ArrayList<>();
+        List<ItemStack> stacks = new ArrayList<>();
 		for (ModifierHolder mod : ModifierConfig.getAll().all()) {
 			ItemStack stack = new ItemStack(CFItems.MODIFIER_BOOK.get());
 			CompoundTag tag = stack.getOrCreateTag();

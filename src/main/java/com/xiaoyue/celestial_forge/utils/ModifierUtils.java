@@ -3,6 +3,8 @@ package com.xiaoyue.celestial_forge.utils;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierConfig;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierType;
+import com.xiaoyue.celestial_forge.data.CFLang;
+import com.xiaoyue.celestial_forge.data.CFTagGen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -24,29 +26,34 @@ public class ModifierUtils {
 	public static final String bookTagName = "bookModifier";
 
 	public static boolean canHaveModifiers(ItemStack stack) {
-		return !stack.isEmpty() && stack.getMaxStackSize() <= 1;
+		return !stack.isEmpty() && stack.getMaxStackSize() <= 1 && !stack.is(CFTagGen.BLACK_LIST);
 	}
 
 	public static Component addModifierTypeTip(ModifierHolder modifier) {
 		return switch (modifier.type()) {
-			case ARMOR -> Component.translatable("celestial_forge.tooltip.type.equipped");
-			case TOOL -> Component.translatable("celestial_forge.tooltip.type.tool");
-			case RANGED -> Component.translatable("celestial_forge.tooltip.type.ranged");
-			case CURIO -> Component.translatable("celestial_forge.tooltip.type.curio");
-			case ALL -> Component.translatable("celestial_forge.tooltip.type.all");
+			case ARMOR -> CFLang.EQUIPPED_TYPE.get();
+			case TOOL -> CFLang.TOOLS_TYPE.get();
+			case RANGED -> CFLang.RANGED_TYPE.get();
+			case CURIO -> CFLang.CURIO_TYPE.get();
+			case ALL -> CFLang.ALL_TYPE.get();
+			case WEAPON -> CFLang.WEAPON_TYPE.get();
 		};
 	}
 
 	public static boolean isRangedWeapon(ItemStack stack) {
-		return stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem;
+		return stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem || stack.is(CFTagGen.RANGED_MODIFIABLE);
 	}
 
 	public static boolean isTool(ItemStack stack) {
-		return stack.getItem() instanceof DiggerItem || stack.getItem() instanceof SwordItem || stack.getItem() instanceof ShieldItem;
+		return stack.getItem() instanceof DiggerItem || stack.getItem() instanceof SwordItem || stack.getItem() instanceof ShieldItem || stack.is(CFTagGen.TOOL_MODIFIABLE);
 	}
 
 	public static boolean isArmor(ItemStack stack) {
-		return stack.getItem() instanceof ArmorItem;
+		return stack.getItem() instanceof ArmorItem || stack.is(CFTagGen.ARMOR_MODIFIABLE);
+	}
+
+	public static boolean isWeapon(ItemStack stack) {
+		return stack.getItem() instanceof SwordItem || isRangedWeapon(stack) || stack.is(CFTagGen.WEAPON_MODIFIABLE);
 	}
 
 	@Nullable

@@ -1,10 +1,13 @@
 package com.xiaoyue.celestial_forge;
 
 import com.mojang.logging.LogUtils;
+import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierConfig;
 import com.xiaoyue.celestial_forge.data.CFConfigGen;
+import com.xiaoyue.celestial_forge.data.CFLang;
+import com.xiaoyue.celestial_forge.data.CFTagGen;
 import com.xiaoyue.celestial_forge.data.CommonConfig;
 import com.xiaoyue.celestial_forge.register.CFItems;
 import dev.xkmc.l2library.base.L2Registrate;
@@ -42,6 +45,8 @@ public class CelestialForge {
 	public CelestialForge() {
 		CFItems.register();
 		CommonConfig.initConfig();
+		REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, CFTagGen::onItemTagGen);
+		REGISTRATE.addDataGenerator(ProviderType.LANG, CFLang::addLang);
 	}
 
 	public static ResourceLocation loc(String id) {
@@ -51,14 +56,5 @@ public class CelestialForge {
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public static void gatherData(GatherDataEvent event) {
 		event.getGenerator().addProvider(event.includeServer(), new CFConfigGen(event.getGenerator()));
-		REGISTRATE.addRawLang("base.celestial_forge.modifier_book", "%1$s Modifier Book");
-		REGISTRATE.addRawLang("celestial_forge.tooltip.type.equipped", "§7Applicable to: §9Armor");
-		REGISTRATE.addRawLang("celestial_forge.tooltip.type.tool", "§7Applicable to: §9Tools");
-		REGISTRATE.addRawLang("celestial_forge.tooltip.type.ranged", "§7Applicable to: §9Ranged");
-		REGISTRATE.addRawLang("celestial_forge.tooltip.type.curio", "§7Applicable to: §9Accessories");
-		REGISTRATE.addRawLang("celestial_forge.tooltip.type.all", "§7Applicable to: §9All");
-		REGISTRATE.addRawLang("celestial_forge.tooltip.modifier_book", "§7Use 22 levels of experience on the anvil to change the quality of the item");
-
 	}
-
 }

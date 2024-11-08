@@ -1,5 +1,27 @@
 {
   "map": {
+    "ALL": {
+      "celestial_forge:fast": {
+        "modifiers": [
+          {
+            "amount": 0.04,
+            "attr": "minecraft:generic.movement_speed",
+            "op": "MULTIPLY_BASE"
+          }
+        ],
+        "weight": 150
+      },
+      "celestial_forge:light": {
+        "modifiers": [
+          {
+            "amount": 0.02,
+            "attr": "minecraft:generic.movement_speed",
+            "op": "MULTIPLY_BASE"
+          }
+        ],
+        "weight": 300
+      }
+    },
     "ARMOR": {
       "celestial_forge:armor": {
         "modifiers": [
@@ -40,6 +62,244 @@
           }
         ],
         "weight": 150
+      },
+      "celestial_forge:solid": {
+        "modifiers": [
+          {
+            "amount": 2.0,
+            "attr": "minecraft:generic.armor",
+            "op": "ADDITION"
+          },
+          {
+            "amount": 2.0,
+            "attr": "minecraft:generic.armor_toughness",
+            "op": "ADDITION"
+          },
+          {
+            "amount": 0.1,
+            "attr": "minecraft:generic.knockback_resistance",
+            "op": "ADDITION"
+          }
+        ],
+        "weight": 50
+      }
+    },
+    "CURIO": {
+      "celestial_forge:anger": {
+        "modifiers": [
+          {
+            "amount": 1.0,
+            "attr": "minecraft:generic.attack_knockback",
+            "op": "ADDITION"
+          },
+          {
+            "amount": 1.0,
+            "attr": "celestial_core:arrow_knock",
+            "op": "ADDITION"
+          }
+        ],
+        "weight": 100
+      },
+      "celestial_forge:brave": {
+        "modifiers": [
+          {
+            "amount": 0.04,
+            "attr": "minecraft:generic.attack_speed",
+            "op": "MULTIPLY_BASE"
+          }
+        ],
+        "weight": 150
+      },
+      "celestial_forge:life": {
+        "modifiers": [
+          {
+            "amount": 2.0,
+            "attr": "minecraft:generic.max_health",
+            "op": "ADDITION"
+          },
+          {
+            "amount": 0.05,
+            "attr": "celestial_core:regen_rate",
+            "op": "MULTIPLY_BASE"
+          }
+        ],
+        "weight": 75
+      },
+      "celestial_forge:rash": {
+        "modifiers": [
+          {
+            "amount": 0.02,
+            "attr": "minecraft:generic.attack_speed",
+            "op": "MULTIPLY_BASE"
+          }
+        ],
+        "weight": 300
+      }
+    },
+    "RANGED": {
+      "celestial_forge:fatal": {
+        "modifiers": [
+          {
+            "amount": 0.04,
+            "attr": "l2damagetracker:bow_strength",
+            "op": "MULTIPLY_BASE"
+          }
+        ],
+        "weight": 150
+      },
+      "celestial_forge:strength": {
+        "modifiers": [
+          {
+            "amount": 0.02,
+            "attr": "l2damagetracker:bow_strength",
+            "op": "MULTIPLY_BASE"
+          }
+        ],
+        "weight": 300
+      },
+      "celestial_forge:unreal": {
+        "modifiers": [
+          {
+            "amount": 0.1,
+            "attr": "l2damagetracker:bow_strength",
+            "op": "MULTIPLY_BASE"
+          },
+          {
+            "amount": 0.1,
+            "attr": "l2damagetracker:crit_damage",
+            "op": "ADDITION"
+          },
+          {
+            "amount": 0.05,
+            "attr": "celestial_core:arrow_speed",
+            "op": "MULTIPLY_BASE"
+          }
+        ],
+        "weight": 50
+      }
+    },
+    "TOOL": {
+      "celestial_forge:dangerous": {
+        "modifiers": [
+          {
+            "amount": 4.0,
+            "attr": "minecraft:generic.armor",
+            "op": "ADDITION"
+          }
+        ],
+        "weight": 100
+      },
+      "celestial_forge:insane": {
+        "modifiers": [
+          {
+            "amount": -0.05,
+            "attr": "minecraft:generic.attack_damage",
+            "op": "MULTIPLY_BASE"
+          },
+          {
+            "amount": 0.1,
+            "attr": "minecraft:generic.attack_speed",
+            "op": "MULTIPLY_BASE"
+          }
+        ],
+        "weight": 100
+      },
+      "celestial_forge:legend": {
+        "modifiers": [
+          {
+            "amount": 0.1,
+            "attr": "minecraft:generic.attack_damage",
+            "op": "MULTIPLY_BASE"
+          },
+          {
+            "amount": 0.1,
+            "attr": "minecraft:generic.attack_speed",
+            "op": "MULTIPLY_BASE"
+          },
+          {
+            "amount": 0.05,
+            "attr": "l2damagetracker:crit_rate",
+            "op": "ADDITION"
+          }
+        ],
+        "weight": 50
+      },
+      "celestial_forge:sawtooth": {
+        "modifiers": [
+          {
+            "amount": 1.0,
+            "attr": "minecraft:generic.attack_damage",
+            "op": "ADDITION"
+          }
+        ],
+        "weight": 300
+      },
+      "celestial_forge:spine": {
+        "modifiers": [
+          {
+            "amount": 2.0,
+            "attr": "minecraft:generic.attack_damage",
+            "op": "ADDITION"
+          }
+        ],
+        "weight": 200
+      }
+    },
+    "WEAPON": {
+      "celestial_forge:accurate": {
+        "modifiers": [
+          {
+            "amount": 0.02,
+            "attr": "l2damagetracker:crit_rate",
+            "op": "ADDITION"
+          }
+        ],
+        "weight": 300
+      },
+      "celestial_forge:devil": {
+        "modifiers": [
+          {
+            "amount": 0.04,
+            "attr": "l2damagetracker:crit_damage",
+            "op": "ADDITION"
+          }
+        ],
+        "weight": 150
+      },
+      "celestial_forge:luck": {
+        "modifiers": [
+          {
+            "amount": 0.04,
+            "attr": "l2damagetracker:bow_strength",
+            "op": "MULTIPLY_BASE"
+          }
+        ],
+        "weight": 150
+      },
+      "celestial_forge:rude": {
+        "modifiers": [
+          {
+            "amount": -0.05,
+            "attr": "l2damagetracker:crit_rate",
+            "op": "ADDITION"
+          },
+          {
+            "amount": 0.1,
+            "attr": "l2damagetracker:crit_damage",
+            "op": "ADDITION"
+          }
+        ],
+        "weight": 75
+      },
+      "celestial_forge:senior": {
+        "modifiers": [
+          {
+            "amount": 0.02,
+            "attr": "l2damagetracker:crit_damage",
+            "op": "ADDITION"
+          }
+        ],
+        "weight": 300
       }
     }
   }

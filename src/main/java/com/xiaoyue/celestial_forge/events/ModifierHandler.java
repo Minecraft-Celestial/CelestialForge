@@ -1,9 +1,9 @@
 package com.xiaoyue.celestial_forge.events;
 
-import com.xiaoyue.celestial_forge.data.CommonConfig;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierConfig;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
+import com.xiaoyue.celestial_forge.data.CommonConfig;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -72,7 +72,6 @@ public class ModifierHandler {
 	public static void ModifierRecipe(AnvilUpdateEvent event) {
 		ItemStack left = event.getLeft().copy();
 		ItemStack right = event.getRight();
-
 		if (ModifierUtils.canHaveModifiers(left)) {
 			if (right.getItem() instanceof ModifierBook) {
 				ModifierHolder modifier = ModifierConfig.getAll().byId(new ResourceLocation(right.getTag().getString(ModifierUtils.bookTagName)));
@@ -83,7 +82,6 @@ public class ModifierHandler {
 				event.setCost(22);
 			}
 		}
-
 		if (ModifierUtils.hasModifier(left)) {
 			if (CommonConfig.TEMPLATE_CACHE.contains(right.getItem())) {
 				ModifierUtils.prepareReroll(left);

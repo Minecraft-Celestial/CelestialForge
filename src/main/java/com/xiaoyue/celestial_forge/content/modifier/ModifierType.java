@@ -10,6 +10,7 @@ public enum ModifierType {
 	CURIO(ICurioUtils::isCurio),
 	TOOL(ModifierUtils::isTool),
 	RANGED(ModifierUtils::isRangedWeapon),
+	WEAPON(ModifierUtils::isWeapon),
 	ARMOR(ModifierUtils::isArmor),
 	ALL(e -> false);
 

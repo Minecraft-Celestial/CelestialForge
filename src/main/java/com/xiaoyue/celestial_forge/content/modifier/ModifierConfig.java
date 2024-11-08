@@ -29,8 +29,8 @@ public class ModifierConfig extends BaseConfig {
 	private final Map<ModifierType, ModifierPool> byTypePool = new LinkedHashMap<>();
 	private final Map<ResourceLocation, ModifierHolder> byIdCache = new LinkedHashMap<>();
 
-	@SerialClass.OnInject
-	public void onInject() {
+	@Override
+	protected void postMerge() {
 		Multimap<ModifierType, ModifierHolder> byTypeCache = LinkedHashMultimap.create();
 		byTypePool.clear();
 		byIdCache.clear();
@@ -76,7 +76,6 @@ public class ModifierConfig extends BaseConfig {
 	public ModifierConfig put(ModifierType type, ResourceLocation id, int weight, Attribute attr, double val, AttributeModifier.Operation op) {
 		return put(type, id, weight, new ModifierEntry(attr, val, op));
 	}
-
 
 	public ModifierConfig put(ModifierType type, ResourceLocation id, int weight, ModifierEntry... entries) {
 		CelestialForge.REGISTRATE.addRawLang("modifier." + id.getNamespace() + "." + id.getPath(), RegistrateLangProvider.toEnglishName(id.getPath()));
