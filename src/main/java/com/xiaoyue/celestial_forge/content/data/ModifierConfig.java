@@ -11,6 +11,8 @@ import dev.xkmc.l2library.serial.config.CollectType;
 import dev.xkmc.l2library.serial.config.ConfigCollect;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
@@ -78,21 +80,16 @@ public class ModifierConfig extends BaseConfig {
 		return new Builder(type, gate);
 	}
 
-	public ModifierConfig put(ModifierType type, ResourceLocation id, int weight, ModifierEntry... entries) {
-		CelestialForge.REGISTRATE.addRawLang("modifier." + id.getNamespace() + "." + id.getPath(), RegistrateLangProvider.toEnglishName(id.getPath()));
-		map.computeIfAbsent(type, (k) -> new LinkedHashMap<>()).put(id, new ModifierData(weight, new ArrayList<>(List.of(entries))));
-		return this;
-	}
 	public class Builder {
 
-		private final ModifierType type;
-		private final LevelGater gate;
 		private final DataModifierSet set;
 
 		public Builder(ModifierType type, LevelGater gate) {
-			this.type = type;
-			this.gate = gate;
 			set = map.computeIfAbsent(type, (k) -> new DataModifierSet(new LinkedHashMap<>(), gate));
+		}
+
+		public Builder put(ResourceLocation id, int weight, Attribute attr, double base, AttributeModifier.Operation op) {
+			return put(id, weight, new ModifierEntry(attr, base, op));
 		}
 
 		public Builder put(ResourceLocation id, int weight, ModifierEntry... entries) {

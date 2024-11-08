@@ -7,6 +7,10 @@ import java.util.UUID;
 
 public record ModifierEntry(Attribute attr, double base, double perLevel, AttributeModifier.Operation op) {
 
+	public ModifierEntry(Attribute attr, double base, AttributeModifier.Operation op) {
+		this(attr, base, 0.04, op);
+	}
+
 	public AttributeModifier getAttributeModifier(UUID id, String name, int level) {
 		return new AttributeModifier(id, name, getAmount(level), op);
 	}

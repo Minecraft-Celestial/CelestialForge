@@ -5,7 +5,6 @@ import com.xiaoyue.celestial_forge.content.data.ModifierConfig;
 import com.xiaoyue.celestial_forge.content.data.ModifierType;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
-import com.xiaoyue.celestial_forge.content.modifier.ModifierType;
 import com.xiaoyue.celestial_forge.data.CFLang;
 import com.xiaoyue.celestial_forge.data.CFTagGen;
 import net.minecraft.nbt.CompoundTag;

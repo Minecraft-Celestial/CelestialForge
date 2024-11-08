@@ -3,9 +3,8 @@ package com.xiaoyue.celestial_forge;
 import com.mojang.logging.LogUtils;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.xiaoyue.celestial_forge.content.item.ModifierBook;
 import com.xiaoyue.celestial_forge.content.data.ModifierConfig;
-import com.xiaoyue.celestial_forge.data.CFLangData;
+import com.xiaoyue.celestial_forge.content.item.ModifierBook;
 import com.xiaoyue.celestial_forge.data.CFConfigGen;
 import com.xiaoyue.celestial_forge.data.CFLang;
 import com.xiaoyue.celestial_forge.data.CFTagGen;
@@ -46,8 +45,6 @@ public class CelestialForge {
 	public CelestialForge() {
 		CFItems.register();
 		CommonConfig.initConfig();
-		REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, CFTagGen::onItemTagGen);
-		REGISTRATE.addDataGenerator(ProviderType.LANG, CFLang::addLang);
 	}
 
 	public static ResourceLocation loc(String id) {
@@ -56,7 +53,8 @@ public class CelestialForge {
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public static void gatherData(GatherDataEvent event) {
-		REGISTRATE.addDataGenerator(ProviderType.LANG, CFLangData::onLang);
+		REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, CFTagGen::onItemTagGen);
+		REGISTRATE.addDataGenerator(ProviderType.LANG, CFLang::addLang);
 		event.getGenerator().addProvider(event.includeServer(), new CFConfigGen(event.getGenerator()));
 	}
 }
