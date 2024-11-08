@@ -1,16 +1,16 @@
-package com.xiaoyue.celestial_forge.content.modifier;
+package com.xiaoyue.celestial_forge.content.data;
 
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.xiaoyue.celestial_forge.CelestialForge;
+import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
+import com.xiaoyue.celestial_forge.content.modifier.ModifierPool;
 import dev.xkmc.l2library.serial.config.BaseConfig;
 import dev.xkmc.l2library.serial.config.CollectType;
 import dev.xkmc.l2library.serial.config.ConfigCollect;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
@@ -24,26 +24,27 @@ public class ModifierConfig extends BaseConfig {
 
 	@SerialClass.SerialField
 	@ConfigCollect(CollectType.MAP_COLLECT)
-	public final LinkedHashMap<ModifierType, LinkedHashMap<ResourceLocation, ModifierData>> map = new LinkedHashMap<>();
+	public final LinkedHashMap<ModifierType, DataModifierSet> map = new LinkedHashMap<>();
 
 	private final Map<ModifierType, ModifierPool> byTypePool = new LinkedHashMap<>();
 	private final Map<ResourceLocation, ModifierHolder> byIdCache = new LinkedHashMap<>();
 
-	@SerialClass.OnInject
-	public void onInject() {
+	@Override
+	protected void postMerge() {
 		Multimap<ModifierType, ModifierHolder> byTypeCache = LinkedHashMultimap.create();
 		byTypePool.clear();
 		byIdCache.clear();
 		for (var e1 : map.entrySet()) {
 			var type = e1.getKey();
-			for (var e2 : e1.getValue().entrySet()) {
+			var gate = e1.getValue().gate();
+			for (var e2 : e1.getValue().entries().entrySet()) {
 				var id = e2.getKey();
 				var val = e2.getValue();
 				var old = byIdCache.get(id);
 				if (old != null) {
 					CelestialForge.LOGGER.warn("id {} of type {} already exists. Ignore same modifier of type {}", id, old.type().name(), type.name());
 				} else {
-					var holder = new ModifierHolder(type, id, val);
+					var holder = new ModifierHolder(type, id, val, gate);
 					byIdCache.put(id, holder);
 					byTypeCache.put(type, holder);
 				}
@@ -73,14 +74,32 @@ public class ModifierConfig extends BaseConfig {
 		return byIdCache.values();
 	}
 
-	public ModifierConfig put(ModifierType type, ResourceLocation id, int weight, Attribute attr, double val, AttributeModifier.Operation op) {
-		return put(type, id, weight, new ModifierEntry(attr, val, op));
+	public Builder put(ModifierType type, LevelGater gate) {
+		return new Builder(type, gate);
 	}
 
+	public class Builder {
 
-	public ModifierConfig put(ModifierType type, ResourceLocation id, int weight, ModifierEntry... entries) {
-		CelestialForge.REGISTRATE.addRawLang("modifier." + id.getNamespace() + "." + id.getPath(), RegistrateLangProvider.toEnglishName(id.getPath()));
-		map.computeIfAbsent(type, (k) -> new LinkedHashMap<>()).put(id, new ModifierData(weight, new ArrayList<>(List.of(entries))));
-		return this;
+		private final ModifierType type;
+		private final LevelGater gate;
+		private final DataModifierSet set;
+
+		public Builder(ModifierType type, LevelGater gate) {
+			this.type = type;
+			this.gate = gate;
+			set = map.computeIfAbsent(type, (k) -> new DataModifierSet(new LinkedHashMap<>(), gate));
+		}
+
+		public Builder put(ResourceLocation id, int weight, ModifierEntry... entries) {
+			CelestialForge.REGISTRATE.addRawLang("modifier." + id.getNamespace() + "." + id.getPath(), RegistrateLangProvider.toEnglishName(id.getPath()));
+			set.entries().put(id, new ModifierData(weight, new ArrayList<>(List.of(entries))));
+			return this;
+		}
+
+		public ModifierConfig end() {
+			return ModifierConfig.this;
+		}
+
 	}
+
 }

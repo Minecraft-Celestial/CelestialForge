@@ -1,8 +1,9 @@
 package com.xiaoyue.celestial_forge.content.item;
 
 import com.xiaoyue.celestial_core.utils.ItemUtils;
-import com.xiaoyue.celestial_forge.content.modifier.ModifierConfig;
+import com.xiaoyue.celestial_forge.content.data.ModifierConfig;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
+import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
 import com.xiaoyue.celestial_forge.register.CFItems;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import net.minecraft.nbt.CompoundTag;
@@ -38,7 +39,7 @@ public class ModifierBook extends Item {
 		if (stack.hasTag() && stack.getTag().contains(ModifierUtils.bookTagName)) {
 			ModifierHolder mod = ModifierConfig.getAll().byId(new ResourceLocation(stack.getTag().getString(ModifierUtils.bookTagName)));
 			if (mod != null) {
-				list.addAll(mod.getInfoLines());
+				list.addAll(new ModifierInstance(mod, 0).getInfoLines());
 				ItemUtils.addTranslatable(list, "celestial_forge.tooltip.modifier_book", null);
 				list.add(ModifierUtils.addModifierTypeTip(mod));
 				return;

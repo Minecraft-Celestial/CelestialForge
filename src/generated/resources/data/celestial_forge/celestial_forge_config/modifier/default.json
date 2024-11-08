@@ -1,45 +1,95 @@
 {
   "map": {
     "ARMOR": {
-      "celestial_forge:armor": {
-        "modifiers": [
-          {
-            "amount": 4.0,
-            "attr": "minecraft:generic.armor",
-            "op": "ADDITION"
-          }
-        ],
-        "weight": 100
+      "entries": {
+        "celestial_forge:armor": {
+          "modifiers": [
+            {
+              "attr": "minecraft:generic.armor_toughness",
+              "base": 1.0,
+              "op": "ADDITION",
+              "perLevel": 0.04
+            }
+          ],
+          "weight": 100
+        },
+        "celestial_forge:guarding": {
+          "modifiers": [
+            {
+              "attr": "minecraft:generic.armor",
+              "base": 0.05,
+              "op": "MULTIPLY_BASE",
+              "perLevel": 0.04
+            }
+          ],
+          "weight": 200
+        },
+        "celestial_forge:hard": {
+          "modifiers": [
+            {
+              "attr": "minecraft:generic.armor",
+              "base": 2.0,
+              "op": "ADDITION",
+              "perLevel": 0.04
+            }
+          ],
+          "weight": 300
+        },
+        "celestial_forge:protect": {
+          "modifiers": [
+            {
+              "attr": "minecraft:generic.armor_toughness",
+              "base": 0.05,
+              "op": "MULTIPLY_BASE",
+              "perLevel": 0.04
+            }
+          ],
+          "weight": 150
+        }
       },
-      "celestial_forge:guarding": {
-        "modifiers": [
+      "gate": {
+        "list": [
           {
-            "amount": 2.0,
-            "attr": "minecraft:generic.armor",
-            "op": "ADDITION"
-          }
-        ],
-        "weight": 200
-      },
-      "celestial_forge:hard": {
-        "modifiers": [
+            "exp": 3,
+            "list": [
+              {
+                "item": "minecraft:copper_ingot"
+              }
+            ]
+          },
           {
-            "amount": 1.0,
-            "attr": "minecraft:generic.armor",
-            "op": "ADDITION"
-          }
-        ],
-        "weight": 300
-      },
-      "celestial_forge:protect": {
-        "modifiers": [
+            "exp": 5,
+            "list": [
+              {
+                "item": "minecraft:iron_ingot"
+              }
+            ]
+          },
           {
-            "amount": 2.0,
-            "attr": "minecraft:generic.armor_toughness",
-            "op": "ADDITION"
+            "exp": 8,
+            "list": [
+              {
+                "item": "minecraft:diamond"
+              }
+            ]
+          },
+          {
+            "exp": 12,
+            "list": [
+              {
+                "item": "minecraft:turtle_helmet"
+              }
+            ]
+          },
+          {
+            "exp": 17,
+            "list": [
+              {
+                "item": "minecraft:netherite_scrap"
+              }
+            ]
           }
-        ],
-        "weight": 150
+        ]
       }
     }
   }
