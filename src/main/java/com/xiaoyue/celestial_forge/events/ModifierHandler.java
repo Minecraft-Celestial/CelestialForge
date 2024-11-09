@@ -1,7 +1,7 @@
 package com.xiaoyue.celestial_forge.events;
 
 import com.xiaoyue.celestial_forge.content.data.ModifierConfig;
-import com.xiaoyue.celestial_forge.content.data.ModifierType;
+import com.xiaoyue.celestial_forge.content.registry.ModifierType;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;

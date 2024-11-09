@@ -1,5 +1,6 @@
 package com.xiaoyue.celestial_forge.content.modifier;
 
+import com.xiaoyue.celestial_forge.content.registry.UpgradeRecipe;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -78,7 +79,7 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 	}
 
 	public boolean canUpgrade() {
-		return level * 10 < holder.gate().list().size();
+		return level * 10 < holder.gate().upgrades().size();
 	}
 
 	public ModifierInstance addExp(int toAdd) {
@@ -97,6 +98,10 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 
 	public boolean needUpgrade() {
 		return canUpgrade() && level > 0 && level % 10 == 0 && exp > ModifierUtils.getMaxExp(level);
+	}
+
+	public UpgradeRecipe getNextUpgrade() {
+		return holder.gate().upgrades().get(level / 10 - 1);
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.xiaoyue.celestial_forge.content.modifier;
 
-import com.xiaoyue.celestial_forge.content.data.ModifierType;
+import com.xiaoyue.celestial_forge.content.registry.ModifierType;
 import net.minecraft.util.RandomSource;
 import org.jetbrains.annotations.Nullable;
 

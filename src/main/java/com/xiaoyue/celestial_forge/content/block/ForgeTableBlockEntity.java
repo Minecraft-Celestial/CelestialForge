@@ -1,5 +1,7 @@
 package com.xiaoyue.celestial_forge.content.block;
 
+import com.xiaoyue.celestial_forge.content.data.ModifierConfig;
+import com.xiaoyue.celestial_forge.content.registry.UpgradeRecipe;
 import com.xiaoyue.celestial_forge.content.overlay.InfoTile;
 import com.xiaoyue.celestial_forge.content.overlay.TileTooltip;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
@@ -15,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -53,13 +56,26 @@ public class ForgeTableBlockEntity extends BaseBlockEntity implements BaseContai
 		container.clearContent();
 	}
 
+	@Nullable
+	public UpgradeRecipe getRecipe(ItemStack stack) {
+		if (stack.isEmpty()) return null;
+		var type = ModifierUtils.getType(stack);
+		if (type == null) return null;
+		var ins = ModifierUtils.getModifier(stack);
+		if (ins == null) return ModifierConfig.getAll().getStart(type);
+		if (!ins.needUpgrade()) return null;
+		return ins.getNextUpgrade();
+	}
+
 	public boolean canAccept(ItemStack stack) {
-		if (container.isEmpty()) {
-			var ins = ModifierUtils.getModifier(stack);
-			if (ins != null) return ins.needUpgrade();
-			return ModifierUtils.getType(stack) != null;
+		ItemStack main = get(0);
+		if (main.isEmpty()) {
+			return getRecipe(stack) != null;
 		}
-		//TODO check if stack is part of the recipe
+		var recipe = getRecipe(main);
+		for (var e : recipe.items()){
+			//TODO predicate match
+		}
 		return false;
 	}
 

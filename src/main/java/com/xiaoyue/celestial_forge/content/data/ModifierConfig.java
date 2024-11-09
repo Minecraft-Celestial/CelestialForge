@@ -6,6 +6,7 @@ import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.xiaoyue.celestial_forge.CelestialForge;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierPool;
+import com.xiaoyue.celestial_forge.content.registry.*;
 import dev.xkmc.l2library.serial.config.BaseConfig;
 import dev.xkmc.l2library.serial.config.CollectType;
 import dev.xkmc.l2library.serial.config.ConfigCollect;
@@ -25,7 +26,7 @@ public class ModifierConfig extends BaseConfig {
 	}
 
 	@SerialClass.SerialField
-	@ConfigCollect(CollectType.MAP_COLLECT)
+	@ConfigCollect(CollectType.MAP_OVERWRITE)
 	public final LinkedHashMap<ModifierType, DataModifierType> map = new LinkedHashMap<>();
 
 	private final Map<ModifierType, ModifierPool> byTypePool = new LinkedHashMap<>();
@@ -64,6 +65,10 @@ public class ModifierConfig extends BaseConfig {
 		}
 	}
 
+	public UpgradeRecipe getStart(ModifierType type) {
+		return map.get(type).start();
+	}
+
 	public ModifierPool byType(ModifierType type) {
 		if (type == ModifierType.ALL) throw new IllegalStateException("byType cannot be called for ALL");
 		return byTypePool.get(type);
@@ -90,7 +95,7 @@ public class ModifierConfig extends BaseConfig {
 			data = map.computeIfAbsent(type, (k) -> new DataModifierType(gate, new ArrayList<>()));
 		}
 
-		public PoolBuilder put(LevelGater gate) {
+		public PoolBuilder put(LevelingConfig gate) {
 			return new PoolBuilder(gate);
 		}
 
@@ -103,7 +108,7 @@ public class ModifierConfig extends BaseConfig {
 
 			private final DataModifierSet pool;
 
-			public PoolBuilder(LevelGater gate) {
+			public PoolBuilder(LevelingConfig gate) {
 				pool = new DataModifierSet(new LinkedHashMap<>(), gate);
 				data.pools().add(pool);
 			}

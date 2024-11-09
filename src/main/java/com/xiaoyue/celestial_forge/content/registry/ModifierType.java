@@ -1,4 +1,4 @@
-package com.xiaoyue.celestial_forge.content.data;
+package com.xiaoyue.celestial_forge.content.registry;
 
 import com.xiaoyue.celestial_forge.utils.ICurioUtils;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
