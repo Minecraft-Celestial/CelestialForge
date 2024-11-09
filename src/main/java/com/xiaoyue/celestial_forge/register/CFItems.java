@@ -1,35 +1,44 @@
 package com.xiaoyue.celestial_forge.register;
 
+import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.xiaoyue.celestial_core.CelestialCore;
 import com.xiaoyue.celestial_forge.CelestialForge;
+import com.xiaoyue.celestial_forge.content.block.ForgeTableBlock;
+import com.xiaoyue.celestial_forge.content.block.ForgeTableBlockEntity;
+import com.xiaoyue.celestial_forge.content.block.ForgeTableRenderer;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
-import net.minecraft.world.level.block.Block;
+import dev.xkmc.l2modularblock.DelegateBlock;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraftforge.client.model.generators.ModelFile;
 
 public class CFItems {
 
-    public static final RegistryEntry<ModifierBook> MODIFIER_BOOK;
+	public static final RegistryEntry<ModifierBook> MODIFIER_BOOK;
 
-    public static final RegistryEntry<Block> LARGE_ANVIL;
+	public static final RegistryEntry<DelegateBlock> FORGE_TABLE;
 
-    static {
-        MODIFIER_BOOK = CelestialForge.REGISTRATE.item("modifier_book", p -> new ModifierBook()).register();
+	public static final BlockEntityEntry<ForgeTableBlockEntity> BE_FORGE;
 
-        CelestialForge.REGISTRATE.defaultCreativeTab(CelestialCore.TAB.getKey());
-        LARGE_ANVIL = CelestialForge.REGISTRATE.block("large_anvil",
-                p -> new Block(BlockBehaviour.Properties.copy(Blocks.ANVIL)))
-                .blockstate((ctx, pvd) -> pvd.simpleBlock(ctx.get(), pvd.models().getBuilder(ctx.getName())
-                        .parent(new ModelFile.UncheckedModelFile(CelestialForge.loc("block/generic/large_anvil")))
-                        .texture("0", "block/large_anvil")
-                        .texture("1", "block/large_anvil_1")
-                ))
-                .simpleItem()
-                .register();
-    }
+	static {
+		MODIFIER_BOOK = CelestialForge.REGISTRATE.item("modifier_book", p -> new ModifierBook()).register();
 
-    public static void register() {
-    }
+		FORGE_TABLE = CelestialForge.REGISTRATE.block("forge_table",
+						p -> DelegateBlock.newBaseBlock(p, new ForgeTableBlock(), ForgeTableBlock.TE))
+				.initialProperties(() -> Blocks.ANVIL)
+				.blockstate((ctx, pvd) -> pvd.simpleBlock(ctx.get(), pvd.models().cubeBottomTop(
+						ctx.getName(), CelestialForge.loc("block/forge_table_side"),
+						CelestialForge.loc("block/forge_table_bottom"),
+						CelestialForge.loc("block/forge_table_top"))
+				))
+				.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+				.simpleItem()
+				.register();
+
+		BE_FORGE = CelestialForge.REGISTRATE.blockEntity("forge_table", ForgeTableBlockEntity::new)
+				.renderer(() -> ForgeTableRenderer::new)
+				.validBlock(FORGE_TABLE).register();
+	}
+
+	public static void register() {
+	}
 }

@@ -95,4 +95,8 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 		return new ModifierInstance(holder, lv, xp);
 	}
 
+	public boolean needUpgrade() {
+		return canUpgrade() && level > 0 && level % 10 == 0 && exp > ModifierUtils.getMaxExp(level);
+	}
+
 }

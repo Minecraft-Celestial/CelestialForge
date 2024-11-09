@@ -26,7 +26,7 @@ public class ModifierConfig extends BaseConfig {
 
 	@SerialClass.SerialField
 	@ConfigCollect(CollectType.MAP_COLLECT)
-	public final LinkedHashMap<ModifierType, DataModifierSet> map = new LinkedHashMap<>();
+	public final LinkedHashMap<ModifierType, DataModifierType> map = new LinkedHashMap<>();
 
 	private final Map<ModifierType, ModifierPool> byTypePool = new LinkedHashMap<>();
 	private final Map<ResourceLocation, ModifierHolder> byIdCache = new LinkedHashMap<>();
@@ -36,19 +36,21 @@ public class ModifierConfig extends BaseConfig {
 		Multimap<ModifierType, ModifierHolder> byTypeCache = LinkedHashMultimap.create();
 		byTypePool.clear();
 		byIdCache.clear();
-		for (var e1 : map.entrySet()) {
-			var type = e1.getKey();
-			var gate = e1.getValue().gate();
-			for (var e2 : e1.getValue().entries().entrySet()) {
-				var id = e2.getKey();
-				var val = e2.getValue();
-				var old = byIdCache.get(id);
-				if (old != null) {
-					CelestialForge.LOGGER.warn("id {} of type {} already exists. Ignore same modifier of type {}", id, old.type().name(), type.name());
-				} else {
-					var holder = new ModifierHolder(type, id, val, gate);
-					byIdCache.put(id, holder);
-					byTypeCache.put(type, holder);
+		for (var typeData : map.entrySet()) {
+			var type = typeData.getKey();
+			for (var pool : typeData.getValue().pools()) {
+				var gate = pool.gate();
+				for (var entry : pool.entries().entrySet()) {
+					var id = entry.getKey();
+					var val = entry.getValue();
+					var old = byIdCache.get(id);
+					if (old != null) {
+						CelestialForge.LOGGER.warn("id {} of type {} already exists. Ignore same modifier of type {}", id, old.type().name(), type.name());
+					} else {
+						var holder = new ModifierHolder(type, id, val, gate);
+						byIdCache.put(id, holder);
+						byTypeCache.put(type, holder);
+					}
 				}
 			}
 		}
@@ -76,31 +78,52 @@ public class ModifierConfig extends BaseConfig {
 		return byIdCache.values();
 	}
 
-	public Builder put(ModifierType type, LevelGater gate) {
-		return new Builder(type, gate);
+	public TypeBuilder put(ModifierType type, UpgradeRecipe start) {
+		return new TypeBuilder(type, start);
 	}
 
-	public class Builder {
+	public class TypeBuilder {
 
-		private final DataModifierSet set;
+		private final DataModifierType data;
 
-		public Builder(ModifierType type, LevelGater gate) {
-			set = map.computeIfAbsent(type, (k) -> new DataModifierSet(new LinkedHashMap<>(), gate));
+		public TypeBuilder(ModifierType type, UpgradeRecipe gate) {
+			data = map.computeIfAbsent(type, (k) -> new DataModifierType(gate, new ArrayList<>()));
 		}
 
-		public Builder put(ResourceLocation id, int weight, Attribute attr, double base, AttributeModifier.Operation op) {
-			return put(id, weight, new ModifierEntry(attr, base, op));
-		}
-
-		public Builder put(ResourceLocation id, int weight, ModifierEntry... entries) {
-			CelestialForge.REGISTRATE.addRawLang("modifier." + id.getNamespace() + "." + id.getPath(), RegistrateLangProvider.toEnglishName(id.getPath()));
-			set.entries().put(id, new ModifierData(weight, new ArrayList<>(List.of(entries))));
-			return this;
+		public PoolBuilder put(LevelGater gate) {
+			return new PoolBuilder(gate);
 		}
 
 		public ModifierConfig end() {
 			return ModifierConfig.this;
 		}
+
+
+		public class PoolBuilder {
+
+			private final DataModifierSet pool;
+
+			public PoolBuilder(LevelGater gate) {
+				pool = new DataModifierSet(new LinkedHashMap<>(), gate);
+				data.pools().add(pool);
+			}
+
+			public PoolBuilder put(ResourceLocation id, int weight, Attribute attr, double base, AttributeModifier.Operation op) {
+				return put(id, weight, new ModifierEntry(attr, base, op));
+			}
+
+			public PoolBuilder put(ResourceLocation id, int weight, ModifierEntry... entries) {
+				CelestialForge.REGISTRATE.addRawLang("modifier." + id.getNamespace() + "." + id.getPath(), RegistrateLangProvider.toEnglishName(id.getPath()));
+				pool.entries().put(id, new ModifierData(weight, new ArrayList<>(List.of(entries))));
+				return this;
+			}
+
+			public TypeBuilder end() {
+				return TypeBuilder.this;
+			}
+
+		}
+
 
 	}
 

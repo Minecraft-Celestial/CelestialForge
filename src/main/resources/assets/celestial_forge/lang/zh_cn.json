@@ -33,5 +33,5 @@
   "celestial_forge.tooltip.weapon_type": "§7适用范围：§9武器",
   "celestial_forge.tooltip.all_type": "§7适用范围：§9所有",
   "celestial_forge.tooltip.modifier_book_info": "§7在铁砧上消耗§922级经验§7将物品品质更改为该品质",
-  "block.celestial_forge.large_anvil": "锻造砧"
+  "block.celestial_forge.forge_table": "锻造桌"
 }

@@ -1,9 +1,10 @@
-// 1.20.1	2024-11-06T19:51:54.1806755	Registrate Provider for celestial_forge [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud), Tags (attributes)]
-a981ff261b6fccc52a24b726cbe79cd2eec53803 assets/celestial_forge/blockstates/large_anvil.json
-90fa87550b8bb01a963e53aee479bfa891f9dd0a assets/celestial_forge/lang/en_ud.json
-953c136afd2a8a48d4c8305836c176594dd42f22 assets/celestial_forge/lang/en_us.json
-b361a77f9b4780cbd05bbd835328e2409eb27d3b assets/celestial_forge/models/block/large_anvil.json
-6f090ccba04ff045c2832251d4db93a8a581c9e1 assets/celestial_forge/models/item/large_anvil.json
+// 1.20.1	2024-11-09T13:39:36.179551	Registrate Provider for celestial_forge [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud), Tags (attributes)]
+8f65be4322f4719db4ac07a8822051d2ef6426e1 assets/celestial_forge/blockstates/forge_table.json
+8b308b9c08b37c408ac0ba806ebb61719ecf2986 assets/celestial_forge/lang/en_ud.json
+06c619c6c840c8be686de547eb82a7f590c50fdc assets/celestial_forge/lang/en_us.json
+cd5190d4e841971ea04fefbfc06a3b94143fa246 assets/celestial_forge/models/block/forge_table.json
+744fd02b719b67cfa3c8d531c243256ba67815a5 assets/celestial_forge/models/item/forge_table.json
 d1303ca01d2dc7b07ccb5553bf9d59ffc12ef744 assets/celestial_forge/models/item/modifier_book.json
-4aca959537a8124b3db704b055008266f25af92d data/celestial_forge/loot_tables/blocks/large_anvil.json
+20e2f27ddfad8ee1cb73e58d1cf95fec25164ce0 data/celestial_forge/loot_tables/blocks/forge_table.json
 2bf3a7eafd69c022433bc4f2776944d90e7c7cbf data/celestial_forge/tags/items/weapon_modifiable.json
+8adcf0e572a074066d7233e74dbbdfbd468db341 data/minecraft/tags/blocks/mineable/pickaxe.json

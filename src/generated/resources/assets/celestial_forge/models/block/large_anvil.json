@@ -1,7 +1,0 @@
-{
-  "parent": "celestial_forge:block/generic/large_anvil",
-  "textures": {
-    "0": "celestial_forge:block/large_anvil",
-    "1": "celestial_forge:block/large_anvil_1"
-  }
-}

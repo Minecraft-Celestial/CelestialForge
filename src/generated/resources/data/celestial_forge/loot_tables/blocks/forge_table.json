@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "celestial_forge:large_anvil"
+          "name": "celestial_forge:forge_table"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "celestial_forge:blocks/large_anvil"
+  "random_sequence": "celestial_forge:blocks/forge_table"
 }

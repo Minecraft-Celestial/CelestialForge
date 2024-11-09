@@ -22,7 +22,8 @@ public class CFConfigGen extends ConfigDataProvider {
 
 	static {
 		CONFIG = new ModifierConfig()
-				.put(ModifierType.ARMOR, new LevelGater(new ArrayList<>(List.of(
+				.put(ModifierType.ARMOR, new UpgradeRecipe(3, new ArrayList<>(List.of(Ingredient.of(Items.COPPER_INGOT)))))
+				.put(new LevelGater(new ArrayList<>(List.of(
 						new UpgradeRecipe(3, new ArrayList<>(List.of(Ingredient.of(Items.COPPER_INGOT)))),
 						new UpgradeRecipe(5, new ArrayList<>(List.of(Ingredient.of(Items.IRON_INGOT)))),
 						new UpgradeRecipe(8, new ArrayList<>(List.of(Ingredient.of(Items.DIAMOND)))),
@@ -38,8 +39,10 @@ public class CFConfigGen extends ConfigDataProvider {
 						new ModifierEntry(Attributes.ARMOR_TOUGHNESS, 2, ADDITION),
 						new ModifierEntry(Attributes.KNOCKBACK_RESISTANCE, 0.1, ADDITION))
 				.end()
+				.end()
 
-				.put(ModifierType.TOOL, new LevelGater(new ArrayList<>(List.of(
+				.put(ModifierType.TOOL, new UpgradeRecipe(3, new ArrayList<>(List.of(Ingredient.of(Items.COPPER_INGOT)))))
+				.put(new LevelGater(new ArrayList<>(List.of(
 						new UpgradeRecipe(3, new ArrayList<>(List.of(Ingredient.of(Items.COPPER_INGOT)))),
 						new UpgradeRecipe(5, new ArrayList<>(List.of(Ingredient.of(Items.IRON_INGOT)))),
 						new UpgradeRecipe(8, new ArrayList<>(List.of(Ingredient.of(Items.DIAMOND)))),
@@ -57,8 +60,10 @@ public class CFConfigGen extends ConfigDataProvider {
 						new ModifierEntry(Attributes.ATTACK_SPEED, 0.1, MULTIPLY_BASE),
 						new ModifierEntry(L2DamageTracker.CRIT_RATE.get(), 0.05, ADDITION))
 				.end()
+				.end()
 
-				.put(ModifierType.RANGED, new LevelGater(new ArrayList<>(List.of(
+				.put(ModifierType.RANGED, new UpgradeRecipe(3, new ArrayList<>(List.of(Ingredient.of(Items.COPPER_INGOT)))))
+				.put(new LevelGater(new ArrayList<>(List.of(
 						new UpgradeRecipe(3, new ArrayList<>(List.of(Ingredient.of(Items.COPPER_INGOT)))),
 						new UpgradeRecipe(5, new ArrayList<>(List.of(Ingredient.of(Items.IRON_INGOT)))),
 						new UpgradeRecipe(8, new ArrayList<>(List.of(Ingredient.of(Items.DIAMOND)))),
@@ -71,9 +76,10 @@ public class CFConfigGen extends ConfigDataProvider {
 						new ModifierEntry(L2DamageTracker.BOW_STRENGTH.get(), 0.1, MULTIPLY_BASE),
 						new ModifierEntry(L2DamageTracker.CRIT_DMG.get(), 0.1, ADDITION),
 						new ModifierEntry(CCAttributes.ARROW_SPEED.get(), 0.05, MULTIPLY_BASE))
-				.end()
+				.end().end()
 
-				.put(ModifierType.WEAPON, new LevelGater(new ArrayList<>(List.of(
+				.put(ModifierType.WEAPON, new UpgradeRecipe(3, new ArrayList<>(List.of(Ingredient.of(Items.COPPER_INGOT)))))
+				.put(new LevelGater(new ArrayList<>(List.of(
 						new UpgradeRecipe(3, new ArrayList<>(List.of(Ingredient.of(Items.COPPER_INGOT)))),
 						new UpgradeRecipe(5, new ArrayList<>(List.of(Ingredient.of(Items.IRON_INGOT)))),
 						new UpgradeRecipe(8, new ArrayList<>(List.of(Ingredient.of(Items.DIAMOND)))),
@@ -88,8 +94,10 @@ public class CFConfigGen extends ConfigDataProvider {
 						new ModifierEntry(L2DamageTracker.CRIT_RATE.get(), -0.05, ADDITION),
 						new ModifierEntry(L2DamageTracker.CRIT_DMG.get(), 0.1, ADDITION))
 				.end()
+				.end()
 
-				.put(ModifierType.CURIO, new LevelGater(new ArrayList<>(List.of(
+				.put(ModifierType.CURIO, new UpgradeRecipe(3, new ArrayList<>(List.of(Ingredient.of(Items.COPPER_INGOT)))))
+				.put(new LevelGater(new ArrayList<>(List.of(
 						new UpgradeRecipe(3, new ArrayList<>(List.of(Ingredient.of(Items.COPPER_INGOT)))),
 						new UpgradeRecipe(5, new ArrayList<>(List.of(Ingredient.of(Items.IRON_INGOT)))),
 						new UpgradeRecipe(8, new ArrayList<>(List.of(Ingredient.of(Items.DIAMOND)))),
@@ -105,8 +113,10 @@ public class CFConfigGen extends ConfigDataProvider {
 						new ModifierEntry(Attributes.ATTACK_KNOCKBACK, 1, ADDITION),
 						new ModifierEntry(CCAttributes.ARROW_KNOCK.get(), 1, ADDITION))
 				.end()
+				.end()
 
-				.put(ModifierType.ALL, new LevelGater(new ArrayList<>(List.of(
+				.put(ModifierType.ALL, new UpgradeRecipe(3, new ArrayList<>(List.of(Ingredient.of(Items.COPPER_INGOT)))))
+				.put(new LevelGater(new ArrayList<>(List.of(
 						new UpgradeRecipe(3, new ArrayList<>(List.of(Ingredient.of(Items.COPPER_INGOT)))),
 						new UpgradeRecipe(5, new ArrayList<>(List.of(Ingredient.of(Items.IRON_INGOT)))),
 						new UpgradeRecipe(8, new ArrayList<>(List.of(Ingredient.of(Items.DIAMOND)))),
@@ -115,6 +125,7 @@ public class CFConfigGen extends ConfigDataProvider {
 				))))
 				.put(CelestialForge.loc("light"), 300, Attributes.MOVEMENT_SPEED, 0.02, MULTIPLY_BASE)
 				.put(CelestialForge.loc("fast"), 150, Attributes.MOVEMENT_SPEED, 0.04, MULTIPLY_BASE)
+				.end()
 				.end();
 
 	}
