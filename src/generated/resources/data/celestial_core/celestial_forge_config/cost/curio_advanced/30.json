@@ -1,0 +1,10 @@
+{
+  "exp": 8,
+  "items": [
+    {
+      "item": "minecraft:diamond"
+    }
+  ],
+  "level": 30,
+  "target": "celestial_core:curio_advanced"
+}

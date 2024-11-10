@@ -50,7 +50,7 @@ public class DataBuilder {
 			int lv = 10;
 			for (var e : builders) {
 				var ans = e.build(id, lv);
-				costs.put(id.withSuffix("/" + lv), ans);
+				costs.put(e.loc(id, lv), ans);
 				lv += 10;
 			}
 			return new PoolBuilder(new LevelingConfig(baseCost, expCost, id));

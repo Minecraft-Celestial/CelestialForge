@@ -1,7 +1,7 @@
-// 1.20.1	2024-11-09T13:39:36.179551	Registrate Provider for celestial_forge [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud), Tags (attributes)]
+// 1.20.1	2024-11-10T09:44:24.268487	Registrate Provider for celestial_forge [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud), Tags (attributes)]
 8f65be4322f4719db4ac07a8822051d2ef6426e1 assets/celestial_forge/blockstates/forge_table.json
-8b308b9c08b37c408ac0ba806ebb61719ecf2986 assets/celestial_forge/lang/en_ud.json
-06c619c6c840c8be686de547eb82a7f590c50fdc assets/celestial_forge/lang/en_us.json
+a3b0c6c4f1c8096850e707250abfa2edf87af95f assets/celestial_forge/lang/en_ud.json
+9fe91e6fb0cc07cd5091a8cf4be5cef98d4741ff assets/celestial_forge/lang/en_us.json
 cd5190d4e841971ea04fefbfc06a3b94143fa246 assets/celestial_forge/models/block/forge_table.json
 744fd02b719b67cfa3c8d531c243256ba67815a5 assets/celestial_forge/models/item/forge_table.json
 d1303ca01d2dc7b07ccb5553bf9d59ffc12ef744 assets/celestial_forge/models/item/modifier_book.json

@@ -1,0 +1,10 @@
+{
+  "exp": 12,
+  "items": [
+    {
+      "item": "minecraft:echo_shard"
+    }
+  ],
+  "level": 40,
+  "target": "celestial_core:weapon_advanced"
+}
