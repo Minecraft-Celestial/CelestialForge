@@ -1,0 +1,10 @@
+{
+  "exp": 5,
+  "items": [
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "level": 20,
+  "target": "celestial_forge:curio_basic"
+}

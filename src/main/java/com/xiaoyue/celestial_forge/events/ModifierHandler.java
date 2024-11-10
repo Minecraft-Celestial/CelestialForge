@@ -1,7 +1,7 @@
 package com.xiaoyue.celestial_forge.events;
 
-import com.xiaoyue.celestial_forge.content.data.ModifierConfig;
-import com.xiaoyue.celestial_forge.content.registry.ModifierType;
+import com.xiaoyue.celestial_forge.content.data.DataHolder;
+import com.xiaoyue.celestial_forge.content.data.ModifierType;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
@@ -103,7 +103,7 @@ public class ModifierHandler {
 
 		if (ModifierUtils.canHaveModifiers(left)) {
 			if (right.getItem() instanceof ModifierBook) {
-				ModifierHolder modifier = ModifierConfig.getAll().byId(new ResourceLocation(right.getTag().getString(ModifierUtils.bookTagName)));
+				ModifierHolder modifier = DataHolder.byId(new ResourceLocation(right.getTag().getString(ModifierUtils.bookTagName)));
 				if (modifier == null) return;
 				ModifierUtils.setModifier(left, ModifierInstance.of(modifier));
 				event.setMaterialCost(1);

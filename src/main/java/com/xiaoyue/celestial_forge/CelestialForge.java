@@ -3,7 +3,10 @@ package com.xiaoyue.celestial_forge;
 import com.mojang.logging.LogUtils;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.xiaoyue.celestial_forge.content.data.ModifierConfig;
+import com.xiaoyue.celestial_forge.content.data.DataHolder;
+import com.xiaoyue.celestial_forge.content.data.LevelingConfig;
+import com.xiaoyue.celestial_forge.content.data.ModifierData;
+import com.xiaoyue.celestial_forge.content.data.UpgradeRecipe;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
 import com.xiaoyue.celestial_forge.data.CFConfigGen;
 import com.xiaoyue.celestial_forge.data.CFLang;
@@ -34,7 +37,9 @@ public class CelestialForge {
 			loc("main"), 1
 	);
 
-	public static final ConfigTypeEntry<ModifierConfig> MODIFIER = new ConfigTypeEntry<>(HANDLER, "modifier", ModifierConfig.class);
+	public static final ConfigTypeEntry<UpgradeRecipe> COST = new ConfigTypeEntry<>(HANDLER, "cost", UpgradeRecipe.class);
+	public static final ConfigTypeEntry<LevelingConfig> LEVELING = new ConfigTypeEntry<>(HANDLER, "leveling", LevelingConfig.class);
+	public static final ConfigTypeEntry<ModifierData> MODIFIER = new ConfigTypeEntry<>(HANDLER, "modifier", ModifierData.class);
 
 	public static final RegistryEntry<CreativeModeTab> MODIFIER_TAB = REGISTRATE.buildModCreativeTab(
 			"modifier_books", "Celestial Forge Modifier Book", e ->
@@ -45,6 +50,7 @@ public class CelestialForge {
 	public CelestialForge() {
 		CFItems.register();
 		CommonConfig.initConfig();
+		HANDLER.addAfterReloadListener(DataHolder::rebuild);
 	}
 
 	public static ResourceLocation loc(String id) {

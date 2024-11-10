@@ -1,0 +1,13 @@
+{
+  "type": "CURIO",
+  "leveling": "celestial_forge:curio_basic",
+  "modifiers": [
+    {
+      "attr": "minecraft:generic.attack_speed",
+      "base": 0.04,
+      "op": "MULTIPLY_BASE",
+      "perLevel": 0.04
+    }
+  ],
+  "weight": 150
+}

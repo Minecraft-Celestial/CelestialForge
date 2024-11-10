@@ -1,0 +1,10 @@
+{
+  "exp": 17,
+  "items": [
+    {
+      "item": "minecraft:netherite_scrap"
+    }
+  ],
+  "level": 50,
+  "target": "celestial_forge:tool_basic"
+}

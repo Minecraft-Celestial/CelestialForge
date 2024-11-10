@@ -1,6 +1,6 @@
 package com.xiaoyue.celestial_forge.content.modifier;
 
-import com.xiaoyue.celestial_forge.content.registry.ModifierEntry;
+import com.xiaoyue.celestial_forge.content.data.ModifierEntry;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
 import java.util.UUID;

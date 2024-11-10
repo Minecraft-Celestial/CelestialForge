@@ -7,9 +7,9 @@ import com.xiaoyue.celestial_forge.content.block.ForgeTableBlock;
 import com.xiaoyue.celestial_forge.content.block.ForgeTableBlockEntity;
 import com.xiaoyue.celestial_forge.content.block.ForgeTableRenderer;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
-import com.xiaoyue.celestial_forge.content.registry.LevelingConfig;
-import com.xiaoyue.celestial_forge.content.registry.ModifierData;
-import com.xiaoyue.celestial_forge.content.registry.UpgradeRecipe;
+import com.xiaoyue.celestial_forge.content.data.LevelingConfig;
+import com.xiaoyue.celestial_forge.content.data.ModifierData;
+import com.xiaoyue.celestial_forge.content.data.UpgradeRecipe;
 import dev.xkmc.l2modularblock.DelegateBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
@@ -17,13 +17,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
 
 public class CFItems {
-
-	public static final ResourceKey<Registry<UpgradeRecipe>> UPGRADE =
-			CelestialForge.REGISTRATE.makeDatapackRegistry("upgrade", UpgradeRecipe.CODEC, UpgradeRecipe.CODEC);
-	public static final ResourceKey<Registry<LevelingConfig>> LEVELING =
-			CelestialForge.REGISTRATE.makeDatapackRegistry("leveling", LevelingConfig.CODEC, LevelingConfig.CODEC);
-	public static final ResourceKey<Registry<ModifierData>> MODIFIER =
-			CelestialForge.REGISTRATE.makeDatapackRegistry("modifier", ModifierData.CODEC, ModifierData.CODEC);
 
 	public static final RegistryEntry<ModifierBook> MODIFIER_BOOK;
 	public static final RegistryEntry<DelegateBlock> FORGE_TABLE;

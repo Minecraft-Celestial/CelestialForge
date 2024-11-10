@@ -1,0 +1,25 @@
+{
+  "type": "TOOL",
+  "leveling": "celestial_forge:tool_advanced",
+  "modifiers": [
+    {
+      "attr": "minecraft:generic.attack_damage",
+      "base": 0.1,
+      "op": "MULTIPLY_BASE",
+      "perLevel": 0.04
+    },
+    {
+      "attr": "minecraft:generic.attack_speed",
+      "base": 0.1,
+      "op": "MULTIPLY_BASE",
+      "perLevel": 0.04
+    },
+    {
+      "attr": "l2damagetracker:crit_rate",
+      "base": 0.05,
+      "op": "ADDITION",
+      "perLevel": 0.04
+    }
+  ],
+  "weight": 50
+}

@@ -1,7 +1,7 @@
 package com.xiaoyue.celestial_forge.content.block;
 
-import com.xiaoyue.celestial_forge.content.data.ModifierConfig;
-import com.xiaoyue.celestial_forge.content.registry.UpgradeRecipe;
+import com.xiaoyue.celestial_forge.content.data.DataHolder;
+import com.xiaoyue.celestial_forge.content.data.UpgradeRecipe;
 import com.xiaoyue.celestial_forge.content.overlay.InfoTile;
 import com.xiaoyue.celestial_forge.content.overlay.TileTooltip;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
@@ -62,7 +62,7 @@ public class ForgeTableBlockEntity extends BaseBlockEntity implements BaseContai
 		var type = ModifierUtils.getType(stack);
 		if (type == null) return null;
 		var ins = ModifierUtils.getModifier(stack);
-		if (ins == null) return ModifierConfig.getAll().getStart(type);
+		if (ins == null) return DataHolder.getStart(type);
 		if (!ins.needUpgrade()) return null;
 		return ins.getNextUpgrade();
 	}
@@ -73,7 +73,7 @@ public class ForgeTableBlockEntity extends BaseBlockEntity implements BaseContai
 			return getRecipe(stack) != null;
 		}
 		var recipe = getRecipe(main);
-		for (var e : recipe.items()){
+		for (var e : recipe.items()) {
 			//TODO predicate match
 		}
 		return false;

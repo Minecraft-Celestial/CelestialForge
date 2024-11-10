@@ -1,0 +1,19 @@
+{
+  "type": "WEAPON",
+  "leveling": "celestial_forge:weapon_advanced",
+  "modifiers": [
+    {
+      "attr": "l2damagetracker:crit_rate",
+      "base": -0.05,
+      "op": "ADDITION",
+      "perLevel": 0.04
+    },
+    {
+      "attr": "l2damagetracker:crit_damage",
+      "base": 0.1,
+      "op": "ADDITION",
+      "perLevel": 0.04
+    }
+  ],
+  "weight": 75
+}

@@ -1,6 +1,6 @@
 package com.xiaoyue.celestial_forge.content.modifier;
 
-import com.xiaoyue.celestial_forge.content.registry.UpgradeRecipe;
+import com.xiaoyue.celestial_forge.content.data.UpgradeRecipe;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;

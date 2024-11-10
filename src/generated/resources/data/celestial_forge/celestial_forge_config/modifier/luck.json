@@ -1,0 +1,13 @@
+{
+  "type": "WEAPON",
+  "leveling": "celestial_forge:weapon_basic",
+  "modifiers": [
+    {
+      "attr": "l2damagetracker:bow_strength",
+      "base": 0.04,
+      "op": "MULTIPLY_BASE",
+      "perLevel": 0.04
+    }
+  ],
+  "weight": 150
+}

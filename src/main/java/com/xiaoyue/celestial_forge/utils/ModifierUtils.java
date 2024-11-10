@@ -1,8 +1,8 @@
 package com.xiaoyue.celestial_forge.utils;
 
 import com.mojang.datafixers.util.Pair;
-import com.xiaoyue.celestial_forge.content.data.ModifierConfig;
-import com.xiaoyue.celestial_forge.content.registry.ModifierType;
+import com.xiaoyue.celestial_forge.content.data.DataHolder;
+import com.xiaoyue.celestial_forge.content.data.ModifierType;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
 import com.xiaoyue.celestial_forge.data.CFLang;
@@ -73,7 +73,7 @@ public class ModifierUtils {
 	public static ModifierInstance rollModifier(ItemStack stack, RandomSource random) {
 		var type = getType(stack);
 		if (type == null) return null;
-		var ins = ModifierConfig.getAll().byType(type).roll(random);
+		var ins = DataHolder.byType(type).roll(random);
 		return ins == null ? null : ModifierInstance.of(ins);
 	}
 
@@ -100,7 +100,7 @@ public class ModifierUtils {
 		if (!tag.contains(tagName)) return null;
 		int level = tag.getInt(levelName);
 		int exp = tag.getInt(expName);
-		var ans = ModifierConfig.getAll().byId(new ResourceLocation(tag.getString(tagName)));
+		var ans = DataHolder.byId(new ResourceLocation(tag.getString(tagName)));
 		return ans == null ? null : new ModifierInstance(ans, level, exp);
 	}
 

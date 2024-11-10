@@ -1,0 +1,13 @@
+{
+  "type": "RANGED",
+  "leveling": "celestial_forge:ranged_basic",
+  "modifiers": [
+    {
+      "attr": "l2damagetracker:bow_strength",
+      "base": 0.04,
+      "op": "MULTIPLY_BASE",
+      "perLevel": 0.04
+    }
+  ],
+  "weight": 150
+}
