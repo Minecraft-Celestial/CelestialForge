@@ -97,7 +97,7 @@ public class ModifierHandler {
 	}
 
 	@SubscribeEvent //TODO
-	public static void ModifierRecipe(AnvilUpdateEvent event) {
+	public static void modifierRecipe(AnvilUpdateEvent event) {
 		ItemStack left = event.getLeft().copy();
 		ItemStack right = event.getRight();
 
@@ -112,4 +112,5 @@ public class ModifierHandler {
 			}
 		}
 	}
+
 }

@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SerialClass
@@ -73,24 +74,44 @@ public class ForgeTableBlockEntity extends BaseBlockEntity implements BaseContai
 			return getRecipe(stack) != null;
 		}
 		var recipe = getRecipe(main);
-		for (var e : recipe.items()) {
-			//TODO predicate match
+		if (recipe == null) return false;
+		for (int i = 0; i < recipe.items.size(); i++) {
+			if (get(i + 1).isEmpty() && recipe.items.get(i).test(stack)) {
+				return true;
+			}
 		}
 		return false;
 	}
 
 	public void addItem(ItemStack stack) {
-		container.addItem(stack);
+		if (get(0).isEmpty())
+			container.setItem(0, stack);
+		var recipe = getRecipe(get(0));
+		if (recipe == null) return;
+		for (int i = 0; i < recipe.items.size(); i++) {
+			if (get(i + 1).isEmpty() && recipe.items.get(i).test(stack)) {
+				container.setItem(i + 1, stack);
+			}
+		}
 	}
 
 	@Override
 	public TileTooltip getImage() {
-		return null;//TODO
-		// new TileTooltip(List.of());
+		var recipe = getRecipe(get(0));
+		if (level == null || recipe == null)
+			return null;
+		long index = level.getGameTime() / 20;
+		List<ItemStack> list = new ArrayList<>();
+		for (var e : recipe.items) {
+			var arr = e.getItems();
+			list.add(arr[(int) (index % arr.length)]);
+		}
+		return new TileTooltip(list);
 	}
 
 	@Override
 	public List<Component> lines() {
 		return List.of();//TODO
 	}
+
 }

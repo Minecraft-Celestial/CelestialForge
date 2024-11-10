@@ -3,6 +3,7 @@ package com.xiaoyue.celestial_forge.content.block;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -22,6 +23,7 @@ public class ForgeTableRenderer implements BlockEntityRenderer<ForgeTableBlockEn
 	public void render(
 			ForgeTableBlockEntity be, float pTick, PoseStack pose, MultiBufferSource buffer, int light, int overlay
 	) {
+		light = LightTexture.FULL_BRIGHT;
 		var level = be.getLevel();
 		if (level == null) return;
 		ItemStack main = be.get(0);
@@ -35,14 +37,17 @@ public class ForgeTableRenderer implements BlockEntityRenderer<ForgeTableBlockEn
 		}
 		float time = (float) Math.floorMod(level.getGameTime(), 80L) + pTick;
 		pose.pushPose();
-		pose.translate(0.5, 0.5, 0.5);
+		pose.translate(0.5, 1.5, 0.5);
+		pose.pushPose();
 		pose.mulPose(Axis.YP.rotationDegrees(time * 4.5F));
 		Minecraft.getInstance().getItemRenderer().renderStatic(main, ItemDisplayContext.GROUND, light, overlay, pose, buffer, level, 0);
+		pose.popPose();
 		for (int i = 0; i < list.size(); i++) {
 			ItemStack sub = list.get(i);
 			pose.pushPose();
-			pose.mulPose(Axis.YP.rotationDegrees(360f / list.size() * i));
+			pose.mulPose(Axis.YP.rotationDegrees(360f / list.size() * i - time * 4.5F));
 			pose.translate(0.5, -0.1, 0);
+			pose.mulPose(Axis.YP.rotationDegrees(time * 9F-360f / list.size() * i));
 			Minecraft.getInstance().getItemRenderer().renderStatic(sub, ItemDisplayContext.GROUND, light, overlay, pose, buffer, level, 0);
 			pose.popPose();
 		}
