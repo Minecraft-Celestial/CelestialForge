@@ -3,6 +3,15 @@
   "items": [
     {
       "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:experience_bottle"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:observer"
     }
   ],
   "level": 30,

@@ -3,6 +3,18 @@
   "items": [
     {
       "item": "minecraft:netherite_scrap"
+    },
+    {
+      "item": "minecraft:ghast_tear"
+    },
+    {
+      "item": "minecraft:amethyst_block"
+    },
+    {
+      "item": "minecraft:netherite_upgrade_smithing_template"
+    },
+    {
+      "item": "minecraft:heart_of_the_sea"
     }
   ],
   "level": 50,

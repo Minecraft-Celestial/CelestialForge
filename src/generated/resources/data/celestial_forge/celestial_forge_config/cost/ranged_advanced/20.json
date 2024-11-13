@@ -1,0 +1,25 @@
+{
+  "exp": 5,
+  "items": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:crossbow"
+    },
+    {
+      "item": "minecraft:feather"
+    },
+    {
+      "item": "minecraft:quartz"
+    }
+  ],
+  "level": 20,
+  "target": "celestial_forge:ranged_advanced"
+}

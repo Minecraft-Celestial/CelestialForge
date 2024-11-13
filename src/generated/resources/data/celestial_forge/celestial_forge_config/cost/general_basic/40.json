@@ -3,6 +3,18 @@
   "items": [
     {
       "item": "minecraft:rabbit_foot"
+    },
+    {
+      "item": "minecraft:enchanted_book"
+    },
+    {
+      "item": "minecraft:emerald_block"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    },
+    {
+      "item": "minecraft:enchanting_table"
     }
   ],
   "level": 40,

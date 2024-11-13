@@ -3,6 +3,12 @@
   "items": [
     {
       "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "minecraft:brick"
     }
   ],
   "level": 10,

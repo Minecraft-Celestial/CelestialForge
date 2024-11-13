@@ -7,23 +7,22 @@ import com.xiaoyue.celestial_forge.content.block.ForgeTableBlock;
 import com.xiaoyue.celestial_forge.content.block.ForgeTableBlockEntity;
 import com.xiaoyue.celestial_forge.content.block.ForgeTableRenderer;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
-import com.xiaoyue.celestial_forge.content.data.LevelingConfig;
-import com.xiaoyue.celestial_forge.content.data.ModifierData;
-import com.xiaoyue.celestial_forge.content.data.UpgradeRecipe;
 import dev.xkmc.l2modularblock.DelegateBlock;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 
 public class CFItems {
 
-	public static final RegistryEntry<ModifierBook> MODIFIER_BOOK;
+	public static final RegistryEntry<Item> HAMMER;
 	public static final RegistryEntry<DelegateBlock> FORGE_TABLE;
 	public static final BlockEntityEntry<ForgeTableBlockEntity> BE_FORGE;
+	public static final RegistryEntry<ModifierBook> MODIFIER_BOOK;
 
 	static {
-		MODIFIER_BOOK = CelestialForge.REGISTRATE.item("modifier_book", p -> new ModifierBook()).register();
+		HAMMER = CelestialForge.REGISTRATE.item("hammer", p -> new Item(new Item.Properties()))
+				.model((ctx, pvd) -> pvd.handheld(ctx, pvd.modLoc("item/" + ctx.getName())))
+				.register();
 
 		FORGE_TABLE = CelestialForge.REGISTRATE.block("forge_table",
 						p -> DelegateBlock.newBaseBlock(p, new ForgeTableBlock(), ForgeTableBlock.TE))
@@ -40,6 +39,8 @@ public class CFItems {
 		BE_FORGE = CelestialForge.REGISTRATE.blockEntity("forge_table", ForgeTableBlockEntity::new)
 				.renderer(() -> ForgeTableRenderer::new)
 				.validBlock(FORGE_TABLE).register();
+
+		MODIFIER_BOOK = CelestialForge.REGISTRATE.item("modifier_book", p -> new ModifierBook()).register();
 	}
 
 	public static void register() {

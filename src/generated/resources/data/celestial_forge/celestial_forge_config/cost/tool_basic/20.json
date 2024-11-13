@@ -3,6 +3,15 @@
   "items": [
     {
       "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:golden_shovel"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "minecraft:paper"
     }
   ],
   "level": 20,

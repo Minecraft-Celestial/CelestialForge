@@ -4,7 +4,7 @@
   "modifiers": [
     {
       "attr": "l2damagetracker:bow_strength",
-      "base": 0.04,
+      "base": 0.05,
       "op": "MULTIPLY_BASE",
       "perLevel": 0.04
     }

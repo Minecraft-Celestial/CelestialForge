@@ -3,6 +3,15 @@
   "items": [
     {
       "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
     }
   ],
   "level": 30,

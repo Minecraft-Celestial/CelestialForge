@@ -3,6 +3,18 @@
   "items": [
     {
       "item": "minecraft:emerald_block"
+    },
+    {
+      "item": "minecraft:enchanted_book"
+    },
+    {
+      "item": "minecraft:cod_bucket"
+    },
+    {
+      "item": "minecraft:experience_bottle"
+    },
+    {
+      "item": "minecraft:glow_ink_sac"
     }
   ],
   "level": 40,

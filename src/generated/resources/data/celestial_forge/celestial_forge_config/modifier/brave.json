@@ -4,7 +4,7 @@
   "modifiers": [
     {
       "attr": "minecraft:generic.attack_speed",
-      "base": 0.04,
+      "base": 0.05,
       "op": "MULTIPLY_BASE",
       "perLevel": 0.04
     }

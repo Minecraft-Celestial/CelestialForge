@@ -3,6 +3,15 @@
   "items": [
     {
       "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:observer"
+    },
+    {
+      "item": "minecraft:copper_block"
     }
   ],
   "level": 30,

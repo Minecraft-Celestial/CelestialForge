@@ -3,6 +3,18 @@
   "items": [
     {
       "item": "minecraft:netherite_scrap"
+    },
+    {
+      "item": "minecraft:disc_fragment_5"
+    },
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "minecraft:glistering_melon_slice"
+    },
+    {
+      "item": "minecraft:phantom_membrane"
     }
   ],
   "level": 50,

@@ -1,0 +1,19 @@
+{
+  "type": "CURIO",
+  "leveling": "celestial_forge:curio_advanced",
+  "modifiers": [
+    {
+      "attr": "minecraft:generic.max_health",
+      "base": 2.0,
+      "op": "ADDITION",
+      "perLevel": 0.04
+    },
+    {
+      "attr": "l2damagetracker:damage_absorption",
+      "base": 2.0,
+      "op": "ADDITION",
+      "perLevel": 0.04
+    }
+  ],
+  "weight": 75
+}

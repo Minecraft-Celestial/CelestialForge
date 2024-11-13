@@ -3,6 +3,18 @@
   "items": [
     {
       "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:bow"
+    },
+    {
+      "item": "minecraft:feather"
+    },
+    {
+      "item": "minecraft:quartz"
     }
   ],
   "level": 20,

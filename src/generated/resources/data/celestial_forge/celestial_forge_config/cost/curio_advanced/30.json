@@ -1,0 +1,25 @@
+{
+  "exp": 8,
+  "items": [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "minecraft:smithing_table"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:redstone_block"
+    },
+    {
+      "item": "minecraft:gold_block"
+    }
+  ],
+  "level": 30,
+  "target": "celestial_forge:curio_advanced"
+}

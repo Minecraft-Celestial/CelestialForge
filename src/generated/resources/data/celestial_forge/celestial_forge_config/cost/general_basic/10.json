@@ -3,6 +3,12 @@
   "items": [
     {
       "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:iron_door"
+    },
+    {
+      "item": "minecraft:clay"
     }
   ],
   "level": 10,

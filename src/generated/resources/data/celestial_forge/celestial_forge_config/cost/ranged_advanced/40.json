@@ -1,0 +1,25 @@
+{
+  "exp": 12,
+  "items": [
+    {
+      "item": "minecraft:blaze_rod"
+    },
+    {
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "item": "minecraft:enchanted_book"
+    },
+    {
+      "item": "minecraft:spyglass"
+    },
+    {
+      "item": "minecraft:wither_skeleton_skull"
+    },
+    {
+      "item": "minecraft:compass"
+    }
+  ],
+  "level": 40,
+  "target": "celestial_forge:ranged_advanced"
+}

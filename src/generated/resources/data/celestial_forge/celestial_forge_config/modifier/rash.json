@@ -4,10 +4,10 @@
   "modifiers": [
     {
       "attr": "minecraft:generic.attack_speed",
-      "base": 0.02,
-      "op": "MULTIPLY_BASE",
+      "base": 0.2,
+      "op": "ADDITION",
       "perLevel": 0.04
     }
   ],
-  "weight": 300
+  "weight": 200
 }

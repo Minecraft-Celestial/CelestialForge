@@ -1,0 +1,25 @@
+{
+  "exp": 12,
+  "items": [
+    {
+      "item": "minecraft:echo_shard"
+    },
+    {
+      "item": "minecraft:experience_bottle"
+    },
+    {
+      "item": "minecraft:enchanted_book"
+    },
+    {
+      "item": "minecraft:golden_apple"
+    },
+    {
+      "item": "minecraft:magma_cream"
+    },
+    {
+      "item": "minecraft:lava_bucket"
+    }
+  ],
+  "level": 40,
+  "target": "celestial_forge:weapon_advanced"
+}

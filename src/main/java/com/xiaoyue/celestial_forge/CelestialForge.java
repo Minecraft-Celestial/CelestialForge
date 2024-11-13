@@ -42,7 +42,7 @@ public class CelestialForge {
 	public static final ConfigTypeEntry<ModifierData> MODIFIER = new ConfigTypeEntry<>(HANDLER, "modifier", ModifierData.class);
 
 	public static final RegistryEntry<CreativeModeTab> MODIFIER_TAB = REGISTRATE.buildModCreativeTab(
-			"modifier_books", "Celestial Forge Modifier Book", e ->
+			"tab", "Celestial Forge Tab", e ->
 					e.icon(() -> CFItems.MODIFIER_BOOK.get().getDefaultInstance())
 							.displayItems((parameters, output) ->
 									output.acceptAll(ModifierBook.getStacksForCreativeTab())).build());

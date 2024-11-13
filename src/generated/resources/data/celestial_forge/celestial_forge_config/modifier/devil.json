@@ -4,8 +4,8 @@
   "modifiers": [
     {
       "attr": "l2damagetracker:crit_damage",
-      "base": 0.04,
-      "op": "ADDITION",
+      "base": 0.05,
+      "op": "MULTIPLY_BASE",
       "perLevel": 0.04
     }
   ],

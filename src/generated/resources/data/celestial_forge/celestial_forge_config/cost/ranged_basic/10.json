@@ -3,6 +3,12 @@
   "items": [
     {
       "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:bone"
+    },
+    {
+      "item": "minecraft:string"
     }
   ],
   "level": 10,

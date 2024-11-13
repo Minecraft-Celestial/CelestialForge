@@ -3,6 +3,18 @@
   "items": [
     {
       "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:tnt"
+    },
+    {
+      "item": "minecraft:anvil"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:skeleton_skull"
     }
   ],
   "level": 30,

@@ -3,6 +3,15 @@
   "items": [
     {
       "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:firework_star"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:crossbow"
     }
   ],
   "level": 30,

@@ -3,6 +3,15 @@
   "items": [
     {
       "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:iron_boots"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:book"
     }
   ],
   "level": 20,

@@ -3,6 +3,18 @@
   "items": [
     {
       "item": "minecraft:blaze_rod"
+    },
+    {
+      "item": "minecraft:enchanted_book"
+    },
+    {
+      "item": "minecraft:spyglass"
+    },
+    {
+      "item": "minecraft:wither_skeleton_skull"
+    },
+    {
+      "item": "minecraft:compass"
     }
   ],
   "level": 40,

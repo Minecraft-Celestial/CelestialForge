@@ -1,0 +1,19 @@
+{
+  "type": "CURIO",
+  "leveling": "celestial_forge:curio_advanced",
+  "modifiers": [
+    {
+      "attr": "minecraft:generic.attack_knockback",
+      "base": 1.0,
+      "op": "ADDITION",
+      "perLevel": 0.04
+    },
+    {
+      "attr": "l2damagetracker:damage_reduction",
+      "base": -0.05,
+      "op": "MULTIPLY_BASE",
+      "perLevel": 0.04
+    }
+  ],
+  "weight": 100
+}

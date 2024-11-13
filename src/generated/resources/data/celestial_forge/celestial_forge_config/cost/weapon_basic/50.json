@@ -3,6 +3,18 @@
   "items": [
     {
       "item": "minecraft:netherite_scrap"
+    },
+    {
+      "item": "minecraft:phantom_membrane"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:diamond_sword"
+    },
+    {
+      "item": "minecraft:netherite_upgrade_smithing_template"
     }
   ],
   "level": 50,

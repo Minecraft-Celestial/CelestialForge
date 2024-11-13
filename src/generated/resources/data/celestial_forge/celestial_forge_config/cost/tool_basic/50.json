@@ -3,6 +3,21 @@
   "items": [
     {
       "item": "minecraft:netherite_scrap"
+    },
+    {
+      "item": "minecraft:diamond_hoe"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:trident"
+    },
+    {
+      "item": "minecraft:nautilus_shell"
+    },
+    {
+      "item": "minecraft:nether_brick"
     }
   ],
   "level": 50,

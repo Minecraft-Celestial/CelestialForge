@@ -3,6 +3,15 @@
   "items": [
     {
       "item": "minecraft:crying_obsidian"
+    },
+    {
+      "item": "minecraft:golden_pickaxe"
+    },
+    {
+      "item": "minecraft:experience_bottle"
+    },
+    {
+      "item": "minecraft:enchanted_book"
     }
   ],
   "level": 40,

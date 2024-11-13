@@ -3,6 +3,18 @@
   "items": [
     {
       "item": "minecraft:netherite_scrap"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:diamond_helmet"
+    },
+    {
+      "item": "minecraft:rabbit_hide"
+    },
+    {
+      "item": "minecraft:prismarine"
     }
   ],
   "level": 50,

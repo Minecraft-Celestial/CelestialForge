@@ -1,0 +1,13 @@
+{
+  "type": "CURIO",
+  "leveling": "celestial_forge:curio_basic",
+  "modifiers": [
+    {
+      "attr": "l2damagetracker:fire_damage",
+      "base": 0.05,
+      "op": "MULTIPLY_BASE",
+      "perLevel": 0.04
+    }
+  ],
+  "weight": 150
+}

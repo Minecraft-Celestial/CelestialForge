@@ -3,6 +3,18 @@
   "items": [
     {
       "item": "minecraft:turtle_helmet"
+    },
+    {
+      "item": "minecraft:enchanted_book"
+    },
+    {
+      "item": "minecraft:crying_obsidian"
+    },
+    {
+      "item": "minecraft:scute"
+    },
+    {
+      "item": "minecraft:golden_chestplate"
     }
   ],
   "level": 40,

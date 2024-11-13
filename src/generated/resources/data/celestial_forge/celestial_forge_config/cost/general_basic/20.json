@@ -3,6 +3,12 @@
   "items": [
     {
       "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "minecraft:glowstone_dust"
     }
   ],
   "level": 20,

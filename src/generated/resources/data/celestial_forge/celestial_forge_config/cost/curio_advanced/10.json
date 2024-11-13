@@ -1,0 +1,19 @@
+{
+  "exp": 3,
+  "items": [
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:paper"
+    }
+  ],
+  "level": 10,
+  "target": "celestial_forge:curio_advanced"
+}

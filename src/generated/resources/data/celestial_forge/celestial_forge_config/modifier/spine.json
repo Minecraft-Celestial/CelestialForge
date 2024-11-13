@@ -4,8 +4,8 @@
   "modifiers": [
     {
       "attr": "minecraft:generic.attack_damage",
-      "base": 2.0,
-      "op": "ADDITION",
+      "base": 0.05,
+      "op": "MULTIPLY_BASE",
       "perLevel": 0.04
     }
   ],

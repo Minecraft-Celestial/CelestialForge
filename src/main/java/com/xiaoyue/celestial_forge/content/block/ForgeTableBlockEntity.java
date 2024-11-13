@@ -2,13 +2,17 @@ package com.xiaoyue.celestial_forge.content.block;
 
 import com.xiaoyue.celestial_forge.content.data.DataHolder;
 import com.xiaoyue.celestial_forge.content.data.UpgradeRecipe;
+import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
 import com.xiaoyue.celestial_forge.content.overlay.InfoTile;
 import com.xiaoyue.celestial_forge.content.overlay.TileTooltip;
+import com.xiaoyue.celestial_forge.data.CFLang;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import dev.xkmc.l2library.base.tile.BaseBlockEntity;
 import dev.xkmc.l2library.base.tile.BaseContainerListener;
 import dev.xkmc.l2modularblock.tile_api.BlockContainer;
 import dev.xkmc.l2serial.serialization.SerialClass;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
@@ -111,7 +115,37 @@ public class ForgeTableBlockEntity extends BaseBlockEntity implements BaseContai
 
 	@Override
 	public List<Component> lines() {
-		return List.of();//TODO
+		List<Component> list = new ArrayList<>();
+		ItemStack main = get(0);
+		if (main.isEmpty()) {
+			list.add(CFLang.TABLE_LINES_1.get());
+			list.add(CFLang.TABLE_LINES_2.get());
+			return list;
+		}
+		if (!main.isEmpty()) {
+			if (!ModifierUtils.canHaveModifiers(main)) {
+				list.add(CFLang.TABLE_LINES_7.get());
+				return list;
+			} else {
+				UpgradeRecipe recipe = getRecipe(main);
+                if (recipe == null) return list;
+                int meta = 0;
+                for (int i = 0; i < recipe.items.size(); i++) {
+                    if (!get(i + 1).isEmpty() && recipe.items.get(i).test(get(i + 1))) {
+                        meta++;
+                    }
+                }
+				LocalPlayer player = Minecraft.getInstance().player;
+				if (meta == recipe.items.size() && player != null && player.totalExperience >= recipe.exp) {
+                    list.add(CFLang.TABLE_LINES_6.get());
+                } else {
+                    list.add(CFLang.TABLE_LINES_3.get());
+					list.add(CFLang.TABLE_LINES_4.get());
+                    list.add(CFLang.TABLE_LINES_5.get(CFLang.num(recipe.exp)));
+                }
+                return list;
+            }
+		}
+		return list;
 	}
-
 }
