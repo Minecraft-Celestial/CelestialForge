@@ -36,7 +36,7 @@ public class UpgradeRecipe extends BaseConfig {
 		return items;
 	}
 
-	public ResourceLocation target(){
+	public ResourceLocation target() {
 		return target;
 	}
 

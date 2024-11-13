@@ -10,5 +10,4 @@ public class ForgeTableBlockContainer extends BaseContainer<ForgeTableBlockConta
 	}
 
 
-
 }

@@ -104,4 +104,10 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 		return holder.gate().upgrades().get(level / 10 - 1);
 	}
 
+	public ModifierInstance upgrade() {
+		if (needUpgrade()) {
+			return new ModifierInstance(holder, level + 1, exp - ModifierUtils.getMaxExp(level));
+		}
+		return this;
+	}
 }

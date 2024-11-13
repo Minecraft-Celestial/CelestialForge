@@ -26,7 +26,12 @@ public class ForgeTableBlock implements OnClickBlockMethod {
 					be.popAllItems(player);
 				}
 				return InteractionResult.SUCCESS;
-			} else /*TODO check if stack is hammer tool*/ if (be.canAccept(stack)) {
+			} else if (stack.is(CFItems.HAMMER.get())) {
+				if (!level.isClientSide()) {
+					be.activate(player);
+				}
+				return InteractionResult.SUCCESS;
+			} else if (be.canAccept(stack)) {
 				if (!level.isClientSide()) {
 					be.addItem(stack.split(1));
 				}

@@ -2,15 +2,16 @@ package com.xiaoyue.celestial_forge.content.block;
 
 import com.xiaoyue.celestial_forge.content.data.DataHolder;
 import com.xiaoyue.celestial_forge.content.data.UpgradeRecipe;
-import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
 import com.xiaoyue.celestial_forge.content.overlay.InfoTile;
 import com.xiaoyue.celestial_forge.content.overlay.TileTooltip;
 import com.xiaoyue.celestial_forge.data.CFLang;
+import com.xiaoyue.celestial_forge.register.CFItems;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import dev.xkmc.l2library.base.tile.BaseBlockEntity;
 import dev.xkmc.l2library.base.tile.BaseContainerListener;
 import dev.xkmc.l2modularblock.tile_api.BlockContainer;
 import dev.xkmc.l2serial.serialization.SerialClass;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
@@ -106,46 +107,76 @@ public class ForgeTableBlockEntity extends BaseBlockEntity implements BaseContai
 			return null;
 		long index = level.getGameTime() / 20;
 		List<ItemStack> list = new ArrayList<>();
-		for (var e : recipe.items) {
-			var arr = e.getItems();
-			list.add(arr[(int) (index % arr.length)]);
+		for (int i = 0; i < recipe.items.size(); i++) {
+			var e = recipe.items.get(i);
+			if (get(i + 1).isEmpty()) {
+				var arr = e.getItems();
+				list.add(arr[(int) (index % arr.length)]);
+			}
 		}
+		LocalPlayer player = Minecraft.getInstance().player;
+		boolean exp = player != null && player.experienceLevel >= recipe.exp;
+		if (exp && list.isEmpty()) list.add(CFItems.HAMMER.asStack());
+		if (list.isEmpty()) return null;
 		return new TileTooltip(list);
 	}
 
 	@Override
 	public List<Component> lines() {
-		List<Component> list = new ArrayList<>();
 		ItemStack main = get(0);
 		if (main.isEmpty()) {
-			list.add(CFLang.TABLE_LINES_1.get());
-			list.add(CFLang.TABLE_LINES_2.get());
-			return list;
+			return List.of(CFLang.TABLE_START.get());
 		}
-		if (!main.isEmpty()) {
-			if (!ModifierUtils.canHaveModifiers(main)) {
-				list.add(CFLang.TABLE_LINES_7.get());
-				return list;
-			} else {
-				UpgradeRecipe recipe = getRecipe(main);
-                if (recipe == null) return list;
-                int meta = 0;
-                for (int i = 0; i < recipe.items.size(); i++) {
-                    if (!get(i + 1).isEmpty() && recipe.items.get(i).test(get(i + 1))) {
-                        meta++;
-                    }
-                }
-				LocalPlayer player = Minecraft.getInstance().player;
-				if (meta == recipe.items.size() && player != null && player.totalExperience >= recipe.exp) {
-                    list.add(CFLang.TABLE_LINES_6.get());
-                } else {
-                    list.add(CFLang.TABLE_LINES_3.get());
-					list.add(CFLang.TABLE_LINES_4.get());
-                    list.add(CFLang.TABLE_LINES_5.get(CFLang.num(recipe.exp)));
-                }
-                return list;
-            }
+		UpgradeRecipe recipe = getRecipe(main);
+		if (recipe == null) {
+			return List.of(CFLang.TABLE_INVALID_ITEM.get());
+		}
+		int valid = 0;
+		for (int i = 0; i < recipe.items.size(); i++) {
+			if (!get(i + 1).isEmpty()) {
+				valid++;
+			}
+		}
+		LocalPlayer player = Minecraft.getInstance().player;
+		boolean exp = player != null && player.experienceLevel >= recipe.exp;
+		List<Component> list = new ArrayList<>();
+		list.add(CFLang.TABLE_EXP_COST.get(Component.literal("" + recipe.exp))
+				.withStyle(exp ? ChatFormatting.AQUA : ChatFormatting.RED));
+		if (valid == recipe.items.size()) {
+			if (exp) {
+				list.add(CFLang.TABLE_HAMMER.get());
+			}
+			return list;
+		} else {
+			list.add(CFLang.TABLE_MATERIAL.get());
 		}
 		return list;
 	}
+
+	public void activate(Player player) {
+		if (level == null || level.isClientSide()) return;
+		var main = get(0);
+		if (main.isEmpty()) return;
+		UpgradeRecipe recipe = getRecipe(main);
+		if (recipe == null) return;
+		if (player.experienceLevel < recipe.exp) return;
+		for (int i = 0; i < recipe.items.size(); i++) {
+			if (get(i + 1).isEmpty()) {
+				return;
+			}
+		}
+		player.giveExperienceLevels(-recipe.exp);
+		var ins = ModifierUtils.getModifier(main);
+		if (ins == null) {
+			ins = ModifierUtils.rollModifier(main, level.getRandom());
+			if (ins == null) return;
+		} else {
+			ins = ins.upgrade();
+		}
+		main = main.copy();
+		ModifierUtils.setModifier(main, ins);
+		container.clearContent();
+		Block.popResource(level, getBlockPos().above(), main);
+	}
+
 }

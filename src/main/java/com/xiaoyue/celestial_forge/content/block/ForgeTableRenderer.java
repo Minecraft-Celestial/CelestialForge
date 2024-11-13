@@ -47,7 +47,7 @@ public class ForgeTableRenderer implements BlockEntityRenderer<ForgeTableBlockEn
 			pose.pushPose();
 			pose.mulPose(Axis.YP.rotationDegrees(360f / list.size() * i - time * 4.5F));
 			pose.translate(0.5, -0.1, 0);
-			pose.mulPose(Axis.YP.rotationDegrees(time * 9F-360f / list.size() * i));
+			pose.mulPose(Axis.YP.rotationDegrees(time * 9F - 360f / list.size() * i));
 			Minecraft.getInstance().getItemRenderer().renderStatic(sub, ItemDisplayContext.GROUND, light, overlay, pose, buffer, level, 0);
 			pose.popPose();
 		}

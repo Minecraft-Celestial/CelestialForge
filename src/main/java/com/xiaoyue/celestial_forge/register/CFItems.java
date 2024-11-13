@@ -1,6 +1,7 @@
 package com.xiaoyue.celestial_forge.register;
 
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.xiaoyue.celestial_forge.CelestialForge;
 import com.xiaoyue.celestial_forge.content.block.ForgeTableBlock;
@@ -14,7 +15,7 @@ import net.minecraft.world.level.block.Blocks;
 
 public class CFItems {
 
-	public static final RegistryEntry<Item> HAMMER;
+	public static final ItemEntry<Item> HAMMER;
 	public static final RegistryEntry<DelegateBlock> FORGE_TABLE;
 	public static final BlockEntityEntry<ForgeTableBlockEntity> BE_FORGE;
 	public static final RegistryEntry<ModifierBook> MODIFIER_BOOK;

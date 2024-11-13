@@ -3,7 +3,6 @@ package com.xiaoyue.celestial_forge.content.overlay;
 import dev.xkmc.l2library.base.overlay.OverlayUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.inventory.tooltip.ClientTextTooltip;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.phys.BlockHitResult;
@@ -18,11 +17,11 @@ public class TileInfoDisplay implements IGuiOverlay {
 	@Override
 	public void render(ForgeGui gui, GuiGraphics g, float pTick, int sw, int sh) {
 		ClientLevel level = Minecraft.getInstance().level;
-		if (level == null) return;
+		if (level == null || Minecraft.getInstance().screen != null) return;
 		var hit = Minecraft.getInstance().hitResult;
 		if (!(hit instanceof BlockHitResult bhit)) return;
 		if (!(level.getBlockEntity(bhit.getBlockPos()) instanceof InfoTile tile)) return;
-		new ImageBox(g, (int) (sw * 0.7), (int) (sh * 0.5), -1)
+		new ImageBox(g, (int) (sw * 0.55), (int) (sh * 0.5), (int) (sw * 0.25))
 				.render(tile);
 	}
 
@@ -33,14 +32,14 @@ public class TileInfoDisplay implements IGuiOverlay {
 		}
 
 		public void render(InfoTile tile) {
-			List<ClientTooltipComponent> tooltip = new ArrayList<>();
+			var font = Minecraft.getInstance().font;
+			List<ClientTooltipComponent> tooltip = new ArrayList<>(tile.lines().stream()
+					.flatMap((text) -> font.split(text, this.maxW).stream())
+					.map(ClientTooltipComponent::create).toList());
 			var img = tile.getImage();
 			if (img != null) tooltip.add(new TileClientTooltip(img));
-			for (var e : tile.lines()) {
-				tooltip.add(new ClientTextTooltip(e.getVisualOrderText()));
-			}
 			if (tooltip.isEmpty()) return;
-			renderTooltipInternal(Minecraft.getInstance().font, tooltip);
+			renderTooltipInternal(font, tooltip);
 		}
 
 	}

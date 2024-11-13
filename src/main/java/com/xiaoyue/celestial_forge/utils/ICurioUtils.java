@@ -9,10 +9,10 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class ICurioUtils {
 
-    public static boolean isCurio(ItemStack stack) {
-        if (ModList.get().isLoaded("curios") && Proxy.getClientPlayer() != null) {
-            return stack.getItem() instanceof ICurioItem || !CuriosApi.getItemStackSlots(stack, Proxy.getClientPlayer()).values().isEmpty() || stack.is(CFTagGen.CURIO_MODIFIABLE);
-        }
-        return false;
-    }
+	public static boolean isCurio(ItemStack stack) {
+		if (ModList.get().isLoaded("curios") && Proxy.getClientPlayer() != null) {
+			return stack.getItem() instanceof ICurioItem || !CuriosApi.getItemStackSlots(stack, Proxy.getClientPlayer()).values().isEmpty() || stack.is(CFTagGen.CURIO_MODIFIABLE);
+		}
+		return false;
+	}
 }

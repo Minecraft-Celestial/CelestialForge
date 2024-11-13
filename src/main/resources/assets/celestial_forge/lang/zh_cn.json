@@ -36,13 +36,11 @@
   "celestial_forge.tooltip.curio_type": "§7适用范围：§9饰品",
   "celestial_forge.tooltip.weapon_type": "§7适用范围：§9武器",
   "celestial_forge.tooltip.all_type": "§7适用范围：§9所有",
-  "celestial_forge.tooltip.table_lines_1": "放置装备并提供材料",
-  "celestial_forge.tooltip.table_lines_2": "以获取词条或是对已有的词条进行升级",
-  "celestial_forge.tooltip.table_lines_3": "按照图片提示放置材料",
-  "celestial_forge.tooltip.table_lines_4": "并准备足够的经验对词条进行升级",
-  "celestial_forge.tooltip.table_lines_5": "本次升级预计消耗%s点经验",
-  "celestial_forge.tooltip.table_lines_6": "使用锤子右键以完成锻造",
-  "celestial_forge.tooltip.table_lines_7": "此物品无法持有词条",
+  "celestial_forge.tooltip.table_start": "放置装备开始锻造",
+  "celestial_forge.tooltip.table_exp_cost": "经验消耗：%s",
+  "celestial_forge.tooltip.table_hammer": "使用锤子右键以完成锻造",
+  "celestial_forge.tooltip.table_invalid_item": "无效物品",
+  "celestial_forge.tooltip.table_material": "材料消耗：",
   "celestial_forge.tooltip.modifier_book_info": "§7在铁砧上消耗§922级经验§7将物品品质更改为该品质",
   "block.celestial_forge.forge_table": "锻造桌"
 }

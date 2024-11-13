@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ClientHandler {
 
-    @SubscribeEvent
-    public static void addReloadLis(AddReloadListenerEvent event) {
-    }
+	@SubscribeEvent
+	public static void addReloadLis(AddReloadListenerEvent event) {
+	}
 }
