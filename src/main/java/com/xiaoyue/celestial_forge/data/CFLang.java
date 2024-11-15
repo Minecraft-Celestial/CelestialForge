@@ -20,7 +20,10 @@ public enum CFLang {
 	TABLE_EXP_COST("Exp cost: %s", 1),
 	TABLE_HAMMER("Right-click with a hammer to complete", 0),
 	TABLE_INVALID_ITEM("Invalid item", 0),
-	TABLE_MATERIAL("Material requirement:", 0);
+	TABLE_MATERIAL("Material requirement:", 0),
+	GRADE_PROGRESS("Current exp %s / %s", 2),
+	MODIFIER_LEVEL("Modifier level: %s", 1),
+	;
 
 	final String id;
 	final String def;

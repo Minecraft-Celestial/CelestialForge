@@ -41,6 +41,8 @@
   "celestial_forge.tooltip.table_hammer": "使用锤子右键以完成锻造",
   "celestial_forge.tooltip.table_invalid_item": "无效物品",
   "celestial_forge.tooltip.table_material": "材料消耗：",
+  "celestial_forge.tooltip.grade_progress": "当前经验: %s / %s",
+  "celestial_forge.tooltip.modifier_level": "当前等级: %s",
   "celestial_forge.tooltip.modifier_book_info": "§7在铁砧上消耗§922级经验§7将物品品质更改为该品质",
   "block.celestial_forge.forge_table": "锻造桌"
 }

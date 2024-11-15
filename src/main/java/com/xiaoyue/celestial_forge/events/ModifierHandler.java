@@ -93,7 +93,7 @@ public class ModifierHandler {
 		ItemStack stack = event.getItemStack();
 		ModifierInstance modifier = ModifierUtils.getModifier(stack);
 		if (modifier == null) return;
-		event.getToolTip().addAll(modifier.getInfoLines());
+		event.getToolTip().addAll(modifier.getInfoLines(stack));
 	}
 
 	@SubscribeEvent //TODO

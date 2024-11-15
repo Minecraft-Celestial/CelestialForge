@@ -40,7 +40,7 @@ public class ModifierBook extends Item {
 		if (stack.hasTag() && stack.getTag().contains(ModifierUtils.bookTagName)) {
 			ModifierHolder mod = DataHolder.byId(new ResourceLocation(stack.getTag().getString(ModifierUtils.bookTagName)));
 			if (mod != null) {
-				list.addAll(ModifierInstance.of(mod).getInfoLines());
+				list.addAll(ModifierInstance.of(mod).getInfoLines(stack));
 				list.add(CFLang.MODIFIER_BOOK_INFO.get());
 				list.add(ModifierUtils.addModifierTypeTip(mod));
 			}

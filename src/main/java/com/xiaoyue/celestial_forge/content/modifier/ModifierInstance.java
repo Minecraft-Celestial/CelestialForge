@@ -1,12 +1,14 @@
 package com.xiaoyue.celestial_forge.content.modifier;
 
 import com.xiaoyue.celestial_forge.content.data.UpgradeRecipe;
+import com.xiaoyue.celestial_forge.data.CFLang;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -45,7 +47,20 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 		return null;
 	}
 
-	public List<MutableComponent> getInfoLines() {
+	public List<MutableComponent> extraLines(ItemStack stack) {
+		List<MutableComponent> lines = new ArrayList<>();
+		ModifierInstance modifier = ModifierUtils.getModifier(stack);
+		if (modifier != null) {
+			lines.add(CFLang.MODIFIER_LEVEL.get(Component.literal("" + modifier.level).withStyle(ChatFormatting.BLUE))
+					.withStyle(ChatFormatting.GRAY));
+			lines.add(CFLang.GRADE_PROGRESS.get(Component.literal("" + modifier.exp)
+					.withStyle(ChatFormatting.BLUE), Component.literal("" +
+					ModifierUtils.getMaxExp(level)).withStyle(ChatFormatting.BLUE)).withStyle(ChatFormatting.GRAY));
+		}
+        return lines;
+    }
+
+	public List<MutableComponent> getInfoLines(ItemStack stack) {
 		List<MutableComponent> lines = new ArrayList<>();
 		int size = holder.data().modifiers().size();
 		if (size < 1) {
@@ -55,6 +70,7 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 			MutableComponent description = getModifierDescription(new ModifierInstanceEntry(holder.data().modifiers().get(0), level));
 			if (description == null) return lines;
 			lines.add(holder.getFormattedName().append(": ").withStyle(ChatFormatting.GRAY).append(description));
+			lines.addAll(extraLines(stack));
 		} else {
 			lines.add(holder.getFormattedName().append(":").withStyle(ChatFormatting.GRAY));
 			for (var entry : holder.data().modifiers()) {
@@ -63,6 +79,7 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 					lines.add(description);
 				}
 			}
+			lines.addAll(extraLines(stack));
 			if (lines.size() == 1) {
 				lines.clear();
 			}
