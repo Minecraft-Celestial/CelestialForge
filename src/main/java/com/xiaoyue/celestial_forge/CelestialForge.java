@@ -10,9 +10,11 @@ import com.xiaoyue.celestial_forge.content.data.UpgradeRecipe;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
 import com.xiaoyue.celestial_forge.data.CFConfigGen;
 import com.xiaoyue.celestial_forge.data.CFLang;
+import com.xiaoyue.celestial_forge.data.CFModConfig;
 import com.xiaoyue.celestial_forge.data.CFTagGen;
-import com.xiaoyue.celestial_forge.data.CommonConfig;
 import com.xiaoyue.celestial_forge.register.CFItems;
+import com.xiaoyue.celestial_forge.utils.CurioUtils;
+import com.xiaoyue.celestial_forge.utils.TypeTestUtils;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.serial.config.ConfigTypeEntry;
 import dev.xkmc.l2library.serial.config.PacketHandlerWithConfig;
@@ -49,8 +51,10 @@ public class CelestialForge {
 
 	public CelestialForge() {
 		CFItems.register();
-		CommonConfig.initConfig();
+		CFModConfig.initConfig();
+		CurioUtils.register();
 		HANDLER.addAfterReloadListener(DataHolder::rebuild);
+		HANDLER.addAfterReloadListener(TypeTestUtils::clearCache);
 	}
 
 	public static ResourceLocation loc(String id) {
@@ -63,4 +67,5 @@ public class CelestialForge {
 		REGISTRATE.addDataGenerator(ProviderType.LANG, CFLang::addLang);
 		event.getGenerator().addProvider(event.includeServer(), new CFConfigGen(event.getGenerator()));
 	}
+
 }

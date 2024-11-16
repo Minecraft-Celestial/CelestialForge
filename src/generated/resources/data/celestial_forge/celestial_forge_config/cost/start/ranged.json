@@ -3,6 +3,12 @@
   "items": [
     {
       "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:flint"
+    },
+    {
+      "item": "minecraft:vine"
     }
   ],
   "level": 0,

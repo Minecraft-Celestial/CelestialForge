@@ -42,7 +42,7 @@ public class ModifierBook extends Item {
 			if (mod != null) {
 				list.addAll(ModifierInstance.of(mod).getInfoLines(stack));
 				list.add(CFLang.MODIFIER_BOOK_INFO.get());
-				list.add(ModifierUtils.addModifierTypeTip(mod));
+				list.add(CFLang.addModifierTypeTip(mod));
 			}
 		}
 	}

@@ -1,5 +1,7 @@
 {
   "values": [
-    "minecraft:trident"
+    "minecraft:trident",
+    "#minecraft:swords",
+    "#minecraft:axes"
   ]
 }

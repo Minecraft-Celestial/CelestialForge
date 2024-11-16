@@ -57,8 +57,8 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 					.withStyle(ChatFormatting.BLUE), Component.literal("" +
 					ModifierUtils.getMaxExp(level)).withStyle(ChatFormatting.BLUE)).withStyle(ChatFormatting.GRAY));
 		}
-        return lines;
-    }
+		return lines;
+	}
 
 	public List<MutableComponent> getInfoLines(ItemStack stack) {
 		List<MutableComponent> lines = new ArrayList<>();

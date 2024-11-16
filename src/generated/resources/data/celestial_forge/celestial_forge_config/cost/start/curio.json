@@ -3,6 +3,12 @@
   "items": [
     {
       "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "minecraft:redstone"
     }
   ],
   "level": 0,

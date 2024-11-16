@@ -1,23 +1,20 @@
 package com.xiaoyue.celestial_forge.events;
 
-import com.xiaoyue.celestial_forge.content.data.DataHolder;
 import com.xiaoyue.celestial_forge.content.data.ModifierType;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
+import com.xiaoyue.celestial_forge.utils.TypeTestUtils;
 import dev.xkmc.l2library.util.math.MathHelper;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
+import net.minecraftforge.event.GrindstoneEvent;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import top.theillusivec4.curios.api.event.CurioAttributeModifierEvent;
 
 import java.util.UUID;
 
@@ -31,30 +28,12 @@ public class ModifierHandler {
 		ItemStack stack = event.getItemStack();
 		var mod = ModifierUtils.getModifier(stack);
 		if (mod == null) return;
-		var type = ModifierUtils.getType(stack);
+		var type = TypeTestUtils.getType(stack);
 		var slot = event.getSlotType();
-		if ((type == ModifierType.TOOL || type == ModifierType.RANGED) && slot == EquipmentSlot.MAINHAND ||
-				type == ModifierType.ARMOR && slot.isArmor()) {
+		if (type != null && type.test(slot)) {
 			for (int i = 0; i < mod.size(); i++) {
 				var entry = mod.get(i);
 				String name = slot + "/" + mod.holder().id() + "/" + i;
-				UUID id = MathHelper.getUUIDFromString(name);
-				event.addModifier(entry.entry().attr(), entry.getAttributeModifier(id, name));
-			}
-		}
-	}
-
-	@SubscribeEvent
-	public static void onCuriosAttribute(CurioAttributeModifierEvent event) {
-		ItemStack stack = event.getItemStack();
-		var mod = ModifierUtils.getModifier(stack);
-		if (mod == null) return;
-		var type = mod.holder().type();
-		var ctx = event.getSlotContext();
-		if ((type == ModifierType.CURIO)) {
-			for (int i = 0; i < mod.size(); i++) {
-				var entry = mod.get(i);
-				String name = ctx.identifier() + "/" + ctx.index() + "/" + mod.holder().id() + "/" + i;
 				UUID id = MathHelper.getUUIDFromString(name);
 				event.addModifier(entry.entry().attr(), entry.getAttributeModifier(id, name));
 			}
@@ -89,27 +68,29 @@ public class ModifierHandler {
 	}
 
 	@SubscribeEvent
-	public static void addTooltip(ItemTooltipEvent event) {
-		ItemStack stack = event.getItemStack();
-		ModifierInstance modifier = ModifierUtils.getModifier(stack);
-		if (modifier == null) return;
-		event.getToolTip().addAll(modifier.getInfoLines(stack));
-	}
-
-	@SubscribeEvent //TODO
 	public static void modifierRecipe(AnvilUpdateEvent event) {
 		ItemStack left = event.getLeft().copy();
 		ItemStack right = event.getRight();
+		if (TypeTestUtils.mightHaveModifiers(left) && right.getItem() instanceof ModifierBook) {
+			ModifierHolder modifier = ModifierUtils.fromBook(right);
+			if (modifier == null) return;
+			if (modifier.type() != ModifierType.ALL && modifier.type() != TypeTestUtils.getType(left)) return;
+			ModifierUtils.setModifier(left, ModifierInstance.of(modifier));
+			event.setMaterialCost(1);
+			event.setOutput(left);
+			event.setCost(22);//TODO config
+		}
+	}
 
-		if (ModifierUtils.canHaveModifiers(left)) {
-			if (right.getItem() instanceof ModifierBook) {
-				ModifierHolder modifier = DataHolder.byId(new ResourceLocation(right.getTag().getString(ModifierUtils.bookTagName)));
-				if (modifier == null) return;
-				ModifierUtils.setModifier(left, ModifierInstance.of(modifier));
-				event.setMaterialCost(1);
-				event.setOutput(left);
-				event.setCost(22);
-			}
+	@SubscribeEvent
+	public static void grind(GrindstoneEvent.OnPlaceItem event) {
+		var stack = event.getTopItem();
+		var ins = ModifierUtils.getModifier(stack);
+		if (!stack.isEnchanted() && ins != null) {
+			var copy = stack.copy();
+			ModifierUtils.removeModifier(copy);
+			event.setOutput(copy);
+			event.setXp(3 + ins.level());
 		}
 	}
 

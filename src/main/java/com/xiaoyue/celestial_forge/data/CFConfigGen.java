@@ -23,7 +23,7 @@ public class CFConfigGen extends ConfigDataProvider {
 
 	static {
 		CONFIG = new DataBuilder()
-				.put(ModifierType.ARMOR, UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT))
+				.put(ModifierType.ARMOR, UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT, Items.IRON_INGOT, Items.GOLD_NUGGET))
 				.put(CelestialForge.loc("armor_basic"),
 						UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT, Items.LEATHER, Items.BRICK),
 						UpgradeRecipeBuilder.of(5, Items.IRON_INGOT, Items.IRON_BOOTS, Items.REDSTONE, Items.BOOK),
@@ -62,7 +62,7 @@ public class CFConfigGen extends ConfigDataProvider {
 				.end()
 				.end()
 
-				.put(ModifierType.TOOL, UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT))
+				.put(ModifierType.TOOL, UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT, Items.IRON_INGOT, Items.DEEPSLATE))
 				.put(CelestialForge.loc("tool_basic"),
 						UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT, Items.GOLD_INGOT, Items.COAL),
 						UpgradeRecipeBuilder.of(5, Items.IRON_INGOT, Items.GOLDEN_SHOVEL, Items.LAPIS_LAZULI, Items.PAPER),
@@ -101,7 +101,7 @@ public class CFConfigGen extends ConfigDataProvider {
 				.end()
 				.end()
 
-				.put(ModifierType.RANGED, UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT))
+				.put(ModifierType.RANGED, UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT, Items.FLINT, Items.VINE))
 				.put(CelestialForge.loc("ranged_basic"),
 						UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT, Items.BONE, Items.STRING),
 						UpgradeRecipeBuilder.of(5, Items.IRON_INGOT, Items.GOLD_INGOT, Items.BOW, Items.FEATHER, Items.QUARTZ),
@@ -136,7 +136,7 @@ public class CFConfigGen extends ConfigDataProvider {
 						new ModifierEntry(Attributes.MOVEMENT_SPEED, 0.05, MULTIPLY_BASE))
 				.end().end()
 
-				.put(ModifierType.WEAPON, UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT))
+				.put(ModifierType.WEAPON, UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT, Items.IRON_INGOT, Items.FLINT))
 				.put(CelestialForge.loc("weapon_basic"),
 						UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT, Items.IRON_SWORD, Items.FLINT),
 						UpgradeRecipeBuilder.of(5, Items.IRON_INGOT, Items.GOLDEN_SWORD, Items.GUNPOWDER, Items.EMERALD),
@@ -173,7 +173,7 @@ public class CFConfigGen extends ConfigDataProvider {
 				.end()
 				.end()
 
-				.put(ModifierType.CURIO, UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT))
+				.put(ModifierType.CURIO, UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT, Items.LAPIS_LAZULI, Items.REDSTONE))
 				.put(CelestialForge.loc("curio_basic"),
 						UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT, Items.IRON_INGOT, Items.PAPER),
 						UpgradeRecipeBuilder.of(5, Items.IRON_AXE, Items.GOLD_INGOT, Items.BOOK, Items.ENDER_PEARL),
@@ -214,7 +214,7 @@ public class CFConfigGen extends ConfigDataProvider {
 				.end()
 				.end()
 
-				.put(ModifierType.ALL, UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT))
+				.put(ModifierType.ALL, UpgradeRecipeBuilder.of(3, Items.BEDROCK))
 				.put(CelestialForge.loc("general_basic"),
 						UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT, Items.IRON_DOOR, Items.CLAY),
 						UpgradeRecipeBuilder.of(5, Items.IRON_INGOT, Items.GOLD_BLOCK, Items.GLOWSTONE_DUST),

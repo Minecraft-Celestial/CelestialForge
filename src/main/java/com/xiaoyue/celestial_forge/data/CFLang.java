@@ -2,6 +2,7 @@ package com.xiaoyue.celestial_forge.data;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.xiaoyue.celestial_forge.CelestialForge;
+import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
@@ -48,4 +49,16 @@ public enum CFLang {
 			pvd.add(value.id, value.def);
 		}
 	}
+
+	public static Component addModifierTypeTip(ModifierHolder modifier) {
+		return switch (modifier.type()) {
+			case WEAPON -> WEAPON_TYPE.get();
+			case RANGED -> RANGED_TYPE.get();
+			case TOOL -> TOOLS_TYPE.get();
+			case ARMOR -> EQUIPPED_TYPE.get();
+			case CURIO -> CURIO_TYPE.get();
+			case ALL -> ALL_TYPE.get();
+		};
+	}
+
 }

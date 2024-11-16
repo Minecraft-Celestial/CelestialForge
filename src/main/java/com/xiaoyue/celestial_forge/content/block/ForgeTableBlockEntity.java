@@ -7,6 +7,7 @@ import com.xiaoyue.celestial_forge.content.overlay.TileTooltip;
 import com.xiaoyue.celestial_forge.data.CFLang;
 import com.xiaoyue.celestial_forge.register.CFItems;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
+import com.xiaoyue.celestial_forge.utils.TypeTestUtils;
 import dev.xkmc.l2library.base.tile.BaseBlockEntity;
 import dev.xkmc.l2library.base.tile.BaseContainerListener;
 import dev.xkmc.l2modularblock.tile_api.BlockContainer;
@@ -65,7 +66,7 @@ public class ForgeTableBlockEntity extends BaseBlockEntity implements BaseContai
 	@Nullable
 	public UpgradeRecipe getRecipe(ItemStack stack) {
 		if (stack.isEmpty()) return null;
-		var type = ModifierUtils.getType(stack);
+		var type = TypeTestUtils.getType(stack);
 		if (type == null) return null;
 		var ins = ModifierUtils.getModifier(stack);
 		if (ins == null) return DataHolder.getStart(type);
