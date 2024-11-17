@@ -4,6 +4,7 @@ import com.xiaoyue.celestial_forge.content.data.ModifierType;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
+import com.xiaoyue.celestial_forge.data.CFModConfig;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import com.xiaoyue.celestial_forge.utils.TypeTestUtils;
 import dev.xkmc.l2library.util.math.MathHelper;
@@ -78,7 +79,7 @@ public class ModifierHandler {
 			ModifierUtils.setModifier(left, ModifierInstance.of(modifier));
 			event.setMaterialCost(1);
 			event.setOutput(left);
-			event.setCost(22);//TODO config
+			event.setCost(CFModConfig.COMMON.modifierBookRecipeCost.get());
 		}
 	}
 

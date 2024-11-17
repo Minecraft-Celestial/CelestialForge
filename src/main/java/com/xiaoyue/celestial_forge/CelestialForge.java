@@ -8,10 +8,7 @@ import com.xiaoyue.celestial_forge.content.data.LevelingConfig;
 import com.xiaoyue.celestial_forge.content.data.ModifierData;
 import com.xiaoyue.celestial_forge.content.data.UpgradeRecipe;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
-import com.xiaoyue.celestial_forge.data.CFConfigGen;
-import com.xiaoyue.celestial_forge.data.CFLang;
-import com.xiaoyue.celestial_forge.data.CFModConfig;
-import com.xiaoyue.celestial_forge.data.CFTagGen;
+import com.xiaoyue.celestial_forge.data.*;
 import com.xiaoyue.celestial_forge.register.CFItems;
 import com.xiaoyue.celestial_forge.utils.CurioUtils;
 import com.xiaoyue.celestial_forge.utils.TypeTestUtils;
@@ -65,6 +62,7 @@ public class CelestialForge {
 	public static void gatherData(GatherDataEvent event) {
 		REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, CFTagGen::onItemTagGen);
 		REGISTRATE.addDataGenerator(ProviderType.LANG, CFLang::addLang);
+		REGISTRATE.addDataGenerator(ProviderType.RECIPE, CFRecipeGen::onRecipeGen);
 		event.getGenerator().addProvider(event.includeServer(), new CFConfigGen(event.getGenerator()));
 	}
 

@@ -13,8 +13,20 @@ public class CFModConfig {
 
 	public static class Common {
 
-		Common(ForgeConfigSpec.Builder builder) {
+		public final ForgeConfigSpec.IntValue modifierBookRecipeCost;
+		public final ForgeConfigSpec.DoubleValue modifierMaxLevelRate;
+		public final ForgeConfigSpec.IntValue modifierMaxLevelBase;
 
+		Common(ForgeConfigSpec.Builder builder) {
+			modifierBookRecipeCost = builder
+					.comment("Experience level that will be consumed when attaching modifier to the modifier book")
+					.defineInRange("modifierBookRecipeCost", 22, 1, 100);
+			modifierMaxLevelRate = builder
+					.comment("Experience cost exponential multiplier for modifier upgrading")
+					.defineInRange("modifierMaxLevelRate", 0.1, 0.01, 0.5);
+			modifierMaxLevelBase = builder
+					.comment("Basic experience required for modifier upgrade")
+					.defineInRange("modifierMaxLevelBase", 125, 10, 1000);
 		}
 
 	}

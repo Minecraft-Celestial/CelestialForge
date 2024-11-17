@@ -4,6 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import com.xiaoyue.celestial_forge.content.data.DataHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
+import com.xiaoyue.celestial_forge.data.CFModConfig;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
@@ -67,8 +68,8 @@ public class ModifierUtils {
 	}
 
 	public static int getMaxExp(int level) {
-		double rate = 0.1; //TODO config
-		int base = 125;//TODO config
+		double rate = CFModConfig.COMMON.modifierMaxLevelRate.get();
+		int base = CFModConfig.COMMON.modifierMaxLevelBase.get();
 		return (int) (Math.pow(2d, level * rate) * base);
 	}
 
