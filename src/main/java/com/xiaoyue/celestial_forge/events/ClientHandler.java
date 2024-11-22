@@ -16,7 +16,7 @@ public class ClientHandler {
 		ItemStack stack = event.getItemStack();
 		ModifierInstance modifier = ModifierUtils.getModifier(stack);
 		if (modifier == null) return;
-		event.getToolTip().addAll(modifier.getInfoLines(stack));
+		event.getToolTip().addAll(modifier.getInfoLines());
 	}
 
 }

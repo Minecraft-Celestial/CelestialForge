@@ -23,6 +23,8 @@ public enum CFLang {
 	TABLE_INVALID_ITEM("Invalid item", 0),
 	TABLE_MATERIAL("Material requirement:", 0),
 	GRADE_PROGRESS("Current exp %s / %s", 2),
+	IS_MAX_LEVEL("Maxed out", 0),
+	NEED_UPGRADE("Put it on Forge Table for ascension", 0),
 	MODIFIER_LEVEL("Modifier level: %s", 1),
 	;
 

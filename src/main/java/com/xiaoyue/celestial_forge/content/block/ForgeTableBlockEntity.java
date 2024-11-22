@@ -116,7 +116,7 @@ public class ForgeTableBlockEntity extends BaseBlockEntity implements BaseContai
 			}
 		}
 		LocalPlayer player = Minecraft.getInstance().player;
-		boolean exp = player != null && player.experienceLevel >= recipe.exp;
+		boolean exp = player != null && (player.experienceLevel >= recipe.exp || player.getAbilities().instabuild);
 		if (exp && list.isEmpty()) list.add(CFItems.HAMMER.asStack());
 		if (list.isEmpty()) return null;
 		return new TileTooltip(list);
@@ -139,7 +139,7 @@ public class ForgeTableBlockEntity extends BaseBlockEntity implements BaseContai
 			}
 		}
 		LocalPlayer player = Minecraft.getInstance().player;
-		boolean exp = player != null && player.experienceLevel >= recipe.exp;
+		boolean exp = player != null && (player.experienceLevel >= recipe.exp || player.getAbilities().instabuild);
 		List<Component> list = new ArrayList<>();
 		list.add(CFLang.TABLE_EXP_COST.get(Component.literal("" + recipe.exp))
 				.withStyle(exp ? ChatFormatting.AQUA : ChatFormatting.RED));
@@ -160,7 +160,7 @@ public class ForgeTableBlockEntity extends BaseBlockEntity implements BaseContai
 		if (main.isEmpty()) return;
 		UpgradeRecipe recipe = getRecipe(main);
 		if (recipe == null) return;
-		if (player.experienceLevel < recipe.exp) return;
+		if (!player.getAbilities().instabuild && player.experienceLevel < recipe.exp) return;
 		for (int i = 0; i < recipe.items.size(); i++) {
 			if (get(i + 1).isEmpty()) {
 				return;

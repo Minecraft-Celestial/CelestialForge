@@ -8,7 +8,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -47,20 +46,26 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 		return null;
 	}
 
-	public List<MutableComponent> extraLines(ItemStack stack) {
+	public List<MutableComponent> extraLines() {
 		List<MutableComponent> lines = new ArrayList<>();
-		ModifierInstance modifier = ModifierUtils.getModifier(stack);
-		if (modifier != null) {
-			lines.add(CFLang.MODIFIER_LEVEL.get(Component.literal("" + modifier.level).withStyle(ChatFormatting.BLUE))
-					.withStyle(ChatFormatting.GRAY));
-			lines.add(CFLang.GRADE_PROGRESS.get(Component.literal("" + modifier.exp)
-					.withStyle(ChatFormatting.BLUE), Component.literal("" +
-					ModifierUtils.getMaxExp(level)).withStyle(ChatFormatting.BLUE)).withStyle(ChatFormatting.GRAY));
+		lines.add(CFLang.MODIFIER_LEVEL.get(Component.literal("" + level).withStyle(ChatFormatting.BLUE))
+				.withStyle(ChatFormatting.GRAY));
+		if (canUpgrade()) {
+			if (needUpgrade()) {
+				lines.add(CFLang.NEED_UPGRADE.get().withStyle(ChatFormatting.YELLOW));
+			} else {
+				lines.add(CFLang.GRADE_PROGRESS.get(
+						Component.literal("" + exp).withStyle(ChatFormatting.BLUE),
+						Component.literal("" + ModifierUtils.getMaxExp(level)).withStyle(ChatFormatting.BLUE)
+				).withStyle(ChatFormatting.GRAY));
+			}
+		} else {
+			lines.add(CFLang.IS_MAX_LEVEL.get().withStyle(ChatFormatting.GOLD));
 		}
 		return lines;
 	}
 
-	public List<MutableComponent> getInfoLines(ItemStack stack) {
+	public List<MutableComponent> getInfoLines() {
 		List<MutableComponent> lines = new ArrayList<>();
 		int size = holder.data().modifiers().size();
 		if (size < 1) {
@@ -70,7 +75,7 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 			MutableComponent description = getModifierDescription(new ModifierInstanceEntry(holder.data().modifiers().get(0), level));
 			if (description == null) return lines;
 			lines.add(holder.getFormattedName().append(": ").withStyle(ChatFormatting.GRAY).append(description));
-			lines.addAll(extraLines(stack));
+			lines.addAll(extraLines());
 		} else {
 			lines.add(holder.getFormattedName().append(":").withStyle(ChatFormatting.GRAY));
 			for (var entry : holder.data().modifiers()) {
@@ -79,7 +84,7 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 					lines.add(description);
 				}
 			}
-			lines.addAll(extraLines(stack));
+			lines.addAll(extraLines());
 			if (lines.size() == 1) {
 				lines.clear();
 			}
@@ -114,7 +119,7 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 	}
 
 	public boolean needUpgrade() {
-		return canUpgrade() && level > 0 && level % 10 == 0 && exp > ModifierUtils.getMaxExp(level);
+		return canUpgrade() && level > 0 && level % 10 == 0 && exp >= ModifierUtils.getMaxExp(level);
 	}
 
 	public UpgradeRecipe getNextUpgrade() {

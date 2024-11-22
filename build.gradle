@@ -92,22 +92,43 @@ repositories {
     mavenLocal();
 }
 
+if(lljij){
+    jarJar.enable()
+    tasks.jarJar.configure {
+        archiveClassifier.set('')
+    }
+    jar {
+        archiveClassifier.set('slim')
+    }
+
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     compileOnly(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:${mixin_extras_version}"))
-    implementation("com.github.llamalad7.mixinextras:mixinextras-forge:${mixin_extras_version}")
+    if (rootMod.toBoolean()) {
+        implementation(jarJar("com.github.llamalad7.mixinextras:mixinextras-forge:${mixin_extras_version}")) {
+            transitive = false
+            jarJar.ranged(it, "[${mixin_extras_version},)")
+        }
+    } else {
+        implementation("com.github.llamalad7.mixinextras:mixinextras-forge:${mixin_extras_version}")
+    }
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
     compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+    if (rootMod.toBoolean()) {
+        jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "[MC1.20,MC1.21)")
+    }
+    implementation fg.deobf(jarJar(group: 'dev.xkmc.l2modularblock', name: 'l2modularblock', version: "[1.1.1,1.2.0)"))
+    implementation fg.deobf(jarJar(group: 'dev.xkmc.l2serial', name: 'l2serial', version: "[1.2.2,)"))
+    implementation fg.deobf(jarJar(group: 'dev.xkmc.l2damagetracker', name: 'l2damagetracker', version: "[0.3.8,)"))
+    implementation fg.deobf(jarJar(group: 'dev.xkmc.l2library', name: 'l2library', version: "[2.4.23,)"))
 
     implementation fg.deobf("xiaoyue.celestial_core:celestial_core:1.4.2-slim")
     implementation fg.deobf("xiaoyue.celestial_artifacts:celestial_artifacts:1.4.5")
-    implementation fg.deobf("dev.xkmc.l2serial:l2serial:1.2.2")
     implementation fg.deobf("dev.xkmc.l2tabs:l2tabs:0.3.1")
     implementation fg.deobf("dev.xkmc.l2screentracker:l2screentracker:0.1.4")
-    implementation fg.deobf("dev.xkmc.l2damagetracker:l2damagetracker:0.3.8")
-    implementation fg.deobf("dev.xkmc.l2modularblock:l2modularblock:1.1.1")
     runtimeOnly fg.deobf("dev.xkmc.l2itemselector:l2itemselector:0.1.7")
-    implementation fg.deobf("dev.xkmc.l2library:l2library:2.4.23-slim")
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
     implementation fg.deobf("curse.maven:patchouli-306770:4636277")
