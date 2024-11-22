@@ -23,7 +23,7 @@ public class CFTagGen {
 		pvd.addTag(WEAPON_MODIFIABLE).add(Items.TRIDENT)
 				.addTags(ItemTags.SWORDS, ItemTags.AXES);
 		pvd.addTag(TOOL_MODIFIABLE)
-				.addTags(ItemTags.PICKAXES, ItemTags.AXES, ItemTags.SHOVELS, ItemTags.HOES);
+				.addTags(ItemTags.PICKAXES, ItemTags.AXES, ItemTags.SHOVELS, ItemTags.HOES, Tags.Items.TOOLS_FISHING_RODS);
 		pvd.addTag(ARMOR_MODIFIABLE)
 				.addTags(Tags.Items.ARMORS);
 		pvd.addTag(RANGED_MODIFIABLE)

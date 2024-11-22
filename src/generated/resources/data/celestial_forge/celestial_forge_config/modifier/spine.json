@@ -1,6 +1,6 @@
 {
-  "type": "TOOL",
-  "leveling": "celestial_forge:tool_basic",
+  "type": "WEAPON",
+  "leveling": "celestial_forge:weapon_basic",
   "modifiers": [
     {
       "attr": "minecraft:generic.attack_damage",

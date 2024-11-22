@@ -1,7 +1,7 @@
-// 1.20.1	2024-11-18T09:53:42.939911	Registrate Provider for celestial_forge [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud), Tags (attributes)]
+// 1.20.1	2024-11-22T12:55:15.556931	Registrate Provider for celestial_forge [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud), Tags (attributes)]
 8f65be4322f4719db4ac07a8822051d2ef6426e1 assets/celestial_forge/blockstates/forge_table.json
-d4f89d35dba5729d3bdefdd76b0343db99e3bc86 assets/celestial_forge/lang/en_ud.json
-78639f3ca1e08311f071d6468874d43a9dd43903 assets/celestial_forge/lang/en_us.json
+7f9368f4d9be13644034bfd77beb24866a97623d assets/celestial_forge/lang/en_ud.json
+a1620ca9114d41c45fdfd912fbd9d8f86b4d1dc0 assets/celestial_forge/lang/en_us.json
 cd5190d4e841971ea04fefbfc06a3b94143fa246 assets/celestial_forge/models/block/forge_table.json
 744fd02b719b67cfa3c8d531c243256ba67815a5 assets/celestial_forge/models/item/forge_table.json
 0d97fdce2e6be6d32bb81af9fc5a7fc1bcf7b342 assets/celestial_forge/models/item/hammer.json
@@ -14,6 +14,6 @@ ae816f9c79eabfb8fc891577f6950af1fc54c939 data/celestial_forge/recipes/forge_tabl
 7dc03c9d38c4281ff103b773916427c595f63706 data/celestial_forge/tags/items/armor_modifiable.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/celestial_forge/tags/items/curio_modifiable.json
 b66e5136e9f0246d08fbf8e91dc9e7d6d2217e00 data/celestial_forge/tags/items/ranged_modifiable.json
-0c58625a42b79412cbe0396c156fff2e3db0f45b data/celestial_forge/tags/items/tool_modifiable.json
+ec2decefb47bb36ba38fc29d11c5d8543eb57947 data/celestial_forge/tags/items/tool_modifiable.json
 d745a414dcb1602f0f1ebd3a35fb5a1153614f5b data/celestial_forge/tags/items/weapon_modifiable.json
 8adcf0e572a074066d7233e74dbbdfbd468db341 data/minecraft/tags/blocks/mineable/pickaxe.json

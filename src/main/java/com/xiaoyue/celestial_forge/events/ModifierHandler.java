@@ -45,27 +45,7 @@ public class ModifierHandler {
 	public static void onMobExpDrop(LivingExperienceDropEvent event) {
 		var player = event.getAttackingPlayer();
 		if (player == null) return;
-		var list = ModifierUtils.getAllOnPlayer(player);
-		int total = event.getDroppedExperience();
-		int n = list.size();
-		int base = total / n;
-		int avail = total - base;
-		var r = event.getAttackingPlayer().getRandom();
-		for (int i = 0; i < n; i++) {
-			int a = r.nextInt(n);
-			int b = r.nextInt(n);
-			var t = list.get(a);
-			list.set(a, list.get(b));
-			list.set(b, t);
-		}
-		for (var e : list) {
-			int toAdd = base;
-			if (avail > 0) {
-				toAdd++;
-				avail--;
-			}
-			ModifierUtils.addExp(e.getFirst(), e.getSecond(), toAdd);
-		}
+		ModifierUtils.addExpToPlayer(player, event.getDroppedExperience());
 	}
 
 	@SubscribeEvent

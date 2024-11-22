@@ -101,7 +101,7 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 	}
 
 	public boolean canUpgrade() {
-		return level * 10 < holder.gate().upgrades().size();
+		return level < holder.gate().upgrades().size() * 10;
 	}
 
 	public ModifierInstance addExp(int toAdd) {
@@ -123,7 +123,7 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 	}
 
 	public UpgradeRecipe getNextUpgrade() {
-		return holder.gate().upgrades().get(level / 10 - 1);
+		return holder.gate().upgrades().get(level);
 	}
 
 	public ModifierInstance upgrade() {

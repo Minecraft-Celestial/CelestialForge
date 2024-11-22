@@ -75,8 +75,7 @@ public class CFConfigGen extends ConfigDataProvider {
 						UpgradeRecipeBuilder.of(47, Items.NETHERITE_SHOVEL, CCItems.SHULKER_SCRAP.get(), CCItems.LIGHT_FRAGMENT.get(), Items.DRAGON_BREATH),
 						UpgradeRecipeBuilder.of(57, CCItems.GUARDIAN_OCEAN_INGOT.get(), CCItems.EARTH_CORE.get(), Items.END_ROD, Items.TOTEM_OF_UNDYING)
 				)
-				.put(CelestialForge.loc("sawtooth"), 300, Attributes.ATTACK_DAMAGE, 1, ADDITION)
-				.put(CelestialForge.loc("spine"), 200, Attributes.ATTACK_DAMAGE, 0.05, MULTIPLY_BASE)
+				.put(CelestialForge.loc("luck"), 100, Attributes.LUCK, 1, ADDITION)
 				.end()
 
 				.put(CelestialForge.loc("tool_advanced"),
@@ -91,13 +90,6 @@ public class CFConfigGen extends ConfigDataProvider {
 						UpgradeRecipeBuilder.of(47, Items.NETHERITE_SHOVEL, CCItems.SHULKER_SCRAP.get(), CCItems.MIDNIGHT_FRAGMENT.get(), Items.DRAGON_BREATH),
 						UpgradeRecipeBuilder.of(57, CCItems.HEART_FRAGMENT.get(), CCItems.EARTH_CORE.get(), Items.END_ROD, Items.TOTEM_OF_UNDYING)
 				)
-				.put(CelestialForge.loc("insane"), 100,
-						new ModifierEntry(Attributes.ATTACK_DAMAGE, -0.05, MULTIPLY_BASE),
-						new ModifierEntry(Attributes.ATTACK_SPEED, 0.1, MULTIPLY_BASE))
-				.put(CelestialForge.loc("legend"), 50,
-						new ModifierEntry(Attributes.ATTACK_DAMAGE, 0.1, MULTIPLY_BASE),
-						new ModifierEntry(Attributes.ATTACK_SPEED, 0.1, MULTIPLY_BASE),
-						new ModifierEntry(L2DamageTracker.CRIT_RATE.get(), 0.05, ADDITION))
 				.end()
 				.end()
 
@@ -150,9 +142,10 @@ public class CFConfigGen extends ConfigDataProvider {
 						UpgradeRecipeBuilder.of(57, CCItems.HEART_FRAGMENT.get(), CCItems.EARTH_CORE.get(), Items.END_ROD, Items.TOTEM_OF_UNDYING)
 				)
 				.put(CelestialForge.loc("accurate"), 200, L2DamageTracker.CRIT_RATE.get(), 0.02, ADDITION)
-				.put(CelestialForge.loc("luck"), 150, L2DamageTracker.BOW_STRENGTH.get(), 0.05, MULTIPLY_BASE)
 				.put(CelestialForge.loc("senior"), 200, L2DamageTracker.CRIT_DMG.get(), 0.02, ADDITION)
 				.put(CelestialForge.loc("devil"), 150, L2DamageTracker.CRIT_DMG.get(), 0.05, MULTIPLY_BASE)
+				.put(CelestialForge.loc("sawtooth"), 300, Attributes.ATTACK_DAMAGE, 1, ADDITION)
+				.put(CelestialForge.loc("spine"), 200, Attributes.ATTACK_DAMAGE, 0.05, MULTIPLY_BASE)
 				.end()
 
 				.put(CelestialForge.loc("weapon_advanced"),
@@ -170,6 +163,13 @@ public class CFConfigGen extends ConfigDataProvider {
 				.put(CelestialForge.loc("rude"), 75,
 						new ModifierEntry(L2DamageTracker.CRIT_RATE.get(), -0.05, ADDITION),
 						new ModifierEntry(L2DamageTracker.CRIT_DMG.get(), 0.1, ADDITION))
+				.put(CelestialForge.loc("insane"), 100,
+						new ModifierEntry(Attributes.ATTACK_DAMAGE, -0.05, MULTIPLY_BASE),
+						new ModifierEntry(Attributes.ATTACK_SPEED, 0.1, MULTIPLY_BASE))
+				.put(CelestialForge.loc("legend"), 50,
+						new ModifierEntry(Attributes.ATTACK_DAMAGE, 0.1, MULTIPLY_BASE),
+						new ModifierEntry(Attributes.ATTACK_SPEED, 0.1, MULTIPLY_BASE),
+						new ModifierEntry(L2DamageTracker.CRIT_RATE.get(), 0.05, ADDITION))
 				.end()
 				.end()
 
@@ -227,7 +227,6 @@ public class CFConfigGen extends ConfigDataProvider {
 						UpgradeRecipeBuilder.of(47, Items.NETHERITE_SHOVEL, CCItems.SHULKER_SCRAP.get(), CCItems.LIGHT_FRAGMENT.get(), Items.DRAGON_BREATH),
 						UpgradeRecipeBuilder.of(57, CCItems.HEART_FRAGMENT.get(), CCItems.EARTH_CORE.get(), Items.END_ROD, Items.TOTEM_OF_UNDYING)
 				)
-				.put(CelestialForge.loc("light"), 200, Attributes.MOVEMENT_SPEED, 0.05, ADDITION)
 				.put(CelestialForge.loc("fast"), 150, Attributes.MOVEMENT_SPEED, 0.05, MULTIPLY_BASE)
 				.end()
 				.end();

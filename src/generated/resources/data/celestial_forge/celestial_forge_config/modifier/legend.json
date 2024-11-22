@@ -1,6 +1,6 @@
 {
-  "type": "TOOL",
-  "leveling": "celestial_forge:tool_advanced",
+  "type": "WEAPON",
+  "leveling": "celestial_forge:weapon_advanced",
   "modifiers": [
     {
       "attr": "minecraft:generic.attack_damage",

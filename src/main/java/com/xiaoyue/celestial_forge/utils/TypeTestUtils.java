@@ -31,6 +31,7 @@ public class TypeTestUtils {
 	public static boolean isTool(ItemStack stack) {
 		return stack.getItem() instanceof TieredItem ||
 				stack.getItem() instanceof ShieldItem ||
+				stack.getItem() instanceof FishingRodItem ||
 				stack.is(CFTagGen.TOOL_MODIFIABLE);
 	}
 

@@ -1,13 +1,13 @@
 {
-  "type": "WEAPON",
-  "leveling": "celestial_forge:weapon_basic",
+  "type": "TOOL",
+  "leveling": "celestial_forge:tool_basic",
   "modifiers": [
     {
-      "attr": "l2damagetracker:bow_strength",
-      "base": 0.05,
-      "op": "MULTIPLY_BASE",
+      "attr": "minecraft:generic.luck",
+      "base": 1.0,
+      "op": "ADDITION",
       "perLevel": 0.04
     }
   ],
-  "weight": 150
+  "weight": 100
 }
