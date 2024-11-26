@@ -8,6 +8,7 @@ import com.xiaoyue.celestial_forge.data.CFModConfig;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import com.xiaoyue.celestial_forge.utils.TypeTestUtils;
 import dev.xkmc.l2library.util.math.MathHelper;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.GrindstoneEvent;
@@ -31,6 +32,7 @@ public class ModifierHandler {
 		if (mod == null) return;
 		var type = TypeTestUtils.getType(stack);
 		var slot = event.getSlotType();
+		if (slot.isArmor() && slot != LivingEntity.getEquipmentSlotForItem(stack)) return;
 		if (type != null && type.test(slot)) {
 			for (int i = 0; i < mod.size(); i++) {
 				var entry = mod.get(i);

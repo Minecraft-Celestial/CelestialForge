@@ -3,6 +3,7 @@ package com.xiaoyue.celestial_forge.content.modifier;
 import com.xiaoyue.celestial_forge.content.data.UpgradeRecipe;
 import com.xiaoyue.celestial_forge.data.CFLang;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
+import dev.xkmc.l2damagetracker.contents.curios.AttrTooltip;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -23,24 +24,29 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 
 	@Nullable
 	private static MutableComponent getModifierDescription(ModifierInstanceEntry entry) {
+		int op = entry.entry().op().toValue();
 		double d0 = entry.getAmount();
 		double d1;
 		if (entry.entry().op() == AttributeModifier.Operation.ADDITION) {
 			if (entry.entry().attr() == Attributes.KNOCKBACK_RESISTANCE) {
 				d1 = d0 * 10.0D;
+			} else if (AttrTooltip.isMult(entry.entry().attr())) {
+				d1 = d0 * 100.0D;
+				op = AttributeModifier.Operation.MULTIPLY_BASE.toValue();
 			} else {
 				d1 = d0;
 			}
+
 		} else {
 			d1 = d0 * 100.0D;
 		}
 
 		if (d0 > 0.0D) {
-			return Component.translatable("attribute.modifier.plus." + entry.entry().op().toValue(), ATTRIBUTE_MODIFIER_FORMAT.format(d1),
+			return Component.translatable("attribute.modifier.plus." + op, ATTRIBUTE_MODIFIER_FORMAT.format(d1),
 					Component.translatable(entry.entry().attr().getDescriptionId())).withStyle(ChatFormatting.BLUE);
 		} else if (d0 < 0.0D) {
 			d1 = d1 * -1.0D;
-			return Component.translatable("attribute.modifier.take." + entry.entry().op().toValue(), ATTRIBUTE_MODIFIER_FORMAT.format(d1),
+			return Component.translatable("attribute.modifier.take." + op, ATTRIBUTE_MODIFIER_FORMAT.format(d1),
 					Component.translatable(entry.entry().attr().getDescriptionId())).withStyle(ChatFormatting.RED);
 		}
 		return null;
@@ -75,7 +81,6 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 			MutableComponent description = getModifierDescription(new ModifierInstanceEntry(holder.data().modifiers().get(0), level));
 			if (description == null) return lines;
 			lines.add(holder.getFormattedName().append(": ").withStyle(ChatFormatting.GRAY).append(description));
-			lines.addAll(extraLines());
 		} else {
 			lines.add(holder.getFormattedName().append(":").withStyle(ChatFormatting.GRAY));
 			for (var entry : holder.data().modifiers()) {
@@ -84,7 +89,6 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 					lines.add(description);
 				}
 			}
-			lines.addAll(extraLines());
 			if (lines.size() == 1) {
 				lines.clear();
 			}

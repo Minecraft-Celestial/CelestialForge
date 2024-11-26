@@ -17,6 +17,7 @@ public class ClientHandler {
 		ModifierInstance modifier = ModifierUtils.getModifier(stack);
 		if (modifier == null) return;
 		event.getToolTip().addAll(modifier.getInfoLines());
+		event.getToolTip().addAll(modifier.extraLines());
 	}
 
 }

@@ -8,10 +8,10 @@ import net.minecraft.world.item.ItemStack;
 import java.util.function.Predicate;
 
 public enum ModifierType {
-	WEAPON(TypeTestUtils::isWeapon, e -> false),
-	RANGED(TypeTestUtils::isRangedWeapon, e -> false),
-	ARMOR(TypeTestUtils::isArmor, e -> false),
-	TOOL(TypeTestUtils::isTool, e -> false),
+	WEAPON(TypeTestUtils::isWeapon, e -> e == EquipmentSlot.MAINHAND),
+	RANGED(TypeTestUtils::isRangedWeapon, e -> e == EquipmentSlot.MAINHAND),
+	ARMOR(TypeTestUtils::isArmor, EquipmentSlot::isArmor),
+	TOOL(TypeTestUtils::isTool, e -> e == EquipmentSlot.MAINHAND),
 	CURIO(CurioUtils::isCurio, e -> false),
 	ALL(e -> false, e -> false);
 
