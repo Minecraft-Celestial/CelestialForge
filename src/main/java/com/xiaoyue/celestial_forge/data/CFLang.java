@@ -10,7 +10,8 @@ import java.util.Locale;
 
 public enum CFLang {
 	MODIFIER_BOOK("%s Modifier Book", 1),
-	MODIFIER_BOOK_INFO("§7Use 22 levels of experience on the anvil to change the quality of the item", 0),
+	MODIFIER_BOOK_MODIFIER("Apply modifier to equipment on anvil", 0),
+	MODIFIER_BOOK_EMPTY("To transfer modifier from equipment on anvil, equipment should be at least Lv.%s", 1),
 	EQUIPPED_TYPE("§7Applicable to: §9Armor", 0),
 	TOOLS_TYPE("§7Applicable to: §9Tools", 0),
 	RANGED_TYPE("§7Applicable to: §9Ranged", 0),

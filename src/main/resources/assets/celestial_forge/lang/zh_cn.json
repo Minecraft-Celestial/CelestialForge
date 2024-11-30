@@ -14,7 +14,6 @@
   "modifier.celestial_forge.devil": "恶魔",
   "modifier.celestial_forge.fast": "迅捷",
   "modifier.celestial_forge.fatal": "致命",
-  "modifier.celestial_forge.light": "轻快",
   "modifier.celestial_forge.luck": "幸运",
   "modifier.celestial_forge.rash": "鲁莽",
   "modifier.celestial_forge.sawtooth": "锯齿",
@@ -43,7 +42,8 @@
   "celestial_forge.tooltip.table_material": "材料消耗：",
   "celestial_forge.tooltip.grade_progress": "当前经验: %s / %s",
   "celestial_forge.tooltip.modifier_level": "当前等级: %s",
-  "celestial_forge.tooltip.modifier_book_info": "§7在铁砧上消耗§922级经验§7将物品品质更改为该品质",
+  "celestial_forge.tooltip.modifier_book_modifier": "在铁砧上给装备提供属性",
+  "celestial_forge.tooltip.modifier_book_empty": "在铁砧上从至少%s级的装备上提取属性",
   "block.celestial_forge.forge_table": "锻造桌",
   "celestial_forge.tooltip.is_max_level": "已满级",
   "celestial_forge.tooltip.need_upgrade": "放在锻造桌上进行突破"

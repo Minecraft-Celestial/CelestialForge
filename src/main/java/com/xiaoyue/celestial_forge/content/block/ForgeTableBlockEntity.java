@@ -97,6 +97,7 @@ public class ForgeTableBlockEntity extends BaseBlockEntity implements BaseContai
 		for (int i = 0; i < recipe.items.size(); i++) {
 			if (get(i + 1).isEmpty() && recipe.items.get(i).test(stack)) {
 				container.setItem(i + 1, stack);
+				break;
 			}
 		}
 	}

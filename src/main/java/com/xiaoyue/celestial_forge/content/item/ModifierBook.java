@@ -4,11 +4,12 @@ import com.xiaoyue.celestial_forge.content.data.DataHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
 import com.xiaoyue.celestial_forge.data.CFLang;
+import com.xiaoyue.celestial_forge.data.CFModConfig;
 import com.xiaoyue.celestial_forge.register.CFItems;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -28,22 +29,23 @@ public class ModifierBook extends Item {
 
 	@Override
 	public Component getName(ItemStack stack) {
-		var base = super.getName(stack);
-		if (!stack.hasTag() || !stack.getTag().contains(ModifierUtils.bookTagName)) return base;
-		ModifierHolder mod = DataHolder.byId(new ResourceLocation(stack.getTag().getString(ModifierUtils.bookTagName)));
-		if (mod == null) return base;
+		var mod = ModifierUtils.fromBook(stack);
+		if (mod == null) return super.getName(stack);
 		return CFLang.MODIFIER_BOOK.get(mod.getFormattedName());
 	}
 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> list, TooltipFlag tooltipFlag) {
-		if (stack.hasTag() && stack.getTag().contains(ModifierUtils.bookTagName)) {
-			ModifierHolder mod = DataHolder.byId(new ResourceLocation(stack.getTag().getString(ModifierUtils.bookTagName)));
-			if (mod != null) {
-				list.addAll(ModifierInstance.of(mod).getInfoLines());
-				list.add(CFLang.MODIFIER_BOOK_INFO.get());
-				list.add(CFLang.addModifierTypeTip(mod));
-			}
+		var mod = ModifierUtils.fromBook(stack);
+		if (mod != null) {
+			list.addAll(ModifierInstance.of(mod).getInfoLines());
+			list.add(CFLang.MODIFIER_BOOK_MODIFIER.get().withStyle(ChatFormatting.GRAY));
+			list.add(CFLang.addModifierTypeTip(mod));
+		} else {
+			int minLv = CFModConfig.COMMON.modifierToBookLevel.get();
+			list.add(CFLang.MODIFIER_BOOK_EMPTY.get(
+					Component.literal("" + minLv).withStyle(ChatFormatting.AQUA)
+			).withStyle(ChatFormatting.GRAY));
 		}
 	}
 

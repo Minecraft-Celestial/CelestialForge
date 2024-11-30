@@ -14,19 +14,31 @@ public class CFModConfig {
 	public static class Common {
 
 		public final ForgeConfigSpec.IntValue modifierBookRecipeCost;
+		public final ForgeConfigSpec.IntValue modifierBookCraftCost;
 		public final ForgeConfigSpec.DoubleValue modifierMaxLevelRate;
 		public final ForgeConfigSpec.IntValue modifierMaxLevelBase;
+		public final ForgeConfigSpec.IntValue grindstoneRemovalPriorityLevel;
+		public final ForgeConfigSpec.IntValue modifierToBookLevel;
 
 		Common(ForgeConfigSpec.Builder builder) {
 			modifierBookRecipeCost = builder
-					.comment("Experience level that will be consumed when attaching modifier to the modifier book")
+					.comment("Experience level that will be consumed when transferring modifier from modifier book to equipment")
 					.defineInRange("modifierBookRecipeCost", 22, 1, 100);
+			modifierBookCraftCost = builder
+					.comment("Experience level that will be consumed when transferring modifier from equipment to modifier book")
+					.defineInRange("modifierBookCraftCost", 22, 1, 100);
 			modifierMaxLevelRate = builder
 					.comment("Experience cost exponential multiplier for modifier upgrading")
 					.defineInRange("modifierMaxLevelRate", 0.1, 0.01, 0.5);
 			modifierMaxLevelBase = builder
 					.comment("Basic experience required for modifier upgrade")
 					.defineInRange("modifierMaxLevelBase", 125, 10, 1000);
+			grindstoneRemovalPriorityLevel = builder
+					.comment("Max level which grindstone will prioritize removing modifier over enchantments")
+					.defineInRange("grindstoneRemovalPriorityLevel", 0, 0, 100);
+			modifierToBookLevel = builder
+					.comment("Min level which modifier can be transferred to modifier book on anvil")
+					.defineInRange("modifierToBookLevel", 30, 0, 100);
 		}
 
 	}

@@ -5,6 +5,7 @@ import com.xiaoyue.celestial_forge.content.data.DataHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
 import com.xiaoyue.celestial_forge.data.CFModConfig;
+import com.xiaoyue.celestial_forge.register.CFItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
@@ -65,6 +66,13 @@ public class ModifierUtils {
 	public static ModifierHolder fromBook(ItemStack right) {
 		var tag = right.getTag();
 		return tag == null ? null : DataHolder.byId(new ResourceLocation(tag.getString(ModifierUtils.bookTagName)));
+	}
+
+	public static ItemStack bookOf(ModifierHolder mod) {
+		ItemStack stack = new ItemStack(CFItems.MODIFIER_BOOK.get());
+		CompoundTag tag = stack.getOrCreateTag();
+		tag.putString(ModifierUtils.bookTagName, mod.id().toString());
+		return stack;
 	}
 
 	public static int getMaxExp(int level) {

@@ -1,10 +1,9 @@
 package com.xiaoyue.celestial_forge.events;
 
 import com.xiaoyue.celestial_forge.content.data.ModifierType;
-import com.xiaoyue.celestial_forge.content.item.ModifierBook;
-import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
 import com.xiaoyue.celestial_forge.data.CFModConfig;
+import com.xiaoyue.celestial_forge.register.CFItems;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import com.xiaoyue.celestial_forge.utils.TypeTestUtils;
 import dev.xkmc.l2library.util.math.MathHelper;
@@ -54,11 +53,20 @@ public class ModifierHandler {
 	public static void modifierRecipe(AnvilUpdateEvent event) {
 		ItemStack left = event.getLeft().copy();
 		ItemStack right = event.getRight();
-		if (TypeTestUtils.mightHaveModifiers(left) && right.getItem() instanceof ModifierBook) {
-			ModifierHolder modifier = ModifierUtils.fromBook(right);
-			if (modifier == null) return;
-			if (modifier.type() != ModifierType.ALL && modifier.type() != TypeTestUtils.getType(left)) return;
-			ModifierUtils.setModifier(left, ModifierInstance.of(modifier));
+		var ins = ModifierUtils.getModifier(left);
+		if (!right.is(CFItems.MODIFIER_BOOK.get())) return;
+		var book = ModifierUtils.fromBook(right);
+		if (book == null) {
+			if (ins == null) return;
+			int minLv = CFModConfig.COMMON.modifierToBookLevel.get();
+			if (ins.level() < minLv) return;
+			event.setMaterialCost(1);
+			event.setCost(CFModConfig.COMMON.modifierBookCraftCost.get());
+			event.setOutput(ModifierUtils.bookOf(ins.holder()));
+		} else {
+			if (ins != null || !TypeTestUtils.mightHaveModifiers(left)) return;
+			if (book.type() != ModifierType.ALL && book.type() != TypeTestUtils.getType(left)) return;
+			ModifierUtils.setModifier(left, ModifierInstance.of(book));
 			event.setMaterialCost(1);
 			event.setOutput(left);
 			event.setCost(CFModConfig.COMMON.modifierBookRecipeCost.get());
@@ -69,7 +77,9 @@ public class ModifierHandler {
 	public static void grind(GrindstoneEvent.OnPlaceItem event) {
 		var stack = event.getTopItem();
 		var ins = ModifierUtils.getModifier(stack);
-		if (!stack.isEnchanted() && ins != null) {
+		if (ins == null) return;
+		int maxLv = CFModConfig.COMMON.grindstoneRemovalPriorityLevel.get();
+		if (!stack.isEnchanted() || ins.level() <= maxLv) {
 			var copy = stack.copy();
 			ModifierUtils.removeModifier(copy);
 			event.setOutput(copy);
