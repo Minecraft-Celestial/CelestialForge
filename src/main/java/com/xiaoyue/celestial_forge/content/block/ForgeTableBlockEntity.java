@@ -21,6 +21,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
@@ -179,6 +180,7 @@ public class ForgeTableBlockEntity extends BaseBlockEntity implements BaseContai
 		ModifierUtils.setModifier(main, ins);
 		container.clearContent();
 		Block.popResource(level, getBlockPos().above(), main);
+		level.levelEvent(LevelEvent.SOUND_ANVIL_USED, getBlockPos(), 0);
 	}
 
 }

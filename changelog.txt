@@ -1,3 +1,7 @@
+1.0.3
+- Allow curios to be placed in grindstone
+- Hammer sound
+
 1.0.2
 - Lv.0 items will prioritize removing modifier in grindstone
 - Properly displaying modifier books in JEI
