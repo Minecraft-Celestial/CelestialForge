@@ -1,3 +1,7 @@
+1.0.4
+- Allow automation (hopper, etc) to insert items into Forging Table
+- Add config to disable each reforging item type.
+
 1.0.3
 - Allow curios to be placed in grindstone
 - Hammer sound

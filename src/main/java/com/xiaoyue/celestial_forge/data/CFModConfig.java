@@ -20,6 +20,12 @@ public class CFModConfig {
 		public final ForgeConfigSpec.IntValue grindstoneRemovalPriorityLevel;
 		public final ForgeConfigSpec.IntValue modifierToBookLevel;
 
+		public final ForgeConfigSpec.BooleanValue enableWeaponForging;
+		public final ForgeConfigSpec.BooleanValue enableRangedForging;
+		public final ForgeConfigSpec.BooleanValue enableArmorForging;
+		public final ForgeConfigSpec.BooleanValue enableToolForging;
+		public final ForgeConfigSpec.BooleanValue enableCurioForging;
+
 		Common(ForgeConfigSpec.Builder builder) {
 			modifierBookRecipeCost = builder
 					.comment("Experience level that will be consumed when transferring modifier from modifier book to equipment")
@@ -39,6 +45,24 @@ public class CFModConfig {
 			modifierToBookLevel = builder
 					.comment("Min level which modifier can be transferred to modifier book on anvil")
 					.defineInRange("modifierToBookLevel", 30, 0, 100);
+
+			enableWeaponForging = builder
+					.comment("Enable forging for type Weapon")
+					.define("enableWeaponForging", true);
+			enableRangedForging = builder
+					.comment("Enable forging for type Ranged Weapon")
+					.define("enableRangedForging", true);
+			enableArmorForging = builder
+					.comment("Enable forging for type Armor")
+					.define("enableArmorForging", true);
+			enableToolForging = builder
+					.comment("Enable forging for type Tool")
+					.define("enableToolForging", true);
+			enableCurioForging = builder
+					.comment("Enable forging for type Curio")
+					.define("enableCurioForging", true);
+
+
 		}
 
 	}

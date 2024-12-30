@@ -1,6 +1,7 @@
 package com.xiaoyue.celestial_forge.utils;
 
 import com.xiaoyue.celestial_forge.content.data.ModifierType;
+import com.xiaoyue.celestial_forge.data.CFModConfig;
 import com.xiaoyue.celestial_forge.data.CFTagGen;
 import net.minecraft.world.item.*;
 
@@ -23,12 +24,14 @@ public class TypeTestUtils {
 	}
 
 	public static boolean isRangedWeapon(ItemStack stack) {
+		if (!CFModConfig.COMMON.enableRangedForging.get()) return false;
 		return stack.getItem() instanceof BowItem ||
 				stack.getItem() instanceof CrossbowItem ||
 				stack.is(CFTagGen.RANGED_MODIFIABLE);
 	}
 
 	public static boolean isTool(ItemStack stack) {
+		if (!CFModConfig.COMMON.enableToolForging.get()) return false;
 		return stack.getItem() instanceof TieredItem ||
 				stack.getItem() instanceof ShieldItem ||
 				stack.getItem() instanceof FishingRodItem ||
@@ -36,11 +39,13 @@ public class TypeTestUtils {
 	}
 
 	public static boolean isArmor(ItemStack stack) {
+		if (!CFModConfig.COMMON.enableArmorForging.get()) return false;
 		return stack.getItem() instanceof ArmorItem ||
 				stack.is(CFTagGen.ARMOR_MODIFIABLE);
 	}
 
 	public static boolean isWeapon(ItemStack stack) {
+		if (!CFModConfig.COMMON.enableWeaponForging.get()) return false;
 		return stack.getItem() instanceof SwordItem ||
 				stack.getItem() instanceof AxeItem ||
 				stack.getItem() instanceof TridentItem ||

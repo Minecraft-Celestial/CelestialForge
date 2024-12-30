@@ -1,5 +1,6 @@
 package com.xiaoyue.celestial_forge.utils;
 
+import com.xiaoyue.celestial_forge.data.CFModConfig;
 import com.xiaoyue.celestial_forge.data.CFTagGen;
 import com.xiaoyue.celestial_forge.events.CuriosHandler;
 import net.minecraft.world.entity.player.Player;
@@ -32,6 +33,7 @@ public class CurioUtils {
 
 	public static boolean isCurio(ItemStack stack) {
 		if (!loaded()) return false;
+		if (!CFModConfig.COMMON.enableCurioForging.get()) return false;
 		if (stack.is(CFTagGen.CURIO_MODIFIABLE)) return true;
 		var map = CuriosApi.getItemStackSlots(stack, false);
 		if (map.isEmpty()) return false;

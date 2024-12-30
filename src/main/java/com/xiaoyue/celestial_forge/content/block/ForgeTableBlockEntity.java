@@ -16,6 +16,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
@@ -24,13 +25,19 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @SerialClass
-public class ForgeTableBlockEntity extends BaseBlockEntity implements BaseContainerListener, BlockContainer, InfoTile {
+public class ForgeTableBlockEntity extends BaseBlockEntity
+		implements BaseContainerListener, BlockContainer, InfoTile, IItemHandler {
 
 	@SerialClass.SerialField
 	private final ForgeTableBlockContainer container = new ForgeTableBlockContainer()
@@ -181,6 +188,48 @@ public class ForgeTableBlockEntity extends BaseBlockEntity implements BaseContai
 		container.clearContent();
 		Block.popResource(level, getBlockPos().above(), main);
 		level.levelEvent(LevelEvent.SOUND_ANVIL_USED, getBlockPos(), 0);
+	}
+
+	@Override
+	public int getSlots() {
+		return 1;
+	}
+
+	@Override
+	public @NotNull ItemStack getStackInSlot(int slot) {
+		return ItemStack.EMPTY;
+	}
+
+	@Override
+	public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+		if (!canAccept(stack)) return stack;
+		ItemStack ans = stack.copy();
+		ItemStack toInsert = ans.split(1);
+		if (!simulate) addItem(toInsert);
+		return ans;
+	}
+
+	@Override
+	public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
+		return ItemStack.EMPTY;
+	}
+
+	@Override
+	public int getSlotLimit(int slot) {
+		return 1;
+	}
+
+	@Override
+	public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+		return canAccept(stack);
+	}
+
+	@Override
+	public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+		if (cap == ForgeCapabilities.ITEM_HANDLER) {
+			return LazyOptional.of(() -> this).cast();
+		}
+		return super.getCapability(cap, side);
 	}
 
 }
