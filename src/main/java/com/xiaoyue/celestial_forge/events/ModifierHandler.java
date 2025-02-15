@@ -46,6 +46,7 @@ public class ModifierHandler {
 	public static void onMobExpDrop(LivingExperienceDropEvent event) {
 		var player = event.getAttackingPlayer();
 		if (player == null) return;
+		if (player.level().isClientSide()) return;
 		ModifierUtils.addExpToPlayer(player, event.getDroppedExperience());
 	}
 

@@ -1,3 +1,6 @@
+1.0.5
+- Fix compatibility with XPlayerInfo
+
 1.0.4
 - Allow automation (hopper, etc) to insert items into Forging Table
 - Add config to disable each reforging item type.
