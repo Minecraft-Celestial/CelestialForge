@@ -28,6 +28,7 @@
   "modifier.celestial_forge.unreal": "虚幻",
   "modifier.celestial_forge.legend": "传奇",
   "modifier.celestial_core.regenerate": "再生",
+	"celestial_forge.tooltip.celestial_modifier": "星月词条: %s",
   "celestial_forge.tooltip.modifier_book": "%1$s 属性书",
   "celestial_forge.tooltip.equipped_type": "§7适用范围：§9护甲",
   "celestial_forge.tooltip.tools_type": "§7适用范围：§9工具",

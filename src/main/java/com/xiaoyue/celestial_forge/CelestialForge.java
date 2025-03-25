@@ -50,6 +50,9 @@ public class CelestialForge {
 		CFItems.register();
 		CFModConfig.initConfig();
 		CurioUtils.register();
+		REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, CFTagGen::onItemTagGen);
+		REGISTRATE.addDataGenerator(ProviderType.LANG, CFLang::addLang);
+		REGISTRATE.addDataGenerator(ProviderType.RECIPE, CFRecipeGen::onRecipeGen);
 		HANDLER.addAfterReloadListener(DataHolder::rebuild);
 		HANDLER.addAfterReloadListener(TypeTestUtils::clearCache);
 	}
@@ -60,9 +63,6 @@ public class CelestialForge {
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public static void gatherData(GatherDataEvent event) {
-		REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, CFTagGen::onItemTagGen);
-		REGISTRATE.addDataGenerator(ProviderType.LANG, CFLang::addLang);
-		REGISTRATE.addDataGenerator(ProviderType.RECIPE, CFRecipeGen::onRecipeGen);
 		event.getGenerator().addProvider(event.includeServer(), new CFConfigGen(event.getGenerator()));
 	}
 

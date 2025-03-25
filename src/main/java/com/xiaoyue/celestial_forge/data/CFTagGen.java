@@ -1,6 +1,7 @@
 package com.xiaoyue.celestial_forge.data;
 
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
+import com.xiaoyue.celestial_artifacts.register.CAItems;
 import com.xiaoyue.celestial_forge.CelestialForge;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -28,6 +29,7 @@ public class CFTagGen {
 				.addTags(Tags.Items.ARMORS);
 		pvd.addTag(RANGED_MODIFIABLE)
 				.addTags(Tags.Items.TOOLS_BOWS, Tags.Items.TOOLS_CROSSBOWS);
-		pvd.addTag(CURIO_MODIFIABLE);
+		pvd.addTag(CURIO_MODIFIABLE)
+				.add(CAItems.HEIRLOOM_NECKLACE.asItem());
 	}
 }

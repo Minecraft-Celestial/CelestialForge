@@ -21,6 +21,7 @@ public class CFItems {
 	public static final RegistryEntry<ModifierBook> MODIFIER_BOOK;
 
 	static {
+		MODIFIER_BOOK = CelestialForge.REGISTRATE.item("modifier_book", p -> new ModifierBook()).register();
 		HAMMER = CelestialForge.REGISTRATE.item("hammer", p -> new Item(new Item.Properties()))
 				.model((ctx, pvd) -> pvd.handheld(ctx, pvd.modLoc("item/" + ctx.getName())))
 				.register();
@@ -40,8 +41,6 @@ public class CFItems {
 		BE_FORGE = CelestialForge.REGISTRATE.blockEntity("forge_table", ForgeTableBlockEntity::new)
 				.renderer(() -> ForgeTableRenderer::new)
 				.validBlock(FORGE_TABLE).register();
-
-		MODIFIER_BOOK = CelestialForge.REGISTRATE.item("modifier_book", p -> new ModifierBook()).register();
 	}
 
 	public static void register() {

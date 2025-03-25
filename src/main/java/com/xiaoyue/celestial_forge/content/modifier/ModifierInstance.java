@@ -73,6 +73,7 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 
 	public List<MutableComponent> getInfoLines() {
 		List<MutableComponent> lines = new ArrayList<>();
+		lines.add(Component.empty());
 		int size = holder.data().modifiers().size();
 		if (size < 1) {
 			return lines;
@@ -80,9 +81,10 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 		if (size == 1) {
 			MutableComponent description = getModifierDescription(new ModifierInstanceEntry(holder.data().modifiers().get(0), level));
 			if (description == null) return lines;
-			lines.add(holder.getFormattedName().append(": ").withStyle(ChatFormatting.GRAY).append(description));
+			lines.add(CFLang.CELESTIAL_MODIFIER.get(holder.getFormattedName().withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.GRAY));
+			lines.add(description);
 		} else {
-			lines.add(holder.getFormattedName().append(":").withStyle(ChatFormatting.GRAY));
+			lines.add(CFLang.CELESTIAL_MODIFIER.get(holder.getFormattedName().withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.GRAY));
 			for (var entry : holder.data().modifiers()) {
 				MutableComponent description = getModifierDescription(new ModifierInstanceEntry(entry, level));
 				if (description != null) {

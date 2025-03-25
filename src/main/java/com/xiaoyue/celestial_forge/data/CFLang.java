@@ -9,6 +9,7 @@ import net.minecraft.network.chat.MutableComponent;
 import java.util.Locale;
 
 public enum CFLang {
+	CELESTIAL_MODIFIER("Celestial modifier: %s", 1),
 	MODIFIER_BOOK("%s Modifier Book", 1),
 	MODIFIER_BOOK_MODIFIER("Apply modifier to equipment on anvil", 0),
 	MODIFIER_BOOK_EMPTY("To transfer modifier from equipment on anvil, equipment should be at least Lv.%s", 1),

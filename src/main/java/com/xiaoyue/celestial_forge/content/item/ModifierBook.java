@@ -24,7 +24,7 @@ import java.util.List;
 public class ModifierBook extends Item {
 
 	public ModifierBook() {
-		super(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
+		super(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
 	}
 
 	@Override
