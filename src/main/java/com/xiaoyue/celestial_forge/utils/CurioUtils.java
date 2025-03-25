@@ -3,6 +3,7 @@ package com.xiaoyue.celestial_forge.utils;
 import com.xiaoyue.celestial_forge.data.CFModConfig;
 import com.xiaoyue.celestial_forge.data.CFTagGen;
 import com.xiaoyue.celestial_forge.events.CuriosHandler;
+import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -35,7 +36,7 @@ public class CurioUtils {
 		if (!loaded()) return false;
 		if (!CFModConfig.COMMON.enableCurioForging.get()) return false;
 		if (stack.is(CFTagGen.CURIO_MODIFIABLE)) return true;
-		var map = CuriosApi.getItemStackSlots(stack, false);
+		var map = CuriosApi.getItemStackSlots(stack, Proxy.getWorld());
 		if (map.isEmpty()) return false;
 		for (var e : map.values()) {
 			if (e.useNativeGui()) return true;
