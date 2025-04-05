@@ -4,6 +4,7 @@ import com.xiaoyue.celestial_forge.content.data.ModifierType;
 import com.xiaoyue.celestial_forge.data.CFModConfig;
 import com.xiaoyue.celestial_forge.data.CFTagGen;
 import net.minecraft.world.item.*;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -54,12 +55,17 @@ public class TypeTestUtils {
 
 	@Nullable
 	public static ModifierType getType(ItemStack stack) {
+		return getType(stack, ServerLifecycleHooks.getCurrentServer() == null);
+	}
+
+	@Nullable
+	public static ModifierType getType(ItemStack stack, boolean isClient) {
 		if (!mightHaveModifiers(stack)) return null;
 		if (INVALID.contains(stack.getItem())) return null;
 		var ans = CACHE.get(stack.getItem());
 		if (ans != null) return ans;
 		for (var e : ModifierType.values()) {
-			if (e.test(stack)) {
+			if (e.test(stack, isClient)) {
 				CACHE.put(stack.getItem(), e);
 				return e;
 			}

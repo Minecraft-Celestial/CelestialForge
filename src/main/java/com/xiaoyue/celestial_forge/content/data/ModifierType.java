@@ -5,6 +5,7 @@ import com.xiaoyue.celestial_forge.utils.TypeTestUtils;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 public enum ModifierType {
@@ -15,16 +16,21 @@ public enum ModifierType {
 	CURIO(CurioUtils::isCurio, e -> false),
 	ALL(e -> false, e -> false);
 
-	private final Predicate<ItemStack> item;
+	private final BiPredicate<ItemStack, Boolean> item;
 	private final Predicate<EquipmentSlot> slot;
 
 	ModifierType(Predicate<ItemStack> item, Predicate<EquipmentSlot> slot) {
+		this.item = (stack, b) -> item.test(stack);
+		this.slot = slot;
+	}
+
+	ModifierType(BiPredicate<ItemStack, Boolean> item, Predicate<EquipmentSlot> slot) {
 		this.item = item;
 		this.slot = slot;
 	}
 
-	public boolean test(ItemStack stack) {
-		return this.item.test(stack);
+	public boolean test(ItemStack stack, boolean isClient) {
+		return this.item.test(stack, isClient);
 	}
 
 

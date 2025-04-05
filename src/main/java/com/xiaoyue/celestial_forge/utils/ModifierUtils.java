@@ -27,7 +27,7 @@ public class ModifierUtils {
 
 	@Nullable
 	public static ModifierInstance rollModifier(ItemStack stack, RandomSource random) {
-		var type = TypeTestUtils.getType(stack);
+		var type = TypeTestUtils.getType(stack, false);
 		if (type == null) return null;
 		var ins = DataHolder.byType(type).roll(random);
 		return ins == null ? null : ModifierInstance.of(ins);

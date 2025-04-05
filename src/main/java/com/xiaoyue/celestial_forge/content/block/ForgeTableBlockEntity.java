@@ -73,8 +73,9 @@ public class ForgeTableBlockEntity extends BaseBlockEntity
 
 	@Nullable
 	public UpgradeRecipe getRecipe(ItemStack stack) {
+		if (level == null) return null;
 		if (stack.isEmpty()) return null;
-		var type = TypeTestUtils.getType(stack);
+		var type = TypeTestUtils.getType(stack, level.isClientSide());
 		if (type == null) return null;
 		var ins = ModifierUtils.getModifier(stack);
 		if (ins == null) return DataHolder.getStart(type);

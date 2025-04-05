@@ -1,3 +1,6 @@
+1.0.7
+- Fix client crash when joining server with some tooltip caching mods
+
 1.0.6
 - Fix multi-player curio reforging
 
