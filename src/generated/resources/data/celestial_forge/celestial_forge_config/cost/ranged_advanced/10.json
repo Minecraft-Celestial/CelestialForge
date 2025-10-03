@@ -1,0 +1,19 @@
+{
+  "exp": 3,
+  "items": [
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:bow"
+    },
+    {
+      "item": "minecraft:string"
+    }
+  ],
+  "level": 10,
+  "target": "celestial_forge:ranged_advanced"
+}

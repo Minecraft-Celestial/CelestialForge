@@ -1,0 +1,19 @@
+{
+  "exp": 30,
+  "items": [
+    {
+      "item": "celestial_core:death_essence"
+    },
+    {
+      "item": "celestial_core:fire_essence"
+    },
+    {
+      "item": "minecraft:magma_block"
+    },
+    {
+      "item": "minecraft:end_stone"
+    }
+  ],
+  "level": 70,
+  "target": "celestial_forge:ranged_basic"
+}

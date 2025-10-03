@@ -1,0 +1,19 @@
+{
+  "exp": 5,
+  "items": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:golden_sword"
+    },
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "minecraft:emerald"
+    }
+  ],
+  "level": 20,
+  "target": "celestial_forge:weapon_basic"
+}

@@ -1,0 +1,19 @@
+{
+  "exp": 3,
+  "items": [
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "minecraft:brick"
+    }
+  ],
+  "level": 10,
+  "target": "celestial_forge:armor_advanced"
+}

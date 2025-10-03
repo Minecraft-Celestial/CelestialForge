@@ -1,0 +1,13 @@
+{
+  "type": "ARMOR",
+  "leveling": "celestial_forge:armor_basic",
+  "modifiers": [
+    {
+      "attr": "minecraft:generic.armor",
+      "base": 2.0,
+      "op": "ADDITION",
+      "perLevel": 0.04
+    }
+  ],
+  "weight": 300
+}

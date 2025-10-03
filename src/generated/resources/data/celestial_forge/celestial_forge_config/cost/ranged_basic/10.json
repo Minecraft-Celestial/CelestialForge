@@ -1,0 +1,16 @@
+{
+  "exp": 3,
+  "items": [
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:bone"
+    },
+    {
+      "item": "minecraft:string"
+    }
+  ],
+  "level": 10,
+  "target": "celestial_forge:ranged_basic"
+}

@@ -1,0 +1,22 @@
+{
+  "exp": 12,
+  "items": [
+    {
+      "item": "minecraft:crying_obsidian"
+    },
+    {
+      "item": "minecraft:golden_apple"
+    },
+    {
+      "item": "minecraft:golden_pickaxe"
+    },
+    {
+      "item": "minecraft:experience_bottle"
+    },
+    {
+      "item": "minecraft:enchanted_book"
+    }
+  ],
+  "level": 40,
+  "target": "celestial_forge:tool_advanced"
+}

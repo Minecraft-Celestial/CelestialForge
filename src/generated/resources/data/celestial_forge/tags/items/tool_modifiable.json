@@ -1,0 +1,9 @@
+{
+  "values": [
+    "#minecraft:pickaxes",
+    "#minecraft:axes",
+    "#minecraft:shovels",
+    "#minecraft:hoes",
+    "#forge:tools/fishing_rods"
+  ]
+}

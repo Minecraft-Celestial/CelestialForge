@@ -1,0 +1,24 @@
+1.0.7
+- Fix client crash when joining server with some tooltip caching mods
+
+1.0.6
+- Fix multi-player curio reforging
+
+1.0.5
+- Fix compatibility with XPlayerInfo
+
+1.0.4
+- Allow automation (hopper, etc) to insert items into Forging Table
+- Add config to disable each reforging item type.
+
+1.0.3
+- Allow curios to be placed in grindstone
+- Hammer sound
+
+1.0.2
+- Lv.0 items will prioritize removing modifier in grindstone
+- Properly displaying modifier books in JEI
+- Now you can craft modifier book, and grab modifier from equipments over Lv.30
+
+1.0.1
+- Fix recipes using multiple of same item satisfied with one item
