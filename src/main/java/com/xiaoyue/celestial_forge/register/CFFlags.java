@@ -32,8 +32,8 @@ public class CFFlags {
     public static final RefFlagData DEATH_ESSENCE = new RefFlagData("CelestialForge_DeathEssence", CCore("death_essence"), 5,
             item(CCore("death_essence"), CFLang.DAMAGE_HEAL.get(CFLang.per(CFModConfig.COMMON.deathEssenceDamageHeal.get()))));
 
-    public static final RefFlagData PURE_STAR = new RefFlagData("CelestialForge_PureStar", CCore("pure_star"), 5,
-            item(CCore("pure_star"), CFLang.UNDEAD_EXTRA_DAMAGE.get(CFLang.per(CFModConfig.COMMON.pureStarDamageMultiplier.get()))));
+    public static final RefFlagData PURE_NETHER_STAR = new RefFlagData("CelestialForge_PureNetherStar", CCore("pure_nether_star"), 5,
+            item(CCore("pure_nether_star"), CFLang.UNDEAD_EXTRA_DAMAGE.get(CFLang.per(CFModConfig.COMMON.pureStarDamageMultiplier.get()))));
 
     public static final AttrRefFlagData SOARING_WINGS = AttrRefFlagData.mul("CelestialForge_SoaringWings", CCore("soaring_wings"), 8,
             Attributes.MOVEMENT_SPEED, CFModConfig.COMMON.soaringWingsMovementSpeedBonus.get());
