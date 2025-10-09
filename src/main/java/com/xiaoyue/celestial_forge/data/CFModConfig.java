@@ -26,6 +26,13 @@ public class CFModConfig {
 		public final ForgeConfigSpec.BooleanValue enableToolForging;
 		public final ForgeConfigSpec.BooleanValue enableCurioForging;
 
+		public final ForgeConfigSpec.DoubleValue earthCoreMiningSpeed;
+		public final ForgeConfigSpec.DoubleValue voidEssenceExtraDamage;
+		public final ForgeConfigSpec.DoubleValue deathEssenceDamageHeal;
+		public final ForgeConfigSpec.DoubleValue soaringWingsMovementSpeedBonus;
+		public final ForgeConfigSpec.DoubleValue heartFragmentRegenRateBonus;
+		public final ForgeConfigSpec.DoubleValue pureStarDamageMultiplier;
+
 		Common(ForgeConfigSpec.Builder builder) {
 			modifierBookRecipeCost = builder
 					.comment("Experience level that will be consumed when transferring modifier from modifier book to equipment")
@@ -62,7 +69,26 @@ public class CFModConfig {
 					.comment("Enable forging for type Curio")
 					.define("enableCurioForging", true);
 
-
+			builder.push("reinforce");
+			earthCoreMiningSpeed = builder
+					.comment("Earth Core Reinforce: mining speed bonus")
+					.defineInRange("earthCoreMiningSpeed", 0.08, 0.01, 10);
+			voidEssenceExtraDamage = builder
+					.comment("Void Essence Reinforce: extra abyss damage")
+					.defineInRange("voidEssenceExtraDamage", 2, 1f, 10);
+			deathEssenceDamageHeal = builder
+					.comment("Death Essence Reinforce: The amount of health regenerated after attacking")
+					.defineInRange("deathEssenceDamageHeal", 0.05, 0.01, 10);
+			soaringWingsMovementSpeedBonus = builder
+					.comment("Soaring Wings Reinforce: movement speed bonus")
+					.defineInRange("soaringWingsMovementSpeedBonus", 0.05, 0.01, 10);
+			heartFragmentRegenRateBonus = builder
+					.comment("Heart Fragment Reinforce: regen rate bonus")
+					.defineInRange("heartFragmentRegenRateBonus", 0.06, 0.01, 10);
+			pureStarDamageMultiplier = builder
+					.comment("Pure Star Reinforce: percentage damage attached when attacking undead creatures")
+					.defineInRange("pureStarDamageMultiplier", 0.01, 0.01, 1);
+			builder.pop();
 		}
 
 	}

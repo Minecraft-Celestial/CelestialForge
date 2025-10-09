@@ -9,6 +9,7 @@ import com.xiaoyue.celestial_forge.content.data.ModifierData;
 import com.xiaoyue.celestial_forge.content.data.UpgradeRecipe;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
 import com.xiaoyue.celestial_forge.data.*;
+import com.xiaoyue.celestial_forge.events.CFReinforceHandler;
 import com.xiaoyue.celestial_forge.register.CFItems;
 import com.xiaoyue.celestial_forge.utils.CurioUtils;
 import com.xiaoyue.celestial_forge.utils.TypeTestUtils;
@@ -41,15 +42,14 @@ public class CelestialForge {
 	public static final ConfigTypeEntry<ModifierData> MODIFIER = new ConfigTypeEntry<>(HANDLER, "modifier", ModifierData.class);
 
 	public static final RegistryEntry<CreativeModeTab> MODIFIER_TAB = REGISTRATE.buildModCreativeTab(
-			"tab", "Celestial Forge Tab", e ->
-					e.icon(() -> CFItems.MODIFIER_BOOK.get().getDefaultInstance())
-							.displayItems((parameters, output) ->
-									output.acceptAll(ModifierBook.getStacksForCreativeTab())).build());
+			"tab", "Celestial Forge Tab", e -> e.icon(() -> CFItems.MODIFIER_BOOK.get().getDefaultInstance())
+					.displayItems((parameters, output) -> output.acceptAll(ModifierBook.getStacksForCreativeTab())).build());
 
 	public CelestialForge() {
 		CFItems.register();
 		CFModConfig.initConfig();
 		CurioUtils.register();
+		CFReinforceHandler.register();
 		REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, CFTagGen::onItemTagGen);
 		REGISTRATE.addDataGenerator(ProviderType.LANG, CFLang::addLang);
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, CFRecipeGen::onRecipeGen);

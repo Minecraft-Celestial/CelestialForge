@@ -1,4 +1,4 @@
-// 1.20.1	2025-03-25T17:44:00.5782476	CelestialForge config provider
+// 1.20.1	2025-10-09T18:40:47.1671524	CelestialForge config provider
 bd1cea852c73cd2fd19079242f37358c3a22180a data/celestial_core/celestial_forge_config/cost/armor_advanced/100.json
 059419a71024171f6f54b66b1cf1520de1d78f87 data/celestial_core/celestial_forge_config/cost/armor_advanced/60.json
 df9c8d8a41dbe3b4f79756f8d7a703466c90ff0f data/celestial_core/celestial_forge_config/cost/armor_advanced/70.json
@@ -128,7 +128,7 @@ d85f971e8729ce8355d4b732bad0526d96328eef data/celestial_forge/celestial_forge_co
 c021052e58be05dca5825590db91ca2a10534837 data/celestial_forge/celestial_forge_config/leveling/weapon_advanced.json
 ca3c21ca1974bbd579a7725bf47dabbb7a4b90b4 data/celestial_forge/celestial_forge_config/leveling/weapon_basic.json
 68ee50b518663ed4bf550dc4ae84ef62df8dcd44 data/celestial_forge/celestial_forge_config/modifier/accurate.json
-c7ca0ee04b2de47d8d13d27f19f66664e82a2248 data/celestial_forge/celestial_forge_config/modifier/anger.json
+0c6683927af4a2f344e8512cebf444e937b7302c data/celestial_forge/celestial_forge_config/modifier/anger.json
 17261f4e206485752105e5ddb9dda19767ee8935 data/celestial_forge/celestial_forge_config/modifier/armor.json
 56cb8027675cd8d4c2fed81c6a164fce4a1b244b data/celestial_forge/celestial_forge_config/modifier/brave.json
 c833eecfd57fbc590faf9571f2b20b8dba807f56 data/celestial_forge/celestial_forge_config/modifier/dangerous.json

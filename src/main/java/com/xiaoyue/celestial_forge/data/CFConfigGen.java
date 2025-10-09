@@ -209,7 +209,7 @@ public class CFConfigGen extends ConfigDataProvider {
 						new ModifierEntry(L2DamageTracker.ABSORB.get(), 2, ADDITION))
 				.put(CelestialForge.loc("anger"), 100,
 						new ModifierEntry(Attributes.ATTACK_KNOCKBACK, 1, ADDITION),
-						new ModifierEntry(L2DamageTracker.REDUCTION.get(), 0.95, MULTIPLY_TOTAL))
+						new ModifierEntry(L2DamageTracker.REDUCTION.get(), -0.05, MULTIPLY_TOTAL))
 				.end()
 				.end()
 

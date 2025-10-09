@@ -1,6 +1,8 @@
 package com.xiaoyue.celestial_forge.events;
 
 import com.xiaoyue.celestial_forge.content.data.ModifierType;
+import com.xiaoyue.celestial_forge.content.flag.AttrRefFlagData;
+import com.xiaoyue.celestial_forge.register.CFFlags;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import com.xiaoyue.celestial_forge.utils.TypeTestUtils;
 import dev.xkmc.l2library.util.math.MathHelper;
@@ -15,6 +17,11 @@ public class CuriosHandler {
 	@SubscribeEvent
 	public static void onCuriosAttribute(CurioAttributeModifierEvent event) {
 		ItemStack stack = event.getItemStack();
+		CFFlags.DATA_LIST.forEach(data -> {
+			if (data instanceof AttrRefFlagData attrData) {
+				attrData.onCurioEvent(stack, event::addModifier);
+			}
+		});
 		var mod = ModifierUtils.getModifier(stack);
 		if (mod == null) return;
 		var ctx = event.getSlotContext();
