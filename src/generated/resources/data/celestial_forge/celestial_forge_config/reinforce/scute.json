@@ -1,0 +1,13 @@
+{
+  "attrs": [
+    {
+      "attr": "minecraft:generic.armor_toughness",
+      "operation": "MULTIPLY_BASE",
+      "val": 0.03
+    }
+  ],
+  "cost": 6,
+  "flag": "scute",
+  "mate": "minecraft:scute",
+  "tooltip": ""
+}

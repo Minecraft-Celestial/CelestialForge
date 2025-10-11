@@ -1,6 +1,6 @@
 package com.xiaoyue.celestial_forge.content.item;
 
-import com.xiaoyue.celestial_forge.content.data.DataHolder;
+import com.xiaoyue.celestial_forge.content.data.ModifierDataHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
 import com.xiaoyue.celestial_forge.data.CFLang;
@@ -51,7 +51,7 @@ public class ModifierBook extends Item {
 
 	public static List<ItemStack> getStacksForCreativeTab() {
 		List<ItemStack> stacks = new ArrayList<>();
-		for (ModifierHolder mod : DataHolder.all()) {
+		for (ModifierHolder mod : ModifierDataHolder.all()) {
 			ItemStack stack = new ItemStack(CFItems.MODIFIER_BOOK.get());
 			CompoundTag tag = stack.getOrCreateTag();
 			tag.putString(ModifierUtils.bookTagName, mod.id().toString());

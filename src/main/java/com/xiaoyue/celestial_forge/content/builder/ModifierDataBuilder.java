@@ -10,7 +10,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
 import java.util.*;
 
-public class DataBuilder {
+public class ModifierDataBuilder {
 
 	private final Map<ResourceLocation, UpgradeRecipe> costs = new LinkedHashMap<>();
 	private final Map<ResourceLocation, LevelingConfig> levels = new LinkedHashMap<>();
@@ -56,10 +56,9 @@ public class DataBuilder {
 			return new PoolBuilder(new LevelingConfig(baseCost, expCost, id));
 		}
 
-		public DataBuilder end() {
-			return DataBuilder.this;
+		public ModifierDataBuilder end() {
+			return ModifierDataBuilder.this;
 		}
-
 
 		public class PoolBuilder {
 

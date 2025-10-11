@@ -11,12 +11,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class DataHolder {
+public class ModifierDataHolder {
 
-	private static DataHolder INS;
+	private static ModifierDataHolder INS;
 
 	public static void rebuild() {
-		INS = new DataHolder();
+		INS = new ModifierDataHolder();
 	}
 
 	@Nullable
@@ -43,7 +43,7 @@ public class DataHolder {
 	private final Map<ModifierType, ModifierPool> byTypePool = new LinkedHashMap<>();
 	private final Map<ResourceLocation, ModifierHolder> byIdCache = new LinkedHashMap<>();
 
-	private DataHolder() {
+	private ModifierDataHolder() {
 		// store upgrade recipes
 		for (var e : CelestialForge.COST.getAll()) {
 			ResourceLocation id = e.level == 0 ? e.target() : e.target().withSuffix("/" + e.level);

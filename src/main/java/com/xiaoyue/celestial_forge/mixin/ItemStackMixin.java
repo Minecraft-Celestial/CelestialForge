@@ -1,7 +1,7 @@
 package com.xiaoyue.celestial_forge.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import com.xiaoyue.celestial_forge.content.flag.RefFlagData;
+import com.xiaoyue.celestial_forge.content.reinforce.ReinforceData;
 import com.xiaoyue.celestial_forge.register.CFFlags;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import net.minecraft.network.chat.Component;
@@ -36,13 +36,13 @@ public abstract class ItemStackMixin implements IForgeItemStack {
 	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;appendEnchantmentNames(Ljava/util/List;Lnet/minecraft/nbt/ListTag;)V"), method = "getTooltipLines")
 	public void celestialForge$addText(Player player, TooltipFlag flag, CallbackInfoReturnable<List<Component>> cir, @Local List<Component> list) {
 		ItemStack self = (ItemStack) (Object) this;
-		CFFlags.DATA_LIST.forEach(data -> {
+		CFFlags.DATA_MAP.values().forEach(data -> {
 			if (data.hasFlag(self)) {
 				list.add(Component.empty());
-				list.addAll(data.tooltips);
+				list.addAll(data.tooltip());
 			}
 		});
-		if (self.isEnchanted() && self.getOrCreateTag().getBoolean(RefFlagData.itemRefName)) {
+		if (self.isEnchanted() && self.getOrCreateTag().getBoolean(ReinforceData.itemRefName)) {
 			list.add(Component.empty());
 		}
 	}

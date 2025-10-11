@@ -37,6 +37,7 @@ public enum CFLang {
 	REF_TEXT("Forge with equipment on the anvil to give special effects to equipment", 0),
 	ATTR_BONUS("%s increased by %s", 2),
 	UNDEAD_EXTRA_DAMAGE("When attacking an undead creature, damage is increased by %s of the target's health", 1),
+	PICK_EXP_BONUS("Increases the experience gained when picking up experience by %s", 1),
 	;
 
 	final String id;
