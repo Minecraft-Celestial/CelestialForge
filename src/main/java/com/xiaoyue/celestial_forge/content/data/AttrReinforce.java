@@ -23,22 +23,26 @@ public class AttrReinforce extends BaseConfig implements IReinforce {
     @SerialClass.SerialField
     private Item mate;
     @SerialClass.SerialField
-    private int cost;
+    private Item temp;
     @SerialClass.SerialField
     private String tooltip;
     @SerialClass.SerialField
     private List<AttributeEntry> attrs = new ArrayList<>();
 
-    public AttrReinforce(String flag, Item mate, int cost, String tooltip, List<AttributeEntry> attrs) {
+    public AttrReinforce(String flag, Item temp, Item mate, String tooltip, List<AttributeEntry> attrs) {
         this.flag = flag;
+        this.temp = temp;
         this.mate = mate;
-        this.cost = cost;
         this.tooltip = tooltip;
         this.attrs = attrs;
     }
 
     public AttrReinforce() {
 
+    }
+
+    public Item getTemp() {
+        return temp;
     }
 
     public String flagName() {
@@ -53,11 +57,6 @@ public class AttrReinforce extends BaseConfig implements IReinforce {
     @Override
     public Ingredient mate() {
         return Ingredient.of(mate);
-    }
-
-    @Override
-    public int cost() {
-        return cost;
     }
 
     @Override

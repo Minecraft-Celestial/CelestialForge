@@ -7,6 +7,7 @@ import com.xiaoyue.celestial_forge.content.data.*;
 import com.xiaoyue.celestial_forge.content.item.ModifierBook;
 import com.xiaoyue.celestial_forge.data.*;
 import com.xiaoyue.celestial_forge.register.CFItems;
+import com.xiaoyue.celestial_forge.register.CFRecipes;
 import com.xiaoyue.celestial_forge.utils.CurioUtils;
 import com.xiaoyue.celestial_forge.utils.TypeTestUtils;
 import dev.xkmc.l2library.base.L2Registrate;
@@ -44,6 +45,7 @@ public class CelestialForge {
 
 	public CelestialForge() {
 		CFItems.register();
+		CFRecipes.register();
 		CFModConfig.initConfig();
 		CurioUtils.register();
 		REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, CFTagGen::onItemTagGen);

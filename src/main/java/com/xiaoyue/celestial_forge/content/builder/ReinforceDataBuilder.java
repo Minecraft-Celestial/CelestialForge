@@ -29,8 +29,7 @@ public class ReinforceDataBuilder {
     public class Builder {
 
         private final String flag;
-        private Item mate;
-        private int cost = 5;
+        private Item mate, temp;
         private String tooltip = "";
         private final List<AttributeEntry> attrs = new ArrayList<>();
 
@@ -43,8 +42,8 @@ public class ReinforceDataBuilder {
             return this;
         }
 
-        public Builder cost(int cost) {
-            this.cost = cost;
+        public Builder temp(ItemLike item) {
+            temp = item.asItem();
             return this;
         }
 
@@ -59,7 +58,7 @@ public class ReinforceDataBuilder {
         }
 
         public ReinforceDataBuilder build() {
-            AttrReinforce reinforce = new AttrReinforce(flag, mate, cost, tooltip, attrs);
+            AttrReinforce reinforce = new AttrReinforce(flag, temp, mate, tooltip, attrs);
             cache.put(CelestialForge.loc(reinforce.flagName().toLowerCase(Locale.ROOT)), reinforce);
             return ReinforceDataBuilder.this;
         }

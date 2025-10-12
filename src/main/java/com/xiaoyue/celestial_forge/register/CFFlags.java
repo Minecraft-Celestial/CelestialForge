@@ -10,6 +10,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.LinkedHashMap;
@@ -20,19 +21,19 @@ public class CFFlags {
 
     public static final Map<String, IReinforce> DATA_MAP = new LinkedHashMap<>();
 
-    public static final ReinforceData ECHO_SHARD = new ReinforceData("echo_shard", "echo_shard", 5,
+    public static final ReinforceData ECHO_SHARD = new ReinforceData("echo_shard", "echo_shard", Items.GOLD_INGOT,
             item("echo_shard", CFLang.PICK_EXP_BONUS.get(CFLang.per(CFModConfig.COMMON.echoShardPickExpBonus.get()))));
 
-    public static final ReinforceData EARTH_CORE = new ReinforceData(flagName( "earth_core"), CCore("earth_core"), 3,
+    public static final ReinforceData EARTH_CORE = new ReinforceData(flagName( "earth_core"), CCore("earth_core"), Items.STONE_BRICKS,
             item(CCore("earth_core"), CFLang.BREAK_SPEED.get(CFLang.per(CFModConfig.COMMON.earthCoreMiningSpeed.get()))));
 
-    public static final ReinforceData VOID_ESSENCE = new ReinforceData(flagName( "void_essence"), CCore("void_essence"), 6,
+    public static final ReinforceData VOID_ESSENCE = new ReinforceData(flagName( "void_essence"), CCore("void_essence"), Items.DRAGON_BREATH,
             item(CCore("void_essence"), CFLang.EXTRA_DAMAGE.get(CFLang.num(CFModConfig.COMMON.voidEssenceExtraDamage.get()))));
 
-    public static final ReinforceData DEATH_ESSENCE = new ReinforceData(flagName( "death_essence"), CCore("death_essence"), 5,
+    public static final ReinforceData DEATH_ESSENCE = new ReinforceData(flagName( "death_essence"), CCore("death_essence"), Items.ROTTEN_FLESH,
             item(CCore("death_essence"), CFLang.DAMAGE_HEAL.get(CFLang.per(CFModConfig.COMMON.deathEssenceDamageHeal.get()))));
 
-    public static final ReinforceData PURE_NETHER_STAR = new ReinforceData(flagName( "pure_nether_star"), CCore("pure_nether_star"), 5,
+    public static final ReinforceData PURE_NETHER_STAR = new ReinforceData(flagName( "pure_nether_star"), CCore("pure_nether_star"), Items.NETHER_BRICK,
             item(CCore("pure_nether_star"), CFLang.UNDEAD_EXTRA_DAMAGE.get(CFLang.per(CFModConfig.COMMON.pureStarDamageMultiplier.get()))));
 
     public static MutableComponent item(String like, MutableComponent text) {

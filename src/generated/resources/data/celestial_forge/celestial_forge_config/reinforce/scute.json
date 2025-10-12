@@ -6,8 +6,8 @@
       "val": 0.03
     }
   ],
-  "cost": 6,
   "flag": "scute",
   "mate": "minecraft:scute",
+  "temp": "minecraft:sand",
   "tooltip": ""
 }

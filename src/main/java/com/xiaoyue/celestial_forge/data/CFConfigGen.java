@@ -234,15 +234,15 @@ public class CFConfigGen extends ConfigDataProvider {
 				.end();
 
 		REINFORCE_CONFIG = new ReinforceDataBuilder()
-				.builder("soaring_wings").mate(CCItems.SOARING_WINGS).cost(8)
+				.builder("soaring_wings").mate(CCItems.SOARING_WINGS).temp(Items.FEATHER)
 				.attr(Attributes.MOVEMENT_SPEED, 0.05, MULTIPLY_BASE).build()
-				.builder("heart_fragment").mate(CCItems.HEART_FRAGMENT).cost(7)
+				.builder("heart_fragment").mate(CCItems.HEART_FRAGMENT).temp(Items.EMERALD)
 				.attr(CCAttributes.REPLY_POWER.get(), 0.06, MULTIPLY_BASE).build()
-				.builder("heart_of_the_sea").mate(Items.HEART_OF_THE_SEA).cost(6)
+				.builder("heart_of_the_sea").mate(Items.HEART_OF_THE_SEA).temp(Items.LAPIS_LAZULI)
 				.attr(ForgeMod.SWIM_SPEED.get(), 0.04, MULTIPLY_BASE).build()
-				.builder("dragon_head").mate(Items.DRAGON_HEAD).cost(9)
+				.builder("dragon_head").mate(Items.DRAGON_HEAD).temp(Items.CHORUS_FRUIT)
 				.attr(Attributes.ATTACK_DAMAGE, 0.05, MULTIPLY_BASE).build()
-				.builder("scute").mate(Items.SCUTE).cost(6)
+				.builder("scute").mate(Items.SCUTE).temp(Items.SAND)
 				.attr(Attributes.ARMOR_TOUGHNESS, 0.03, MULTIPLY_BASE).build();
 	}
 

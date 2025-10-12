@@ -6,8 +6,8 @@
       "val": 0.05
     }
   ],
-  "cost": 9,
   "flag": "dragon_head",
   "mate": "minecraft:dragon_head",
+  "temp": "minecraft:chorus_fruit",
   "tooltip": ""
 }

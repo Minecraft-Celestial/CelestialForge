@@ -13,14 +13,21 @@ import java.util.List;
 public class ReinforceData implements IReinforce {
 
     private final String flag;
-    private final @Nullable ItemLike mate;
-    private final int cost;
+    private final @Nullable ItemLike temp, mate;
     private final Component tooltip;
 
-    public ReinforceData(String flag, String mate, int cost, Component tooltip) {
+    public ReinforceData(String flag, String mate, ItemLike temp, Component tooltip) {
         this.flag = flag;
+        this.temp = temp;
         this.mate = ForgeRegistries.ITEMS.getValue(new ResourceLocation(mate));
-        this.cost = cost;
+        this.tooltip = tooltip;
+        CFFlags.DATA_MAP.put(flag, this);
+    }
+
+    public ReinforceData(String flag, String mate, String temp, Component tooltip) {
+        this.flag = flag;
+        this.temp = ForgeRegistries.ITEMS.getValue(new ResourceLocation(temp));
+        this.mate = ForgeRegistries.ITEMS.getValue(new ResourceLocation(mate));
         this.tooltip = tooltip;
         CFFlags.DATA_MAP.put(flag, this);
     }
@@ -36,8 +43,8 @@ public class ReinforceData implements IReinforce {
     }
 
     @Override
-    public int cost() {
-        return cost;
+    public @Nullable Ingredient temp() {
+        return temp == null ? null : Ingredient.of(temp);
     }
 
     @Override
