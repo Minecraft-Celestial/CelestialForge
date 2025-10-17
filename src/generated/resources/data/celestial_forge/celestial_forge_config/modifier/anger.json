@@ -11,7 +11,7 @@
     {
       "attr": "l2damagetracker:damage_reduction",
       "base": -0.05,
-      "op": "MULTIPLY_BASE",
+      "op": "MULTIPLY_TOTAL",
       "perLevel": 0.04
     }
   ],

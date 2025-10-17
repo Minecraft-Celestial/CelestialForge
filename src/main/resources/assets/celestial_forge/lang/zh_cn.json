@@ -28,7 +28,7 @@
   "modifier.celestial_forge.unreal": "虚幻",
   "modifier.celestial_forge.legend": "传奇",
   "modifier.celestial_core.regenerate": "再生",
-	"celestial_forge.tooltip.celestial_modifier": "星月词条: %s",
+  "celestial_forge.tooltip.celestial_modifier": "星月词条: %s",
   "celestial_forge.tooltip.modifier_book": "%1$s 属性书",
   "celestial_forge.tooltip.equipped_type": "§7适用范围：§9护甲",
   "celestial_forge.tooltip.tools_type": "§7适用范围：§9工具",
@@ -47,5 +47,13 @@
   "celestial_forge.tooltip.modifier_book_empty": "在铁砧上从至少%s级的装备上提取属性",
   "block.celestial_forge.forge_table": "锻造桌",
   "celestial_forge.tooltip.is_max_level": "已满级",
-  "celestial_forge.tooltip.need_upgrade": "放在锻造桌上进行突破"
+  "celestial_forge.tooltip.need_upgrade": "放在锻造桌上进行突破",
+  "celestial_forge.tooltip.break_speed": "挖掘速度提高%s",
+  "celestial_forge.tooltip.damage_heal": "攻击后恢复攻击伤害%s生命",
+  "celestial_forge.tooltip.extra_damage": "攻击后额外造成%s点深渊伤害",
+  "celestial_forge.tooltip.ref_text": "在铁砧上与装备锻造赋予装备特殊效果",
+  "celestial_forge.tooltip.attr_bonus": "%s提高%s",
+  "celestial_forge.tooltip.undead_extra_damage": "攻击亡灵生物时伤害提高相当于目标生命的%s",
+  "celestial_forge.tooltip.pick_exp_bonus": "拾取经验时获取的经验提高%s",
+  "celestial_forge.tooltip.reinforce_title": "物品强化"
 }

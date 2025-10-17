@@ -1,0 +1,13 @@
+{
+  "attrs": [
+    {
+      "attr": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "val": 0.05
+    }
+  ],
+  "flag": "soaring_wings",
+  "mate": "celestial_core:soaring_wings",
+  "temp": "minecraft:feather",
+  "tooltip": ""
+}

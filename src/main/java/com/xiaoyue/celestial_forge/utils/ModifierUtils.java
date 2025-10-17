@@ -1,7 +1,7 @@
 package com.xiaoyue.celestial_forge.utils;
 
 import com.mojang.datafixers.util.Pair;
-import com.xiaoyue.celestial_forge.content.data.DataHolder;
+import com.xiaoyue.celestial_forge.content.data.ModifierDataHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
 import com.xiaoyue.celestial_forge.data.CFModConfig;
@@ -29,7 +29,7 @@ public class ModifierUtils {
 	public static ModifierInstance rollModifier(ItemStack stack, RandomSource random) {
 		var type = TypeTestUtils.getType(stack, false);
 		if (type == null) return null;
-		var ins = DataHolder.byType(type).roll(random);
+		var ins = ModifierDataHolder.byType(type).roll(random);
 		return ins == null ? null : ModifierInstance.of(ins);
 	}
 
@@ -58,14 +58,14 @@ public class ModifierUtils {
 		if (!tag.contains(tagName)) return null;
 		int level = tag.getInt(levelName);
 		int exp = tag.getInt(expName);
-		var ans = DataHolder.byId(new ResourceLocation(tag.getString(tagName)));
+		var ans = ModifierDataHolder.byId(new ResourceLocation(tag.getString(tagName)));
 		return ans == null ? null : new ModifierInstance(ans, level, exp);
 	}
 
 	@Nullable
 	public static ModifierHolder fromBook(ItemStack right) {
 		var tag = right.getTag();
-		return tag == null ? null : DataHolder.byId(new ResourceLocation(tag.getString(ModifierUtils.bookTagName)));
+		return tag == null ? null : ModifierDataHolder.byId(new ResourceLocation(tag.getString(ModifierUtils.bookTagName)));
 	}
 
 	public static ItemStack bookOf(ModifierHolder mod) {

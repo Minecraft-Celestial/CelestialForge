@@ -1,0 +1,13 @@
+{
+  "attrs": [
+    {
+      "attr": "forge:swim_speed",
+      "operation": "MULTIPLY_BASE",
+      "val": 0.04
+    }
+  ],
+  "flag": "heart_of_the_sea",
+  "mate": "minecraft:heart_of_the_sea",
+  "temp": "minecraft:lapis_lazuli",
+  "tooltip": ""
+}

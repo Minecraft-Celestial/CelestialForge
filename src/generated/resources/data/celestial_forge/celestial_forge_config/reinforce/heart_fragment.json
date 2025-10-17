@@ -1,0 +1,13 @@
+{
+  "attrs": [
+    {
+      "attr": "celestial_core:regen_rate",
+      "operation": "MULTIPLY_BASE",
+      "val": 0.06
+    }
+  ],
+  "flag": "heart_fragment",
+  "mate": "celestial_core:heart_fragment",
+  "temp": "minecraft:emerald",
+  "tooltip": ""
+}

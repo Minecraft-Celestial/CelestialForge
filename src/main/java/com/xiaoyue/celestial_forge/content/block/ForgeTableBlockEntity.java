@@ -1,6 +1,6 @@
 package com.xiaoyue.celestial_forge.content.block;
 
-import com.xiaoyue.celestial_forge.content.data.DataHolder;
+import com.xiaoyue.celestial_forge.content.data.ModifierDataHolder;
 import com.xiaoyue.celestial_forge.content.data.UpgradeRecipe;
 import com.xiaoyue.celestial_forge.content.overlay.InfoTile;
 import com.xiaoyue.celestial_forge.content.overlay.TileTooltip;
@@ -78,7 +78,7 @@ public class ForgeTableBlockEntity extends BaseBlockEntity
 		var type = TypeTestUtils.getType(stack, level.isClientSide());
 		if (type == null) return null;
 		var ins = ModifierUtils.getModifier(stack);
-		if (ins == null) return DataHolder.getStart(type);
+		if (ins == null) return ModifierDataHolder.getStart(type);
 		if (!ins.needUpgrade()) return null;
 		return ins.getNextUpgrade();
 	}

@@ -3,8 +3,11 @@ package com.xiaoyue.celestial_forge.data;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.xiaoyue.celestial_forge.CelestialForge;
 import com.xiaoyue.celestial_forge.content.modifier.ModifierHolder;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
 
@@ -28,6 +31,14 @@ public enum CFLang {
 	IS_MAX_LEVEL("Maxed out", 0),
 	NEED_UPGRADE("Put it on Forge Table for ascension", 0),
 	MODIFIER_LEVEL("Modifier level: %s", 1),
+	BREAK_SPEED("Mining speed increased by %s", 1),
+	EXTRA_DAMAGE("Deals additional %s Abyssal Damage after attacking", 1),
+	DAMAGE_HEAL("After attacking, restores attack damage %s health", 1),
+	REF_TEXT("Forge with equipment on the anvil to give special effects to equipment", 0),
+	ATTR_BONUS("%s increased by %s", 2),
+	UNDEAD_EXTRA_DAMAGE("When attacking an undead creature, damage is increased by %s of the target's health", 1),
+	PICK_EXP_BONUS("Increases the experience gained when picking up experience by %s", 1),
+	REINFORCE_TITLE("Item Reinforce", 0),
 	;
 
 	final String id;
@@ -52,6 +63,18 @@ public enum CFLang {
 		for (var value : values()) {
 			pvd.add(value.id, value.def);
 		}
+	}
+
+	public static MutableComponent per(double v) {
+		return Component.literal((int)Math.round(v * (double)100.0F) + "%").withStyle(ChatFormatting.AQUA);
+	}
+
+	public static MutableComponent num(double v) {
+		return Component.literal("" + v).withStyle(ChatFormatting.AQUA);
+	}
+
+	public static MutableComponent attr(@Nullable Attribute attr) {
+		return attr == null ? Component.empty() : Component.translatable(attr.getDescriptionId()).withStyle(ChatFormatting.AQUA);
 	}
 
 	public static Component addModifierTypeTip(ModifierHolder modifier) {

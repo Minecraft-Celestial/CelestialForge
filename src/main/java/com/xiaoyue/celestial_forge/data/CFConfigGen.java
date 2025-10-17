@@ -4,7 +4,8 @@ import com.xiaoyue.celestial_core.CelestialCore;
 import com.xiaoyue.celestial_core.register.CCAttributes;
 import com.xiaoyue.celestial_core.register.CCItems;
 import com.xiaoyue.celestial_forge.CelestialForge;
-import com.xiaoyue.celestial_forge.content.builder.DataBuilder;
+import com.xiaoyue.celestial_forge.content.builder.ModifierDataBuilder;
+import com.xiaoyue.celestial_forge.content.builder.ReinforceDataBuilder;
 import com.xiaoyue.celestial_forge.content.builder.UpgradeRecipeBuilder;
 import com.xiaoyue.celestial_forge.content.data.ModifierEntry;
 import com.xiaoyue.celestial_forge.content.data.ModifierType;
@@ -13,16 +14,17 @@ import dev.xkmc.l2library.serial.config.ConfigDataProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.common.ForgeMod;
 
-import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION;
-import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.MULTIPLY_BASE;
+import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.*;
 
 public class CFConfigGen extends ConfigDataProvider {
 
-	private static final DataBuilder CONFIG;
+	private static final ModifierDataBuilder MODIFIER_CONFIG;
+	private static final ReinforceDataBuilder REINFORCE_CONFIG;
 
 	static {
-		CONFIG = new DataBuilder()
+		MODIFIER_CONFIG = new ModifierDataBuilder()
 				.put(ModifierType.ARMOR, UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT, Items.IRON_INGOT, Items.GOLD_NUGGET))
 				.put(CelestialForge.loc("armor_basic"),
 						UpgradeRecipeBuilder.of(3, Items.COPPER_INGOT, Items.LEATHER, Items.BRICK),
@@ -210,7 +212,7 @@ public class CFConfigGen extends ConfigDataProvider {
 						new ModifierEntry(L2DamageTracker.ABSORB.get(), 2, ADDITION))
 				.put(CelestialForge.loc("anger"), 100,
 						new ModifierEntry(Attributes.ATTACK_KNOCKBACK, 1, ADDITION),
-						new ModifierEntry(L2DamageTracker.REDUCTION.get(), -0.05, MULTIPLY_BASE))
+						new ModifierEntry(L2DamageTracker.REDUCTION.get(), -0.05, MULTIPLY_TOTAL))
 				.end()
 				.end()
 
@@ -231,6 +233,17 @@ public class CFConfigGen extends ConfigDataProvider {
 				.end()
 				.end();
 
+		REINFORCE_CONFIG = new ReinforceDataBuilder()
+				.builder("soaring_wings").mate(CCItems.SOARING_WINGS).temp(Items.FEATHER)
+				.attr(Attributes.MOVEMENT_SPEED, 0.05, MULTIPLY_BASE).build()
+				.builder("heart_fragment").mate(CCItems.HEART_FRAGMENT).temp(Items.EMERALD)
+				.attr(CCAttributes.REPLY_POWER.get(), 0.06, MULTIPLY_BASE).build()
+				.builder("heart_of_the_sea").mate(Items.HEART_OF_THE_SEA).temp(Items.LAPIS_LAZULI)
+				.attr(ForgeMod.SWIM_SPEED.get(), 0.04, MULTIPLY_BASE).build()
+				.builder("dragon_head").mate(Items.DRAGON_HEAD).temp(Items.CHORUS_FRUIT)
+				.attr(Attributes.ATTACK_DAMAGE, 0.05, MULTIPLY_BASE).build()
+				.builder("scute").mate(Items.SCUTE).temp(Items.SAND)
+				.attr(Attributes.ARMOR_TOUGHNESS, 0.03, MULTIPLY_BASE).build();
 	}
 
 	public CFConfigGen(DataGenerator generator) {
@@ -239,7 +252,8 @@ public class CFConfigGen extends ConfigDataProvider {
 
 	@Override
 	public void add(Collector collector) {
-		CONFIG.build(collector);
+		MODIFIER_CONFIG.build(collector);
+		REINFORCE_CONFIG.build(collector);
 	}
 
 }

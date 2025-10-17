@@ -1,0 +1,13 @@
+{
+  "attrs": [
+    {
+      "attr": "minecraft:generic.armor_toughness",
+      "operation": "MULTIPLY_BASE",
+      "val": 0.03
+    }
+  ],
+  "flag": "scute",
+  "mate": "minecraft:scute",
+  "temp": "minecraft:sand",
+  "tooltip": ""
+}
