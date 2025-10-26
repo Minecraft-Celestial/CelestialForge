@@ -8,7 +8,6 @@ import dev.xkmc.l2library.serial.config.BaseConfig;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -16,37 +15,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SerialClass
-public class AttrReinforce extends BaseConfig implements IReinforce {
+public class DataReinforce extends BaseConfig implements IReinforce {
 
     @SerialClass.SerialField
     private String flag;
     @SerialClass.SerialField
-    private Item mate;
+    private Ingredient mate;
     @SerialClass.SerialField
-    private Item temp;
+    private Ingredient temp;
     @SerialClass.SerialField
     private String tooltip;
     @SerialClass.SerialField
+    private List<ModifierType> types = new ArrayList<>();
+    @SerialClass.SerialField
     private List<AttributeEntry> attrs = new ArrayList<>();
 
-    public AttrReinforce(String flag, Item temp, Item mate, String tooltip, List<AttributeEntry> attrs) {
+    public DataReinforce(String flag, Ingredient temp, Ingredient mate, String tooltip, List<ModifierType> types, List<AttributeEntry> attrs) {
         this.flag = flag;
         this.temp = temp;
         this.mate = mate;
         this.tooltip = tooltip;
+        this.types = types;
         this.attrs = attrs;
     }
 
-    public AttrReinforce() {
+    public DataReinforce() {
 
-    }
-
-    public Item getTemp() {
-        return temp;
     }
 
     public String flagName() {
         return flag;
+    }
+
+    @Override
+    public List<ModifierType> types() {
+        return types;
     }
 
     @Override
@@ -55,8 +58,13 @@ public class AttrReinforce extends BaseConfig implements IReinforce {
     }
 
     @Override
+    public Ingredient temp() {
+        return temp;
+    }
+
+    @Override
     public Ingredient mate() {
-        return Ingredient.of(mate);
+        return mate;
     }
 
     @Override
@@ -65,7 +73,7 @@ public class AttrReinforce extends BaseConfig implements IReinforce {
             return List.of(Component.translatable(tooltip));
         }
         List<Component> list = new ArrayList<>();
-        String key = ForgeRegistries.ITEMS.getKey(mate).toString();
+        String key = ForgeRegistries.ITEMS.getKey(mate.getItems()[0].getItem()).toString();
         if (attrs.size() > 1) {
             list.add(CFFlags.item(key));
             for (AttributeEntry entry : attrs) {

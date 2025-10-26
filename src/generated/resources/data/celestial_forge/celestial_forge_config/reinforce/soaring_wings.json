@@ -7,7 +7,17 @@
     }
   ],
   "flag": "soaring_wings",
-  "mate": "celestial_core:soaring_wings",
-  "temp": "minecraft:feather",
-  "tooltip": ""
+  "mate": {
+    "item": "celestial_core:soaring_wings"
+  },
+  "temp": {
+    "item": "minecraft:feather"
+  },
+  "tooltip": "",
+  "types": [
+    "CURIO",
+    "ARMOR",
+    "WEAPON",
+    "TOOL"
+  ]
 }

@@ -2,7 +2,7 @@ package com.xiaoyue.celestial_forge.events;
 
 import com.xiaoyue.celestial_core.data.CCDamageTypes;
 import com.xiaoyue.celestial_forge.CelestialForge;
-import com.xiaoyue.celestial_forge.content.data.AttrReinforce;
+import com.xiaoyue.celestial_forge.content.data.DataReinforce;
 import com.xiaoyue.celestial_forge.content.data.ModifierType;
 import com.xiaoyue.celestial_forge.content.reinforce.AttributeEntry;
 import com.xiaoyue.celestial_forge.data.CFModConfig;
@@ -35,7 +35,7 @@ public class CFReinforceHandler {
     public static void onAttrModify(ItemAttributeModifierEvent event) {
         ItemStack stack = event.getItemStack();
         CFFlags.DATA_MAP.values().forEach(data -> {
-            if (data instanceof AttrReinforce attrData) {
+            if (data instanceof DataReinforce attrData) {
                 ModifierType type = TypeTestUtils.getType(stack);
                 if (type == null) return;
                 if (event.getSlotType().equals(LivingEntity.getEquipmentSlotForItem(stack))) {

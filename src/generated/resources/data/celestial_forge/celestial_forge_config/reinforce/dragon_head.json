@@ -7,7 +7,14 @@
     }
   ],
   "flag": "dragon_head",
-  "mate": "minecraft:dragon_head",
-  "temp": "minecraft:chorus_fruit",
-  "tooltip": ""
+  "mate": {
+    "item": "minecraft:dragon_head"
+  },
+  "temp": {
+    "item": "minecraft:chorus_fruit"
+  },
+  "tooltip": "",
+  "types": [
+    "WEAPON"
+  ]
 }

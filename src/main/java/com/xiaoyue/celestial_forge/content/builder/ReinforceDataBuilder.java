@@ -1,20 +1,23 @@
 package com.xiaoyue.celestial_forge.content.builder;
 
 import com.xiaoyue.celestial_forge.CelestialForge;
-import com.xiaoyue.celestial_forge.content.data.AttrReinforce;
+import com.xiaoyue.celestial_forge.content.data.DataReinforce;
+import com.xiaoyue.celestial_forge.content.data.ModifierType;
 import com.xiaoyue.celestial_forge.content.reinforce.AttributeEntry;
 import dev.xkmc.l2library.serial.config.ConfigDataProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
 import java.util.*;
 
 public class ReinforceDataBuilder {
 
-    private final Map<ResourceLocation, AttrReinforce> cache = new LinkedHashMap<>();
+    private final Map<ResourceLocation, DataReinforce> cache = new LinkedHashMap<>();
 
     public Builder builder(String flag) {
         return new Builder(flag);
@@ -29,7 +32,8 @@ public class ReinforceDataBuilder {
     public class Builder {
 
         private final String flag;
-        private Item mate, temp;
+        private Ingredient mate, temp;
+        private final List<ModifierType> types = new ArrayList<>();
         private String tooltip = "";
         private final List<AttributeEntry> attrs = new ArrayList<>();
 
@@ -38,12 +42,27 @@ public class ReinforceDataBuilder {
         }
 
         public Builder mate(ItemLike item) {
-            mate = item.asItem();
+            mate = Ingredient.of(item);
             return this;
         }
 
         public Builder temp(ItemLike item) {
-            temp = item.asItem();
+            temp = Ingredient.of(item);
+            return this;
+        }
+
+        public Builder mate(TagKey<Item> item) {
+            mate = Ingredient.of(item);
+            return this;
+        }
+
+        public Builder temp(TagKey<Item> item) {
+            temp = Ingredient.of(item);
+            return this;
+        }
+
+        public Builder type(ModifierType type) {
+            this.types.add(type);
             return this;
         }
 
@@ -58,7 +77,7 @@ public class ReinforceDataBuilder {
         }
 
         public ReinforceDataBuilder build() {
-            AttrReinforce reinforce = new AttrReinforce(flag, temp, mate, tooltip, attrs);
+            DataReinforce reinforce = new DataReinforce(flag, temp, mate, tooltip, types, attrs);
             cache.put(CelestialForge.loc(reinforce.flagName().toLowerCase(Locale.ROOT)), reinforce);
             return ReinforceDataBuilder.this;
         }

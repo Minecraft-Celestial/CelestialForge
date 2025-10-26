@@ -7,7 +7,15 @@
     }
   ],
   "flag": "heart_fragment",
-  "mate": "celestial_core:heart_fragment",
-  "temp": "minecraft:emerald",
-  "tooltip": ""
+  "mate": {
+    "item": "celestial_core:heart_fragment"
+  },
+  "temp": {
+    "item": "minecraft:emerald"
+  },
+  "tooltip": "",
+  "types": [
+    "ARMOR",
+    "CURIO"
+  ]
 }

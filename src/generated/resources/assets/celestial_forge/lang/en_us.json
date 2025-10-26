@@ -18,6 +18,7 @@
   "celestial_forge.tooltip.pick_exp_bonus": "Increases the experience gained when picking up experience by %s",
   "celestial_forge.tooltip.ranged_type": "§7Applicable to: §9Ranged",
   "celestial_forge.tooltip.ref_text": "Forge with equipment on the anvil to give special effects to equipment",
+  "celestial_forge.tooltip.reinforce_title": "Item Reinforce",
   "celestial_forge.tooltip.table_exp_cost": "Exp cost: %s",
   "celestial_forge.tooltip.table_hammer": "Right-click with a hammer to complete",
   "celestial_forge.tooltip.table_invalid_item": "Invalid item",

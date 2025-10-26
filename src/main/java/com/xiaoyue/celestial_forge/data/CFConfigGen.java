@@ -235,14 +235,23 @@ public class CFConfigGen extends ConfigDataProvider {
 
 		REINFORCE_CONFIG = new ReinforceDataBuilder()
 				.builder("soaring_wings").mate(CCItems.SOARING_WINGS).temp(Items.FEATHER)
+				.type(ModifierType.CURIO).type(ModifierType.ARMOR).type(ModifierType.WEAPON).type(ModifierType.TOOL)
 				.attr(Attributes.MOVEMENT_SPEED, 0.05, MULTIPLY_BASE).build()
+
 				.builder("heart_fragment").mate(CCItems.HEART_FRAGMENT).temp(Items.EMERALD)
+				.type(ModifierType.ARMOR).type(ModifierType.CURIO)
 				.attr(CCAttributes.REPLY_POWER.get(), 0.06, MULTIPLY_BASE).build()
+
 				.builder("heart_of_the_sea").mate(Items.HEART_OF_THE_SEA).temp(Items.LAPIS_LAZULI)
+				.type(ModifierType.ARMOR).type(ModifierType.CURIO)
 				.attr(ForgeMod.SWIM_SPEED.get(), 0.04, MULTIPLY_BASE).build()
+
 				.builder("dragon_head").mate(Items.DRAGON_HEAD).temp(Items.CHORUS_FRUIT)
+				.type(ModifierType.WEAPON)
 				.attr(Attributes.ATTACK_DAMAGE, 0.05, MULTIPLY_BASE).build()
+
 				.builder("scute").mate(Items.SCUTE).temp(Items.SAND)
+				.type(ModifierType.ARMOR).type(ModifierType.CURIO)
 				.attr(Attributes.ARMOR_TOUGHNESS, 0.03, MULTIPLY_BASE).build();
 	}
 

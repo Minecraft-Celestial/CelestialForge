@@ -30,14 +30,13 @@ public class CelestialForge {
 	public static final String MODID = "celestial_forge";
 	public static final Logger LOGGER = LogUtils.getLogger();
 	public static final L2Registrate REGISTRATE = new L2Registrate(MODID);
-	public static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(
-			loc("main"), 1
-	);
+	public static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(loc("main"), 1);
 
 	public static final ConfigTypeEntry<UpgradeRecipe> COST = new ConfigTypeEntry<>(HANDLER, "cost", UpgradeRecipe.class);
 	public static final ConfigTypeEntry<LevelingConfig> LEVELING = new ConfigTypeEntry<>(HANDLER, "leveling", LevelingConfig.class);
 	public static final ConfigTypeEntry<ModifierData> MODIFIER = new ConfigTypeEntry<>(HANDLER, "modifier", ModifierData.class);
-	public static final ConfigTypeEntry<AttrReinforce> REINFORCE = new ConfigTypeEntry<>(HANDLER, "reinforce", AttrReinforce.class);
+
+	public static final ConfigTypeEntry<DataReinforce> REINFORCE = new ConfigTypeEntry<>(HANDLER, "reinforce", DataReinforce.class);
 
 	public static final RegistryEntry<CreativeModeTab> MODIFIER_TAB = REGISTRATE.buildModCreativeTab(
 			"tab", "Celestial Forge Tab", e -> e.icon(() -> CFItems.MODIFIER_BOOK.get().getDefaultInstance())

@@ -14,6 +14,9 @@ import net.minecraft.world.item.crafting.SmithingRecipe;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ReinforceRecipe implements SmithingRecipe {
     public ResourceLocation id;
 
@@ -23,22 +26,45 @@ public class ReinforceRecipe implements SmithingRecipe {
 
     @Override
     public boolean isTemplateIngredient(ItemStack stack) {
-        return true;
+        boolean flag = false;
+        for (IReinforce ref : CFFlags.DATA_MAP.values()) {
+            if (ref.temp().test(stack)) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
     }
 
     @Override
     public boolean isBaseIngredient(ItemStack stack) {
-        return true;
+        boolean flag = false;
+        for (IReinforce ref : CFFlags.DATA_MAP.values()) {
+            if (ref.isInput(stack)) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
     }
 
     @Override
     public boolean isAdditionIngredient(ItemStack stack) {
-        return true;
+        boolean flag = false;
+        for (IReinforce ref : CFFlags.DATA_MAP.values()) {
+            if (ref.mate().test(stack)) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
     }
 
     @Override
     public boolean matches(Container container, Level level) {
-        return true;
+        if (container.getItem(0).isEmpty()) return false;
+        if (container.getItem(1).isEmpty()) return false;
+        return !container.getItem(2).isEmpty();
     }
 
     @Override
@@ -46,15 +72,23 @@ public class ReinforceRecipe implements SmithingRecipe {
         ItemStack temp = container.getItem(0);
         ItemStack input = container.getItem(1);
         ItemStack mate = container.getItem(2);
+        List<IReinforce> list = new ArrayList<>();
         for (IReinforce value : CFFlags.DATA_MAP.values()) {
-            if (mate.isEmpty() || temp.isEmpty() || mate.is(CFTagGen.REF_BLACK_LIST)) {
+            if (value.isInput(input)) {
+                list.add(value);
+            }
+        }
+        for (IReinforce value : list) {
+            if (mate.is(CFTagGen.REF_BLACK_LIST)) {
                 return ItemStack.EMPTY;
             }
-            if (value.mate().test(mate) && value.temp().test(temp) && !value.hasFlag(input) && !IReinforce.isReinforced(input)) {
-                ItemStack output = input.copy();
-                output.getOrCreateTag().putBoolean(IReinforce.itemRefName, true);
-                output.getOrCreateTag().putBoolean(value.flag(), true);
-                return output;
+            if (value.mate().test(mate) && value.temp().test(temp)) {
+                if (!value.hasFlag(input) && !IReinforce.isReinforced(input)) {
+                    ItemStack output = input.copy();
+                    output.getOrCreateTag().putBoolean(IReinforce.itemRefName, true);
+                    output.getOrCreateTag().putBoolean(value.flag(), true);
+                    return output;
+                }
             }
         }
         return ItemStack.EMPTY;

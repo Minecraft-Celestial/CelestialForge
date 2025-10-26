@@ -1,5 +1,6 @@
 package com.xiaoyue.celestial_forge.content.reinforce;
 
+import com.xiaoyue.celestial_forge.content.data.ModifierType;
 import com.xiaoyue.celestial_forge.utils.CurioUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -7,6 +8,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,23 @@ public interface IReinforce {
     }
 
     List<Component> tooltip();
+
+    List<ModifierType> types();
+
+    default boolean isInput(ItemStack item) {
+        boolean flag = false;
+        for (ModifierType type : types()) {
+            if (type.equals(ModifierType.ALL)) {
+                flag = true;
+                break;
+            }
+            if (type.test(item, ServerLifecycleHooks.getCurrentServer() == null)) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
+    }
 
     static boolean isReinforced(ItemStack stack) {
         if (stack.hasTag()) {

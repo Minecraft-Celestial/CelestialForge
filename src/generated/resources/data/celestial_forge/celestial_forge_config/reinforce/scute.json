@@ -7,7 +7,15 @@
     }
   ],
   "flag": "scute",
-  "mate": "minecraft:scute",
-  "temp": "minecraft:sand",
-  "tooltip": ""
+  "mate": {
+    "item": "minecraft:scute"
+  },
+  "temp": {
+    "item": "minecraft:sand"
+  },
+  "tooltip": "",
+  "types": [
+    "ARMOR",
+    "CURIO"
+  ]
 }
