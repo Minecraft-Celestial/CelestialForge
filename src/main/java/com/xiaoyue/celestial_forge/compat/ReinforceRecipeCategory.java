@@ -15,8 +15,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-
-import java.util.concurrent.atomic.AtomicReference;
+import org.apache.commons.lang3.mutable.MutableObject;
 
 import static com.xiaoyue.celestial_forge.CelestialForge.MODID;
 
@@ -59,35 +58,37 @@ public class ReinforceRecipeCategory implements IRecipeCategory<ReinforceRecipeW
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, ReinforceRecipeWrapper wrapper, IFocusGroup focus) {
-        AtomicReference<Ingredient> temp = new AtomicReference<>(wrapper.temp());
-        AtomicReference<Ingredient> input = new AtomicReference<>(wrapper.input());
-        AtomicReference<Ingredient> mate = new AtomicReference<>(wrapper.mate());
-        AtomicReference<Ingredient> output = new AtomicReference<>(wrapper.result());
-        focus.getItemStackFocuses(RecipeIngredientRole.CATALYST).findFirst().ifPresent(item -> {
-            ItemStack stack = item.getTypedValue().getIngredient().copy();
-            if (wrapper.temp().test(stack)) {
-                temp.set(Ingredient.of(stack));
-            }
-            if (wrapper.mate().test(stack)) {
-                mate.set(Ingredient.of(stack));
-            }
-        });
-        focus.getItemStackFocuses(RecipeIngredientRole.INPUT).findFirst().ifPresent(item -> {
-            ItemStack stack = item.getTypedValue().getIngredient().copy();
-            if (wrapper.input().test(stack)) {
-                stack.getOrCreateTag().putBoolean(IReinforce.itemRefName, true);
-                stack.getOrCreateTag().putBoolean(wrapper.output().flag(), true);
-                output.set(Ingredient.of(stack));
-            }
-            output.set(output.get());
-        });
+        MutableObject<Ingredient> temp = new MutableObject<>(wrapper.temp());
+        MutableObject<Ingredient> input = new MutableObject<>(wrapper.input());
+        MutableObject<Ingredient> mate = new MutableObject<>(wrapper.mate());
+        MutableObject<Ingredient> output = new MutableObject<>(wrapper.result());
+        if (!focus.isEmpty()) {
+            focus.getItemStackFocuses(RecipeIngredientRole.CATALYST).findFirst().ifPresent(item -> {
+                ItemStack stack = item.getTypedValue().getIngredient().copy();
+                if (wrapper.temp().test(stack)) {
+                    temp.setValue(Ingredient.of(stack));
+                }
+                if (wrapper.mate().test(stack)) {
+                    mate.setValue(Ingredient.of(stack));
+                }
+            });
+            focus.getItemStackFocuses(RecipeIngredientRole.INPUT).findFirst().ifPresent(item -> {
+                ItemStack stack = item.getTypedValue().getIngredient().copy();
+                if (wrapper.input().test(stack)) {
+                    stack.getOrCreateTag().putBoolean(IReinforce.itemRefName, true);
+                    stack.getOrCreateTag().putBoolean(wrapper.output().flag(), true);
+                    output.setValue(Ingredient.of(stack));
+                }
+                output.setValue(output.getValue());
+            });
+        }
         builder.addSlot(RecipeIngredientRole.CATALYST, 1, 1)
-                .addIngredients(temp.get());
+                .addIngredients(temp.getValue());
         builder.addSlot(RecipeIngredientRole.INPUT, 19, 1)
-                .addIngredients(input.get());
+                .addIngredients(input.getValue());
         builder.addSlot(RecipeIngredientRole.CATALYST, 37, 1)
-                .addIngredients(mate.get());
+                .addIngredients(mate.getValue());
         builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 91, 1)
-                .addIngredients(output.get());
+                .addIngredients(output.getValue());
     }
 }
