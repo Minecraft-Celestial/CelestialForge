@@ -62,9 +62,12 @@ public class ReinforceRecipe implements SmithingRecipe {
 
     @Override
     public boolean matches(Container container, Level level) {
-        if (container.getItem(0).isEmpty()) return false;
-        if (container.getItem(1).isEmpty()) return false;
-        return !container.getItem(2).isEmpty();
+        for (IReinforce reinforce : CFFlags.DATA_MAP.values()) {
+            if (!reinforce.temp().test(container.getItem(0))) continue;
+            if (!reinforce.mate().test(container.getItem(2))) continue;
+            return !container.getItem(1).isEmpty();
+        }
+        return false;
     }
 
     @Override
