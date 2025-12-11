@@ -15,7 +15,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import org.apache.commons.lang3.mutable.MutableObject;
 
 import static com.xiaoyue.celestial_forge.CelestialForge.MODID;
 
@@ -58,18 +57,18 @@ public class ReinforceRecipeCategory implements IRecipeCategory<ReinforceRecipeW
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, ReinforceRecipeWrapper wrapper, IFocusGroup focus) {
-        MutableObject<Ingredient> temp = new MutableObject<>(wrapper.temp());
-        MutableObject<Ingredient> input = new MutableObject<>(wrapper.input());
-        MutableObject<Ingredient> mate = new MutableObject<>(wrapper.mate());
-        MutableObject<Ingredient> output = new MutableObject<>(wrapper.result());
+        ObjectWrapper<Ingredient> temp = new ObjectWrapper<>(wrapper.temp());
+        ObjectWrapper<Ingredient> input = new ObjectWrapper<>(wrapper.input());
+        ObjectWrapper<Ingredient> mate = new ObjectWrapper<>(wrapper.mate());
+        ObjectWrapper<Ingredient> output = new ObjectWrapper<>(wrapper.result());
         if (!focus.isEmpty()) {
             focus.getItemStackFocuses(RecipeIngredientRole.CATALYST).findFirst().ifPresent(item -> {
                 ItemStack stack = item.getTypedValue().getIngredient().copy();
                 if (wrapper.temp().test(stack)) {
-                    temp.setValue(Ingredient.of(stack));
+                    temp.setObject(Ingredient.of(stack));
                 }
                 if (wrapper.mate().test(stack)) {
-                    mate.setValue(Ingredient.of(stack));
+                    mate.setObject(Ingredient.of(stack));
                 }
             });
             focus.getItemStackFocuses(RecipeIngredientRole.INPUT).findFirst().ifPresent(item -> {
@@ -77,18 +76,34 @@ public class ReinforceRecipeCategory implements IRecipeCategory<ReinforceRecipeW
                 if (wrapper.input().test(stack)) {
                     stack.getOrCreateTag().putBoolean(IReinforce.itemRefName, true);
                     stack.getOrCreateTag().putBoolean(wrapper.output().flag(), true);
-                    output.setValue(Ingredient.of(stack));
+                    output.setObject(Ingredient.of(stack));
                 }
-                output.setValue(output.getValue());
+                output.setObject(output.getObject());
             });
         }
         builder.addSlot(RecipeIngredientRole.CATALYST, 1, 1)
-                .addIngredients(temp.getValue());
+                .addIngredients(temp.getObject());
         builder.addSlot(RecipeIngredientRole.INPUT, 19, 1)
-                .addIngredients(input.getValue());
+                .addIngredients(input.getObject());
         builder.addSlot(RecipeIngredientRole.CATALYST, 37, 1)
-                .addIngredients(mate.getValue());
+                .addIngredients(mate.getObject());
         builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 91, 1)
-                .addIngredients(output.getValue());
+                .addIngredients(output.getObject());
+    }
+
+    public static class ObjectWrapper<T> {
+        private T object;
+
+        public ObjectWrapper(T object) {
+            this.object = object;
+        }
+
+        public void setObject(T newObject) {
+            this.object = newObject;
+        }
+
+        public T getObject() {
+            return object;
+        }
     }
 }
