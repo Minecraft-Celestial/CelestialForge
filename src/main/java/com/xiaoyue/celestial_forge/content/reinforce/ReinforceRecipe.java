@@ -82,13 +82,13 @@ public class ReinforceRecipe implements SmithingRecipe {
             }
         }
         for (IReinforce value : list) {
-            if (mate.is(CFTagGen.REF_BLACK_LIST)) {
+            if (mate.is(CFTagGen.REINFORCE_BLACK_LIST)) {
                 return ItemStack.EMPTY;
             }
             if (value.mate().test(mate) && value.temp().test(temp)) {
                 if (!value.hasFlag(input) && !IReinforce.isReinforced(input)) {
                     ItemStack output = input.copy();
-                    output.getOrCreateTag().putBoolean(IReinforce.itemRefName, true);
+                    output.getOrCreateTag().putBoolean(IReinforce.itemReinforceName, true);
                     output.getOrCreateTag().putBoolean(value.flag(), true);
                     return output;
                 }

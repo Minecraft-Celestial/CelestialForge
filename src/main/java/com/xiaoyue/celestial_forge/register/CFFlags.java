@@ -39,7 +39,7 @@ public class CFFlags {
             ModifierType.CURIO, ModifierType.WEAPON);
 
     public static final ReinforceData PURE_NETHER_STAR = new ReinforceData(flagName( "pure_nether_star"), CCore("pure_nether_star"), Items.NETHER_BRICK,
-            item(CCore("pure_nether_star"), CFLang.UNDEAD_EXTRA_DAMAGE.get(CFLang.per(CFModConfig.COMMON.pureStarDamageMultiplier.get()))),
+            item(CCore("pure_nether_star"), CFLang.UNDEAD_EXTRA_DAMAGE.get(CFLang.per(CFModConfig.COMMON.pureStarDamageFactor.get()))),
             ModifierType.CURIO, ModifierType.ARMOR);
 
     public static MutableComponent item(String like, MutableComponent text) {

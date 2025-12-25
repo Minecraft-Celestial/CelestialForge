@@ -15,7 +15,7 @@ import java.util.List;
 
 public interface IReinforce {
 
-    String itemRefName = "CelestialForge_ItemReinforce";
+    String itemReinforceName = "CelestialForge_ItemReinforce";
 
     String flag();
 
@@ -48,7 +48,7 @@ public interface IReinforce {
 
     static boolean isReinforced(ItemStack stack) {
         if (stack.hasTag()) {
-            return stack.getTag().getBoolean(itemRefName);
+            return stack.getTag().getBoolean(itemReinforceName);
         }
         return false;
     }

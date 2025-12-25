@@ -13,7 +13,7 @@ import java.util.HashSet;
 public class TypeTestUtils {
 
 	private static final HashSet<Item> INVALID = new HashSet<>();
-	private static final HashMap<Item, ModifierType> CACHE = new HashMap<>();
+	public static final HashMap<Item, ModifierType> CACHE = new HashMap<>();
 
 	public static void clearCache() {
 		INVALID.clear();
@@ -21,7 +21,7 @@ public class TypeTestUtils {
 	}
 
 	public static boolean mightHaveModifiers(ItemStack stack) {
-		return !stack.isEmpty() && stack.getMaxStackSize() == 1 && !stack.is(CFTagGen.BLACK_LIST);
+		return !stack.isEmpty() && stack.getMaxStackSize() == 1 && !stack.is(CFTagGen.MODIFIER_BLACK_LIST);
 	}
 
 	public static boolean isRangedWeapon(ItemStack stack) {

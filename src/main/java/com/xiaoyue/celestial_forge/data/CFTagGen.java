@@ -11,8 +11,8 @@ import net.minecraftforge.common.Tags;
 
 public class CFTagGen {
 
-	public static final TagKey<Item> BLACK_LIST = ItemTags.create(CelestialForge.loc("black_list"));
-	public static final TagKey<Item> REF_BLACK_LIST = ItemTags.create(CelestialForge.loc("ref_black_list"));
+	public static final TagKey<Item> MODIFIER_BLACK_LIST = ItemTags.create(CelestialForge.loc("modifier_black_list"));
+	public static final TagKey<Item> REINFORCE_BLACK_LIST = ItemTags.create(CelestialForge.loc("reinforce_black_list"));
 
 	public static final TagKey<Item> TOOL_MODIFIABLE = ItemTags.create(CelestialForge.loc("tool_modifiable"));
 	public static final TagKey<Item> RANGED_MODIFIABLE = ItemTags.create(CelestialForge.loc("ranged_modifiable"));
@@ -32,6 +32,6 @@ public class CFTagGen {
 				.addTags(Tags.Items.TOOLS_BOWS, Tags.Items.TOOLS_CROSSBOWS);
 		pvd.addTag(CURIO_MODIFIABLE)
 				.add(CAItems.HEIRLOOM_NECKLACE.asItem());
-		pvd.addTag(REF_BLACK_LIST);
+		pvd.addTag(REINFORCE_BLACK_LIST);
 	}
 }

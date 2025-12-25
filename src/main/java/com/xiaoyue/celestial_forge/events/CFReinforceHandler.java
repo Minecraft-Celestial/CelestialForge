@@ -22,7 +22,6 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.Locale;
@@ -38,7 +37,7 @@ public class CFReinforceHandler {
             if (data instanceof DataReinforce attrData) {
                 ModifierType type = TypeTestUtils.getType(stack);
                 if (type == null) return;
-                if (event.getSlotType().equals(LivingEntity.getEquipmentSlotForItem(stack))) {
+                if (event.getSlotType() == LivingEntity.getEquipmentSlotForItem(stack)) {
                     if (data.hasFlag(stack) && type != ModifierType.CURIO) {
                         for (int i = 0; i < attrData.attrs().size(); i++) {
                             AttributeEntry entry = attrData.attrs().get(i);
@@ -69,7 +68,7 @@ public class CFReinforceHandler {
         LivingEntity target = event.getEntity();
         Entity source = event.getSource().getEntity();
         if (source instanceof LivingEntity entity) {
-            float pureStar = CFFlags.PURE_NETHER_STAR.getItemsForFlag(entity).size() * CFModConfig.COMMON.pureStarDamageMultiplier.get().floatValue();
+            float pureStar = CFFlags.PURE_NETHER_STAR.getItemsForFlag(entity).size() * CFModConfig.COMMON.pureStarDamageFactor.get().floatValue();
             event.setAmount(event.getAmount() + target.getMaxHealth() * pureStar);
         }
     }
@@ -77,14 +76,14 @@ public class CFReinforceHandler {
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event) {
         LivingEntity target = event.getEntity();
-        Entity source = event.getSource().getEntity();
-        if (source instanceof Player player) {
-            if (player.getAttackStrengthScale(0.5f) >= 0.9f && ModList.get().isLoaded("celestial_core")) {
+        Entity attacker = event.getSource().getEntity();
+        if (attacker instanceof Player player) {
+            if (player.getLastHurtMobTimestamp() <= 2) {
                 float voidEssence = CFFlags.VOID_ESSENCE.getItemsForFlag(player).size() * CFModConfig.COMMON.voidEssenceExtraDamage.get().floatValue();
                 GeneralEventHandler.schedule(() -> target.hurt(CCDamageTypes.abyss(player), voidEssence));
             }
         }
-        if (source instanceof LivingEntity entity) {
+        if (attacker instanceof LivingEntity entity) {
             float deathEssence = CFFlags.DEATH_ESSENCE.getItemsForFlag(entity).size() * CFModConfig.COMMON.deathEssenceDamageHeal.get().floatValue();
             entity.heal(deathEssence * event.getAmount());
         }

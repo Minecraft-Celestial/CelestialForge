@@ -74,7 +74,7 @@ public class ReinforceRecipeCategory implements IRecipeCategory<ReinforceRecipeW
             focus.getItemStackFocuses(RecipeIngredientRole.INPUT).findFirst().ifPresent(item -> {
                 ItemStack stack = item.getTypedValue().getIngredient().copy();
                 if (wrapper.input().test(stack)) {
-                    stack.getOrCreateTag().putBoolean(IReinforce.itemRefName, true);
+                    stack.getOrCreateTag().putBoolean(IReinforce.itemReinforceName, true);
                     stack.getOrCreateTag().putBoolean(wrapper.output().flag(), true);
                     output.setObject(Ingredient.of(stack));
                 }
