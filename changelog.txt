@@ -1,3 +1,22 @@
+1.1.3
+- Add config to disable leveling
+
+1.1.2
+- Fix damage abnormal bug
+- Modify config value and tag name
+
+1.1.1
+- Fix template recipe bug
+
+1.1.0
+- Fix jei recipe bug
+
+1.0.9
+- Fix apotheosis gems socket recipes bug
+
+1.0.8
+- Add new reinforcement system
+
 1.0.7
 - Fix client crash when joining server with some tooltip caching mods
 

@@ -108,7 +108,7 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 	}
 
 	public boolean canUpgrade() {
-		return level < holder.gate().upgrades().size() * 10 || CFModConfig.COMMON.enableModifierUpgrades.get();
+		return level < holder.gate().upgrades().size() * 10 && CFModConfig.COMMON.enableModifierUpgrades.get();
 	}
 
 	public ModifierInstance addExp(int toAdd) {
