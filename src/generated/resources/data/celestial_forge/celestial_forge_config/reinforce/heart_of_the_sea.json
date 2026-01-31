@@ -7,7 +7,15 @@
     }
   ],
   "flag": "heart_of_the_sea",
-  "mate": "minecraft:heart_of_the_sea",
-  "temp": "minecraft:lapis_lazuli",
-  "tooltip": ""
+  "mate": {
+    "item": "minecraft:heart_of_the_sea"
+  },
+  "temp": {
+    "item": "minecraft:lapis_lazuli"
+  },
+  "tooltip": "",
+  "types": [
+    "ARMOR",
+    "CURIO"
+  ]
 }

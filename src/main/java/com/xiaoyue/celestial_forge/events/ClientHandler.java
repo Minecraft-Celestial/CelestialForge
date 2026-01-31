@@ -1,6 +1,7 @@
 package com.xiaoyue.celestial_forge.events;
 
 import com.xiaoyue.celestial_forge.content.modifier.ModifierInstance;
+import com.xiaoyue.celestial_forge.data.CFModConfig;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -17,7 +18,9 @@ public class ClientHandler {
 		ModifierInstance modifier = ModifierUtils.getModifier(stack);
 		if (modifier == null) return;
 		event.getToolTip().addAll(modifier.getInfoLines());
-		event.getToolTip().addAll(modifier.extraLines());
+		if (CFModConfig.COMMON.enableModifierUpgrades.get()) {
+			event.getToolTip().addAll(modifier.extraLines());
+		}
 	}
 
 }

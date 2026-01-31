@@ -66,7 +66,7 @@ public enum CFLang {
 	}
 
 	public static MutableComponent per(double v) {
-		return Component.literal((int)Math.round(v * (double)100.0F) + "%").withStyle(ChatFormatting.AQUA);
+		return Component.literal((int) Math.round(v * (double) 100.0F) + "%").withStyle(ChatFormatting.AQUA);
 	}
 
 	public static MutableComponent num(double v) {

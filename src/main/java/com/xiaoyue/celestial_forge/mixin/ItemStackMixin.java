@@ -42,7 +42,7 @@ public abstract class ItemStackMixin implements IForgeItemStack {
 				list.addAll(data.tooltip());
 			}
 		});
-		if (self.isEnchanted() && self.getOrCreateTag().getBoolean(ReinforceData.itemRefName)) {
+		if (self.isEnchanted() && self.getOrCreateTag().getBoolean(ReinforceData.itemReinforceName)) {
 			list.add(Component.empty());
 		}
 	}

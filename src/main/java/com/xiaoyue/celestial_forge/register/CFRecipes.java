@@ -9,15 +9,15 @@ import net.minecraft.world.item.crafting.RecipeType;
 
 public class CFRecipes {
 
-    public static final RegistryEntry<RecipeType<ReinforceRecipe>> RT_REINFORCE;
-    public static final RegistryEntry<RecipeSerializer<ReinforceRecipe>> RS_REINFORCE;
+	public static final RegistryEntry<RecipeType<ReinforceRecipe>> RT_REINFORCE;
+	public static final RegistryEntry<RecipeSerializer<ReinforceRecipe>> RS_REINFORCE;
 
-    static {
-        RT_REINFORCE = CelestialForge.REGISTRATE.recipe("reinforce");
-        RS_REINFORCE = CelestialForge.REGISTRATE.simple("reinforce", Registries.RECIPE_SERIALIZER, ReinforceRecipe.Serial::new);
-    }
+	static {
+		RT_REINFORCE = CelestialForge.REGISTRATE.recipe("reinforce");
+		RS_REINFORCE = CelestialForge.REGISTRATE.simple("reinforce", Registries.RECIPE_SERIALIZER, ReinforceRecipe.Serial::new);
+	}
 
-    public static void register() {
+	public static void register() {
 
-    }
+	}
 }
