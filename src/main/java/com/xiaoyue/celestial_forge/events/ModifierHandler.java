@@ -47,6 +47,7 @@ public class ModifierHandler {
 		var player = event.getAttackingPlayer();
 		if (player == null) return;
 		if (player.level().isClientSide()) return;
+		if (!CFModConfig.COMMON.enableModifierUpgrades.get()) return;
 		ModifierUtils.addExpToPlayer(player, event.getDroppedExperience());
 	}
 

@@ -25,6 +25,7 @@ public class CFModConfig {
 		public final ForgeConfigSpec.BooleanValue enableArmorForging;
 		public final ForgeConfigSpec.BooleanValue enableToolForging;
 		public final ForgeConfigSpec.BooleanValue enableCurioForging;
+		public final ForgeConfigSpec.BooleanValue enableModifierUpgrades;
 
 		public final ForgeConfigSpec.DoubleValue echoShardPickExpBonus;
 		public final ForgeConfigSpec.DoubleValue earthCoreMiningSpeed;
@@ -67,6 +68,9 @@ public class CFModConfig {
 			enableCurioForging = builder
 					.comment("Enable forging for type Curio")
 					.define("enableCurioForging", true);
+			enableModifierUpgrades = builder
+					.comment("Enable modifier to be upgraded")
+					.define("enableModifierUpgrades", true);
 
 			builder.push("reinforce");
 			echoShardPickExpBonus = builder

@@ -2,6 +2,7 @@ package com.xiaoyue.celestial_forge.content.modifier;
 
 import com.xiaoyue.celestial_forge.content.data.UpgradeRecipe;
 import com.xiaoyue.celestial_forge.data.CFLang;
+import com.xiaoyue.celestial_forge.data.CFModConfig;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import dev.xkmc.l2damagetracker.contents.curios.AttrTooltip;
 import net.minecraft.ChatFormatting;
@@ -107,7 +108,7 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 	}
 
 	public boolean canUpgrade() {
-		return level < holder.gate().upgrades().size() * 10;
+		return level < holder.gate().upgrades().size() * 10 || CFModConfig.COMMON.enableModifierUpgrades.get();
 	}
 
 	public ModifierInstance addExp(int toAdd) {
