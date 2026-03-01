@@ -22,6 +22,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.Locale;
@@ -78,7 +79,7 @@ public class CFReinforceHandler {
         LivingEntity target = event.getEntity();
         Entity attacker = event.getSource().getEntity();
         if (attacker instanceof Player player) {
-            if (player.getLastHurtMobTimestamp() <= 2) {
+            if (player.getLastHurtMobTimestamp() <= 2 && player.getAttackStrengthScale(0.5f) > 0.9f && ModList.get().isLoaded("celestial_core")) {
                 float voidEssence = CFFlags.VOID_ESSENCE.getItemsForFlag(player).size() * CFModConfig.COMMON.voidEssenceExtraDamage.get().floatValue();
                 GeneralEventHandler.schedule(() -> target.hurt(CCDamageTypes.abyss(player), voidEssence));
             }
