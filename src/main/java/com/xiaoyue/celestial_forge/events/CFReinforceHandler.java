@@ -12,6 +12,7 @@ import dev.xkmc.l2library.init.events.GeneralEventHandler;
 import dev.xkmc.l2library.util.math.MathHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -54,23 +55,29 @@ public class CFReinforceHandler {
 
     @SubscribeEvent
     public static void onPickExp(PlayerXpEvent.PickupXp event) {
-        float bonus = CFFlags.ECHO_SHARD.getItemsForFlag(event.getEntity()).size() * CFModConfig.COMMON.echoShardPickExpBonus.get().floatValue();
-        event.getOrb().value = (int) (event.getOrb().value * (1 + bonus));
+        CFFlags.ECHO_SHARD.postItemsFlag(event.getEntity(), (stack, size) -> {
+            float config = CFModConfig.COMMON.echoShardPickExpBonus.get().floatValue();
+            event.getOrb().value = (int) (event.getOrb().value * (1 + size * config));
+        });
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onPlayerBreak(PlayerEvent.BreakSpeed event) {
-        float bonus = CFFlags.EARTH_CORE.getItemsForFlag(event.getEntity()).size() * CFModConfig.COMMON.earthCoreMiningSpeed.get().floatValue();
-        event.setNewSpeed(event.getOriginalSpeed() * (1 + bonus));
+        CFFlags.EARTH_CORE.postItemsFlag(event.getEntity(), (stack, size) -> {
+            float config = CFModConfig.COMMON.earthCoreMiningSpeed.get().floatValue();
+            event.setNewSpeed(event.getOriginalSpeed() * (1 + size * config));
+        });
     }
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
         LivingEntity target = event.getEntity();
         Entity source = event.getSource().getEntity();
-        if (source instanceof LivingEntity entity) {
-            float pureStar = CFFlags.PURE_NETHER_STAR.getItemsForFlag(entity).size() * CFModConfig.COMMON.pureStarDamageFactor.get().floatValue();
-            event.setAmount(event.getAmount() + target.getMaxHealth() * pureStar);
+        if (source instanceof LivingEntity attacker && target.getMobType().equals(MobType.UNDEAD)) {
+            CFFlags.PURE_NETHER_STAR.postItemsFlag(attacker, (stack, size) -> {
+                float config = CFModConfig.COMMON.pureStarDamageFactor.get().floatValue();
+                event.setAmount(event.getAmount() + target.getMaxHealth() * size * config);
+            });
         }
     }
 
@@ -79,14 +86,18 @@ public class CFReinforceHandler {
         LivingEntity target = event.getEntity();
         Entity attacker = event.getSource().getEntity();
         if (attacker instanceof Player player) {
-            if (player.getLastHurtMobTimestamp() <= 2 && player.getAttackStrengthScale(0.5f) > 0.9f && ModList.get().isLoaded("celestial_core")) {
-                float voidEssence = CFFlags.VOID_ESSENCE.getItemsForFlag(player).size() * CFModConfig.COMMON.voidEssenceExtraDamage.get().floatValue();
-                GeneralEventHandler.schedule(() -> target.hurt(CCDamageTypes.abyss(player), voidEssence));
-            }
+            CFFlags.VOID_ESSENCE.postItemsFlag(player, (stack, size) -> {
+                if (player.getLastHurtMobTimestamp() <= 1 && player.getAttackStrengthScale(0.5f) > 0.9f && ModList.get().isLoaded("celestial_core")) {
+                    float config = CFModConfig.COMMON.voidEssenceExtraDamage.get().floatValue();
+                    GeneralEventHandler.schedule(() -> target.hurt(CCDamageTypes.abyss(player), size * config));
+                }
+            });
         }
         if (attacker instanceof LivingEntity entity) {
-            float deathEssence = CFFlags.DEATH_ESSENCE.getItemsForFlag(entity).size() * CFModConfig.COMMON.deathEssenceDamageHeal.get().floatValue();
-            entity.heal(deathEssence * event.getAmount());
+            CFFlags.DEATH_ESSENCE.postItemsFlag(entity, (stack, size) -> {
+                float config = CFModConfig.COMMON.deathEssenceDamageHeal.get().floatValue();
+                entity.heal(event.getAmount() * size * config);
+            });
         }
     }
 }

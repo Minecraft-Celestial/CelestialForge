@@ -12,6 +12,7 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
 
 public interface IReinforce {
 
@@ -60,7 +61,7 @@ public interface IReinforce {
         return false;
     }
 
-    default List<ItemStack> getItemsForFlag(LivingEntity entity) {
+    default void postItemsFlag(LivingEntity entity, BiConsumer<ItemStack, Integer> cons) {
         List<ItemStack> list = new ArrayList<>();
         for (EquipmentSlot slot : EquipmentSlot.values()) {
             ItemStack stack = entity.getItemBySlot(slot);
@@ -74,6 +75,8 @@ public interface IReinforce {
                 }
             });
         }
-        return list;
+        if (!list.isEmpty()) {
+            list.forEach(stack -> cons.accept(stack, list.size()));
+        }
     }
 }

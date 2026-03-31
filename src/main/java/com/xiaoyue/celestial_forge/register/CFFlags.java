@@ -24,7 +24,7 @@ public class CFFlags {
 
     public static final ReinforceData ECHO_SHARD = new ReinforceData("echo_shard", "echo_shard", Items.GOLD_INGOT,
             item("echo_shard", CFLang.PICK_EXP_BONUS.get(CFLang.per(CFModConfig.COMMON.echoShardPickExpBonus.get()))),
-            ModifierType.ARMOR, ModifierType.CURIO);
+            ModifierType.ARMOR, ModifierType.CURIO, ModifierType.WEAPON);
 
     public static final ReinforceData EARTH_CORE = new ReinforceData(flagName( "earth_core"), CCore("earth_core"), Items.STONE_BRICKS,
             item(CCore("earth_core"), CFLang.BREAK_SPEED.get(CFLang.per(CFModConfig.COMMON.earthCoreMiningSpeed.get()))),

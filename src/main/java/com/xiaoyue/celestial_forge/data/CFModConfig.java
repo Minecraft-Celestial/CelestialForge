@@ -1,9 +1,11 @@
 package com.xiaoyue.celestial_forge.data;
 
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.tuple.Pair;
 
 import static com.xiaoyue.celestial_forge.CelestialForge.MODID;
@@ -19,6 +21,7 @@ public class CFModConfig {
 		public final ForgeConfigSpec.IntValue modifierMaxLevelBase;
 		public final ForgeConfigSpec.IntValue grindstoneRemovalPriorityLevel;
 		public final ForgeConfigSpec.IntValue modifierToBookLevel;
+		public final ForgeConfigSpec.ConfigValue<String> bookReinforcementMate;
 
 		public final ForgeConfigSpec.BooleanValue enableWeaponForging;
 		public final ForgeConfigSpec.BooleanValue enableRangedForging;
@@ -52,7 +55,9 @@ public class CFModConfig {
 			modifierToBookLevel = builder
 					.comment("Min level which modifier can be transferred to modifier book on anvil")
 					.defineInRange("modifierToBookLevel", 30, 0, 100);
-
+			bookReinforcementMate = builder
+					.comment("Modifier book reinforcement material")
+					.define("bookReinforcementMate", ForgeRegistries.ITEMS.getKey(Items.NETHER_STAR).toString());
 			enableWeaponForging = builder
 					.comment("Enable forging for type Weapon")
 					.define("enableWeaponForging", true);

@@ -68,10 +68,11 @@ public class ModifierUtils {
 		return tag == null ? null : ModifierDataHolder.byId(new ResourceLocation(tag.getString(ModifierUtils.bookTagName)));
 	}
 
-	public static ItemStack bookOf(ModifierHolder mod) {
+	public static ItemStack bookOf(ModifierHolder mod, int lv) {
 		ItemStack stack = new ItemStack(CFItems.MODIFIER_BOOK.get());
 		CompoundTag tag = stack.getOrCreateTag();
 		tag.putString(ModifierUtils.bookTagName, mod.id().toString());
+		tag.putInt(ModifierUtils.levelName, lv);
 		return stack;
 	}
 
