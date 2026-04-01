@@ -11,25 +11,25 @@ import java.util.List;
 
 public record ReinforceRecipeWrapper(Ingredient temp, Ingredient mate, IReinforce output) {
 
-	public Ingredient input() {
-		List<ItemStack> list = new ArrayList<>();
-		for (Item item : TypeTestUtils.CACHE.keySet()) {
-			if (output.isInput(item.getDefaultInstance())) {
-				list.add(item.getDefaultInstance());
-			}
-		}
-		return Ingredient.of(list.stream());
-	}
+    public Ingredient input() {
+        List<ItemStack> list = new ArrayList<>();
+        for (Item item : TypeTestUtils.CACHE.keySet()) {
+            if (output.isInput(item.getDefaultInstance())) {
+                list.add(item.getDefaultInstance());
+            }
+        }
+        return Ingredient.of(list.stream());
+    }
 
-	public Ingredient result() {
-		List<ItemStack> list = new ArrayList<>();
-		for (ItemStack stack : input().getItems()) {
-			stack.getOrCreateTag().putBoolean(IReinforce.itemReinforceName, true);
-			stack.getOrCreateTag().putBoolean(output().flag(), true);
-			list.add(stack);
-		}
-		return Ingredient.of(list.stream());
-	}
+    public Ingredient result() {
+        List<ItemStack> list = new ArrayList<>();
+        for (ItemStack stack : input().getItems()) {
+            stack.getOrCreateTag().putBoolean(IReinforce.itemReinforceName, true);
+            stack.getOrCreateTag().putBoolean(output().flag(), true);
+            list.add(stack);
+        }
+        return Ingredient.of(list.stream());
+    }
 
 
 }

@@ -23,6 +23,10 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 		return new ModifierInstance(ins, 0, 0);
 	}
 
+	public static ModifierInstance of(ModifierHolder ins, int lv) {
+		return new ModifierInstance(ins, lv, 0);
+	}
+
 	@Nullable
 	private static MutableComponent getModifierDescription(ModifierInstanceEntry entry) {
 		int op = entry.entry().op().toValue();
@@ -82,7 +86,7 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 		if (size == 1) {
 			MutableComponent description = getModifierDescription(new ModifierInstanceEntry(holder.data().modifiers().get(0), level));
 			if (description == null) return lines;
-			lines.add(CFLang.CELESTIAL_MODIFIER.get(holder.getFormattedName().withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.GRAY));
+			lines.add(CFLang.CELESTIAL_MODIFIER.get(holder.getFormattedName()).withStyle(ChatFormatting.GRAY));
 			lines.add(description);
 		} else {
 			lines.add(CFLang.CELESTIAL_MODIFIER.get(holder.getFormattedName().withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.GRAY));

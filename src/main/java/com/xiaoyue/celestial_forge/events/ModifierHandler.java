@@ -7,6 +7,8 @@ import com.xiaoyue.celestial_forge.register.CFItems;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import com.xiaoyue.celestial_forge.utils.TypeTestUtils;
 import dev.xkmc.l2library.util.math.MathHelper;
+import net.minecraft.nbt.Tag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
@@ -16,6 +18,7 @@ import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.UUID;
 
@@ -55,20 +58,33 @@ public class ModifierHandler {
 	public static void modifierRecipe(AnvilUpdateEvent event) {
 		ItemStack left = event.getLeft().copy();
 		ItemStack right = event.getRight();
+		if (left.is(CFItems.MODIFIER_BOOK.get()) && right.is(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CFModConfig.COMMON.bookReinforcementMate.get())))) {
+			event.setCost(CFModConfig.COMMON.modifierBookCraftCost.get());
+			event.setMaterialCost(1);
+			left.getOrCreateTag().putInt(ModifierUtils.levelName, 0);
+			event.setOutput(left);
+		}
 		var ins = ModifierUtils.getModifier(left);
 		if (!right.is(CFItems.MODIFIER_BOOK.get())) return;
 		var book = ModifierUtils.fromBook(right);
+		int lv = 0;
 		if (book == null) {
 			if (ins == null) return;
 			int minLv = CFModConfig.COMMON.modifierToBookLevel.get();
 			if (ins.level() < minLv) return;
 			event.setMaterialCost(1);
 			event.setCost(CFModConfig.COMMON.modifierBookCraftCost.get());
-			event.setOutput(ModifierUtils.bookOf(ins.holder()));
+			if (right.getTag() != null && right.getTag().contains(ModifierUtils.levelName, Tag.TAG_INT)) {
+				lv = ins.level();
+			}
+            event.setOutput(ModifierUtils.bookOf(ins.holder(), lv));
 		} else {
 			if (ins != null || !TypeTestUtils.mightHaveModifiers(left)) return;
 			if (book.type() != ModifierType.ALL && book.type() != TypeTestUtils.getType(left)) return;
-			ModifierUtils.setModifier(left, ModifierInstance.of(book));
+			if (right.getTag() != null) {
+				lv = right.getTag().contains(ModifierUtils.levelName, Tag.TAG_INT) ? right.getTag().getInt(ModifierUtils.levelName) : 0;
+			}
+			ModifierUtils.setModifier(left, ModifierInstance.of(book, lv));
 			event.setMaterialCost(1);
 			event.setOutput(left);
 			event.setCost(CFModConfig.COMMON.modifierBookRecipeCost.get());

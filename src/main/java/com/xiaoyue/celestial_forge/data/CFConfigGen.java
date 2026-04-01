@@ -162,6 +162,8 @@ public class CFConfigGen extends ConfigDataProvider {
 						UpgradeRecipeBuilder.of(47, Items.NETHERITE_SHOVEL, CCItems.SHULKER_SCRAP.get(), CCItems.LIGHT_FRAGMENT.get(), Items.DRAGON_BREATH),
 						UpgradeRecipeBuilder.of(57, CCItems.HEART_FRAGMENT.get(), CCItems.EARTH_CORE.get(), Items.END_ROD, Items.NETHER_STAR)
 				)
+				.put(CelestialForge.loc("puncture"), 70,
+						new ModifierEntry(CCAttributes.ARMOR_PENETRATION.get(), 0.1, ADDITION))
 				.put(CelestialForge.loc("rude"), 75,
 						new ModifierEntry(L2DamageTracker.CRIT_RATE.get(), -0.05, ADDITION),
 						new ModifierEntry(L2DamageTracker.CRIT_DMG.get(), 0.1, ADDITION))

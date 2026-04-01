@@ -9,12 +9,15 @@ import com.xiaoyue.celestial_forge.register.CFItems;
 import com.xiaoyue.celestial_forge.utils.ModifierUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -46,6 +49,14 @@ public class ModifierBook extends Item {
 			list.add(CFLang.MODIFIER_BOOK_EMPTY.get(
 					Component.literal("" + minLv).withStyle(ChatFormatting.AQUA)
 			).withStyle(ChatFormatting.GRAY));
+			if (stack.getTag() == null || !stack.getTag().contains(ModifierUtils.levelName, Tag.TAG_INT)) {
+				list.add(CFLang.MODIFIER_BOOK_STORAGE_LEVEL.get(ForgeRegistries.ITEMS.getValue(
+								new ResourceLocation(CFModConfig.COMMON.bookReinforcementMate.get())).getDescription().copy()
+						.withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.GRAY));
+			}
+		}
+		if (stack.getTag() != null && stack.getTag().contains(ModifierUtils.levelName, Tag.TAG_INT)) {
+			list.add(CFLang.MODIFIER_LEVEL.get(CFLang.num(stack.getTag().getInt(ModifierUtils.levelName))).withStyle(ChatFormatting.GRAY));
 		}
 	}
 

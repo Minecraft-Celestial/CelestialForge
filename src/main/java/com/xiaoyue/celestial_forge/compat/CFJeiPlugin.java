@@ -45,8 +45,8 @@ public class CFJeiPlugin implements IModPlugin {
 		for (ItemStack stack : ingredient.getItems()) {
 			if (stack.isEmpty()) return false;
 		}
-		return true;
-	}
+        return true;
+    }
 
 	@Override
 	public void registerRecipes(IRecipeRegistration registration) {
@@ -55,7 +55,7 @@ public class CFJeiPlugin implements IModPlugin {
 			if (checkMat(ref.temp()) && checkMat(ref.mate())) {
 				list.add(new ReinforceRecipeWrapper(ref.temp(), ref.mate(), ref));
 			}
-		});
+        });
 		registration.addRecipes(REINFORCE.getRecipeType(), list);
 	}
 

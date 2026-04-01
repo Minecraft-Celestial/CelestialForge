@@ -12,6 +12,10 @@ public enum ModifierType {
 	WEAPON(TypeTestUtils::isWeapon, e -> e == EquipmentSlot.MAINHAND),
 	RANGED(TypeTestUtils::isRangedWeapon, e -> e == EquipmentSlot.MAINHAND),
 	ARMOR(TypeTestUtils::isArmor, EquipmentSlot::isArmor),
+	HELMET(TypeTestUtils::isArmor, e -> e == EquipmentSlot.HEAD),
+	CHESTPLATE(TypeTestUtils::isArmor, e -> e == EquipmentSlot.CHEST),
+	LEGGINGS(TypeTestUtils::isArmor, e -> e == EquipmentSlot.LEGS),
+	BOOTS(TypeTestUtils::isArmor, e -> e == EquipmentSlot.FEET),
 	TOOL(TypeTestUtils::isTool, e -> e == EquipmentSlot.MAINHAND),
 	CURIO(CurioUtils::isCurio, e -> false),
 	ALL(e -> false, e -> false);

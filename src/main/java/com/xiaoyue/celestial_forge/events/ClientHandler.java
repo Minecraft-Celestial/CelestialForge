@@ -19,8 +19,8 @@ public class ClientHandler {
 		if (modifier == null) return;
 		event.getToolTip().addAll(modifier.getInfoLines());
 		if (CFModConfig.COMMON.enableModifierUpgrades.get()) {
-			event.getToolTip().addAll(modifier.extraLines());
-		}
+            event.getToolTip().addAll(modifier.extraLines());
+        }
 	}
 
 }

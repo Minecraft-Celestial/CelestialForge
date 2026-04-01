@@ -33,5 +33,6 @@ public class CFTagGen {
 		pvd.addTag(CURIO_MODIFIABLE)
 				.add(CAItems.HEIRLOOM_NECKLACE.asItem());
 		pvd.addTag(REINFORCE_BLACK_LIST);
+		pvd.addTag(MODIFIER_BLACK_LIST);
 	}
 }
