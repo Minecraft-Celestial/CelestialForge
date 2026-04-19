@@ -89,7 +89,7 @@ public record ModifierInstance(ModifierHolder holder, int level, int exp) {
 			lines.add(CFLang.CELESTIAL_MODIFIER.get(holder.getFormattedName()).withStyle(ChatFormatting.GRAY));
 			lines.add(description);
 		} else {
-			lines.add(CFLang.CELESTIAL_MODIFIER.get(holder.getFormattedName().withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.GRAY));
+			lines.add(CFLang.CELESTIAL_MODIFIER.get(holder.getFormattedName()).withStyle(ChatFormatting.GRAY));
 			for (var entry : holder.data().modifiers()) {
 				MutableComponent description = getModifierDescription(new ModifierInstanceEntry(entry, level));
 				if (description != null) {
