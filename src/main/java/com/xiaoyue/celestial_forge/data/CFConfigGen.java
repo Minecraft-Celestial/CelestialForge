@@ -42,7 +42,6 @@ public class CFConfigGen extends ConfigDataProvider {
 				.put(CelestialForge.loc("guarding"), 200, Attributes.ARMOR, 0.05, MULTIPLY_BASE)
 				.put(CelestialForge.loc("armor"), 100, Attributes.ARMOR_TOUGHNESS, 1, ADDITION)
 				.put(CelestialForge.loc("protect"), 150, Attributes.ARMOR_TOUGHNESS, 0.05, MULTIPLY_BASE)
-				.put(CelestialCore.loc("regenerate"), 150, CCAttributes.REPLY_POWER.get(), 0.05, MULTIPLY_BASE)
 				.end()
 
 				.put(CelestialForge.loc("armor_advanced"),
@@ -61,6 +60,7 @@ public class CFConfigGen extends ConfigDataProvider {
 						new ModifierEntry(Attributes.ARMOR, 2, ADDITION),
 						new ModifierEntry(Attributes.ARMOR_TOUGHNESS, 2, ADDITION),
 						new ModifierEntry(Attributes.KNOCKBACK_RESISTANCE, 0.1, ADDITION))
+				.put(CelestialCore.loc("regenerate"), 150, CCAttributes.REPLY_POWER.get(), 0.05, MULTIPLY_BASE)
 				.end()
 				.end()
 
@@ -162,7 +162,7 @@ public class CFConfigGen extends ConfigDataProvider {
 						UpgradeRecipeBuilder.of(47, Items.NETHERITE_SHOVEL, CCItems.SHULKER_SCRAP.get(), CCItems.LIGHT_FRAGMENT.get(), Items.DRAGON_BREATH),
 						UpgradeRecipeBuilder.of(57, CCItems.HEART_FRAGMENT.get(), CCItems.EARTH_CORE.get(), Items.END_ROD, Items.NETHER_STAR)
 				)
-				.put(CelestialForge.loc("puncture"), 70,
+				.put(CelestialCore.loc("puncture"), 70,
 						new ModifierEntry(CCAttributes.ARMOR_PENETRATION.get(), 0.1, ADDITION))
 				.put(CelestialForge.loc("rude"), 75,
 						new ModifierEntry(L2DamageTracker.CRIT_RATE.get(), -0.05, ADDITION),
@@ -242,7 +242,7 @@ public class CFConfigGen extends ConfigDataProvider {
 
 				.builder("heart_fragment").mate(CCItems.HEART_FRAGMENT).temp(Items.EMERALD)
 				.type(ModifierType.ARMOR).type(ModifierType.CURIO)
-				.attr(CCAttributes.REPLY_POWER.get(), 0.06, MULTIPLY_BASE).build()
+				.attr(Attributes.MAX_HEALTH, 2, ADDITION).build()
 
 				.builder("heart_of_the_sea").mate(Items.HEART_OF_THE_SEA).temp(Items.LAPIS_LAZULI)
 				.type(ModifierType.ARMOR).type(ModifierType.CURIO)

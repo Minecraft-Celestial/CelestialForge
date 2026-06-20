@@ -1,9 +1,9 @@
 {
   "attrs": [
     {
-      "attr": "celestial_core:regen_rate",
-      "operation": "MULTIPLY_BASE",
-      "val": 0.06
+      "attr": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "val": 2.0
     }
   ],
   "flag": "heart_fragment",

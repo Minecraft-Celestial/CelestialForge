@@ -1,6 +1,6 @@
 {
   "type": "ARMOR",
-  "leveling": "celestial_forge:armor_basic",
+  "leveling": "celestial_forge:armor_advanced",
   "modifiers": [
     {
       "attr": "celestial_core:regen_rate",
