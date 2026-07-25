@@ -1,0 +1,20 @@
+{
+  "attrs": [
+    {
+      "attr": "minecraft:generic.attack_damage",
+      "operation": "ADD_MULTIPLIED_BASE",
+      "val": 0.05
+    }
+  ],
+  "flag": "dragon_head",
+  "mate": {
+    "item": "minecraft:dragon_head"
+  },
+  "temp": {
+    "item": "minecraft:chorus_fruit"
+  },
+  "tooltip": "",
+  "types": [
+    "WEAPON"
+  ]
+}

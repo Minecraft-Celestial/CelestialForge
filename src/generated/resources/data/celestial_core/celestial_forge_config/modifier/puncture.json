@@ -1,0 +1,13 @@
+{
+  "type": "WEAPON",
+  "leveling": "celestial_forge:weapon_advanced",
+  "modifiers": [
+    {
+      "attr": "celestial_core:armor_penetration",
+      "base": 0.1,
+      "op": "ADD_VALUE",
+      "perLevel": 0.04
+    }
+  ],
+  "weight": 70
+}

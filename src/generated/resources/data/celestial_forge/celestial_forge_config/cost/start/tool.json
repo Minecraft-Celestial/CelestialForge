@@ -1,0 +1,16 @@
+{
+  "exp": 3,
+  "items": [
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:deepslate"
+    }
+  ],
+  "level": 0,
+  "target": "celestial_forge:start/tool"
+}

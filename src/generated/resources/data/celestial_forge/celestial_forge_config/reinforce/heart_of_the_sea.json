@@ -1,0 +1,21 @@
+{
+  "attrs": [
+    {
+      "attr": "minecraft:generic.water_movement_efficiency",
+      "operation": "ADD_MULTIPLIED_BASE",
+      "val": 0.04
+    }
+  ],
+  "flag": "heart_of_the_sea",
+  "mate": {
+    "item": "minecraft:heart_of_the_sea"
+  },
+  "temp": {
+    "item": "minecraft:lapis_lazuli"
+  },
+  "tooltip": "",
+  "types": [
+    "ARMOR",
+    "CURIO"
+  ]
+}

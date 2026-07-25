@@ -1,0 +1,13 @@
+{
+  "type": "TOOL",
+  "leveling": "celestial_forge:tool_basic",
+  "modifiers": [
+    {
+      "attr": "minecraft:generic.luck",
+      "base": 1.0,
+      "op": "ADD_VALUE",
+      "perLevel": 0.04
+    }
+  ],
+  "weight": 100
+}

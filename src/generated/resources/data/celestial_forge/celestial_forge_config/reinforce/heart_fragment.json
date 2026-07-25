@@ -1,0 +1,21 @@
+{
+  "attrs": [
+    {
+      "attr": "minecraft:generic.max_health",
+      "operation": "ADD_VALUE",
+      "val": 2.0
+    }
+  ],
+  "flag": "heart_fragment",
+  "mate": {
+    "item": "celestial_core:heart_fragment"
+  },
+  "temp": {
+    "item": "minecraft:emerald"
+  },
+  "tooltip": "",
+  "types": [
+    "ARMOR",
+    "CURIO"
+  ]
+}

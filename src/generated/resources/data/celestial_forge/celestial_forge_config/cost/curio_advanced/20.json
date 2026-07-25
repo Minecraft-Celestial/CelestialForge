@@ -1,0 +1,22 @@
+{
+  "exp": 5,
+  "items": [
+    {
+      "item": "minecraft:iron_axe"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "minecraft:ender_pearl"
+    }
+  ],
+  "level": 20,
+  "target": "celestial_forge:curio_advanced"
+}

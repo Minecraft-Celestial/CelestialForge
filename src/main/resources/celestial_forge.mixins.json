@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.xiaoyue.celestial_forge.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "celestial_overhaul.refmap.json",
+  "mixins": [
+    "ItemStackMixin"
+  ],
+  "minVersion": "0.8",
+  "client": [
+	]
+}

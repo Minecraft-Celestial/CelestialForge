@@ -1,0 +1,19 @@
+{
+  "exp": 57,
+  "items": [
+    {
+      "item": "celestial_core:heart_fragment"
+    },
+    {
+      "item": "celestial_core:earth_core"
+    },
+    {
+      "item": "minecraft:end_rod"
+    },
+    {
+      "item": "minecraft:totem_of_undying"
+    }
+  ],
+  "level": 100,
+  "target": "celestial_forge:curio_basic"
+}

@@ -1,0 +1,19 @@
+{
+  "exp": 3,
+  "items": [
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:iron_sword"
+    },
+    {
+      "item": "minecraft:flint"
+    }
+  ],
+  "level": 10,
+  "target": "celestial_forge:weapon_advanced"
+}

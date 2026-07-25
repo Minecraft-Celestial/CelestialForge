@@ -1,0 +1,24 @@
+// 1.21.1	2026-07-25T20:50:47.4565924	Registrate Provider for celestial_forge [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type), Global Loot Modifier Registrate Provider]
+8f65be4322f4719db4ac07a8822051d2ef6426e1 assets/celestial_forge/blockstates/forge_table.json
+23912105a9af552c931d7b62cb24c74b9d08878c assets/celestial_forge/lang/en_ud.json
+27f06785bda3dbc5f1741f98732ccbc48acba458 assets/celestial_forge/lang/en_us.json
+cd5190d4e841971ea04fefbfc06a3b94143fa246 assets/celestial_forge/models/block/forge_table.json
+744fd02b719b67cfa3c8d531c243256ba67815a5 assets/celestial_forge/models/item/forge_table.json
+0d97fdce2e6be6d32bb81af9fc5a7fc1bcf7b342 assets/celestial_forge/models/item/hammer.json
+d1303ca01d2dc7b07ccb5553bf9d59ffc12ef744 assets/celestial_forge/models/item/modifier_book.json
+5f53e416086ad707b37c69078a052af2b1491e00 data/celestial_forge/advancement/recipes/misc/forge_table.json
+58ab05ca430ebc03da87ba317bd78ba928523689 data/celestial_forge/advancement/recipes/misc/hammer.json
+e6dbf98aebd3f6a0cc9e065628a1b7aedeb63782 data/celestial_forge/advancement/recipes/misc/modifier_book.json
+20e2f27ddfad8ee1cb73e58d1cf95fec25164ce0 data/celestial_forge/loot_table/blocks/forge_table.json
+26531f0aa35327de7ea964acd498bd789adb528c data/celestial_forge/recipe/forge_table.json
+d14f11218c9212ee2650a0d23dfcf7735a17a599 data/celestial_forge/recipe/hammer.json
+45b16cb5f5ec96dc48d6766d5133841893613a76 data/celestial_forge/recipe/modifier_book.json
+b84dad76b0a8c397cb5f712f9170a9f92090cd4a data/celestial_forge/tags/item/armor_modifiable.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/celestial_forge/tags/item/curio_modifiable.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/celestial_forge/tags/item/modifier_black_list.json
+de75671f136ad29ecb1fee30fc8326bbb0cce33f data/celestial_forge/tags/item/ranged_modifiable.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/celestial_forge/tags/item/reinforce_black_list.json
+29e7c759c2d75213acf20c72c11dc2e74f3926a8 data/celestial_forge/tags/item/tool_modifiable.json
+d745a414dcb1602f0f1ebd3a35fb5a1153614f5b data/celestial_forge/tags/item/weapon_modifiable.json
+8adcf0e572a074066d7233e74dbbdfbd468db341 data/minecraft/tags/block/mineable/pickaxe.json
+bc4e4393d8ca5a7ad14dbefd9369539d91ea131a data/neoforge/loot_modifiers/global_loot_modifiers.json

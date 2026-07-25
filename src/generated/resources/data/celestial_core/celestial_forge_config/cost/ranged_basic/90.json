@@ -1,0 +1,19 @@
+{
+  "exp": 47,
+  "items": [
+    {
+      "item": "minecraft:netherite_shovel"
+    },
+    {
+      "item": "celestial_core:shulker_scrap"
+    },
+    {
+      "item": "celestial_core:light_fragment"
+    },
+    {
+      "item": "minecraft:dragon_breath"
+    }
+  ],
+  "level": 90,
+  "target": "celestial_forge:ranged_basic"
+}

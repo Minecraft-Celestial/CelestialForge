@@ -1,0 +1,19 @@
+{
+  "exp": 38,
+  "items": [
+    {
+      "item": "minecraft:shulker_shell"
+    },
+    {
+      "item": "celestial_core:virtual_gold_ingot"
+    },
+    {
+      "item": "celestial_core:ocean_essence"
+    },
+    {
+      "item": "celestial_core:warden_sclerite"
+    }
+  ],
+  "level": 80,
+  "target": "celestial_forge:armor_advanced"
+}

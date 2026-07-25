@@ -1,0 +1,21 @@
+{
+  "attrs": [
+    {
+      "attr": "minecraft:generic.armor_toughness",
+      "operation": "ADD_MULTIPLIED_BASE",
+      "val": 0.03
+    }
+  ],
+  "flag": "scute",
+  "mate": {
+    "item": "minecraft:armadillo_scute"
+  },
+  "temp": {
+    "item": "minecraft:sand"
+  },
+  "tooltip": "",
+  "types": [
+    "ARMOR",
+    "CURIO"
+  ]
+}

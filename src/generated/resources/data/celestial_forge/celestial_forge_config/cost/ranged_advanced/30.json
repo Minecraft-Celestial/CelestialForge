@@ -1,0 +1,22 @@
+{
+  "exp": 8,
+  "items": [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:firework_star"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:crossbow"
+    }
+  ],
+  "level": 30,
+  "target": "celestial_forge:ranged_advanced"
+}

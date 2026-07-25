@@ -1,0 +1,187 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.140'
+    id 'idea'
+}
+
+tasks.named('wrapper', Wrapper).configure {
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = project.neo_version
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+    accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
+    runs {
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        gameTestServer {
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        data {
+            data()
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
+if (lljij) jarJar.enabled(true)
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+    maven {
+        url 'https://www.cursemaven.com'
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+    maven { // Registrate
+        url "https://maven.ithundxr.dev/snapshots"
+    }
+    maven {
+        url = "https://maven.theillusivec4.top/"
+    }
+    maven {
+        // Location of the maven for vazkii's mods
+        name 'blamejared'
+        url 'https://maven.blamejared.com'
+    }
+    maven {
+        url 'https://www.cursemaven.com'
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+    maven {
+        // Location of the maven that hosts JEI files (and TiC)
+        name 'Progwml6 maven'
+        url 'https://dvs1.progwml6.com/files/maven'
+    }
+    maven {
+        name = "OctoStudios"
+        url = uri("https://maven.octo-studios.com/releases")
+    }
+    mavenLocal();
+}
+
+dependencies {
+    implementation "net.neoforged:neoforge:${neo_version}"
+
+    implementation "xiaoyue.celestial_core:celestial_core:[2.0.0-test5,)"
+    implementation jarJar(group: 'xiaoyue.celestial_invoker', name: 'celestial_invoker', version: "[21nf10ca,)")
+
+    implementation jarJar(group: 'dev.xkmc', name: 'l2serial', version: "[3.0.9,)")
+    implementation jarJar(group: 'dev.xkmc', name: 'l2core', version: "[3.0.8+11,)")
+    implementation jarJar(group: 'dev.xkmc', name: 'l2damagetracker', version: "[3.0.8+3,)")
+    implementation jarJar(group: 'dev.xkmc', name: 'l2library', version: "[3.0.4,)")
+    implementation jarJar(group: 'dev.xkmc', name: 'l2itemselector', version: "[3.0.7,)")
+    implementation jarJar(group: 'dev.xkmc.l2modularblocks', name: 'l2modularblocks', version: "[3.0.0,)")
+
+    implementation jarJar("com.tterrag.registrate:Registrate:${registrate_version}")
+    implementation "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+    implementation "mezz.jei:jei-${jei_minecraft_version}:${jei_version}"
+
+    implementation "curse.maven:patchouli-306770:6842247"
+    implementation "curse.maven:jade-324717:7545219"
+    implementation "curse.maven:prickle-1023259:6961457"
+    implementation "curse.maven:attributefix-280510:7115922"
+    implementation "curse.maven:bookshelf-228525:7335846"
+    implementation "curse.maven:enchantment-descriptions-250419:7039849"
+    implementation "curse.maven:caelus-308989:5694215"
+    implementation "curse.maven:elytra-slot-317716:5778461"
+    implementation "curse.maven:just-enough-effect-descriptions-jeed-532286:7346553"
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,
+            neo_version         : neo_version, neo_version_range: neo_version_range,
+            loader_version_range: loader_version_range,
+            mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+            mod_authors         : mod_authors, mod_description: mod_description,
+    ]
+    inputs.properties replaceProperties
+    filesMatching(['META-INF/neoforge.mods.toml']) {
+        expand replaceProperties
+    }
+}
+
+jar {
+    manifest {
+        attributes([
+                'Specification-Title'     : "${mod_id}",
+                'Specification-Vendor'    : "xiaoyue",
+                'Specification-Version'   : '1', // We are version 1 of ourselves
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.jar.archiveVersion,
+                'Implementation-Vendor'   : "xiaoyue",
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                'MixinConfigs'            : "${mod_id}.mixins.json"
+        ])
+    }
+}
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/repo"
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+// IDEA no longer automatically downloads sources/javadoc jars for dependencies, so we need to explicitly enable the behavior.
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}

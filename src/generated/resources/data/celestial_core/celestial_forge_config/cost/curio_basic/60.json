@@ -1,0 +1,16 @@
+{
+  "exp": 23,
+  "items": [
+    {
+      "item": "minecraft:netherite_ingot"
+    },
+    {
+      "item": "celestial_core:treasure_fragment"
+    },
+    {
+      "item": "celestial_core:virtual_gold_nugget"
+    }
+  ],
+  "level": 60,
+  "target": "celestial_forge:curio_basic"
+}

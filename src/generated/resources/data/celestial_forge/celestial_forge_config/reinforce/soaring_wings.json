@@ -1,0 +1,23 @@
+{
+  "attrs": [
+    {
+      "attr": "minecraft:generic.movement_speed",
+      "operation": "ADD_MULTIPLIED_BASE",
+      "val": 0.05
+    }
+  ],
+  "flag": "soaring_wings",
+  "mate": {
+    "item": "celestial_core:soaring_wings"
+  },
+  "temp": {
+    "item": "minecraft:feather"
+  },
+  "tooltip": "",
+  "types": [
+    "CURIO",
+    "ARMOR",
+    "WEAPON",
+    "TOOL"
+  ]
+}

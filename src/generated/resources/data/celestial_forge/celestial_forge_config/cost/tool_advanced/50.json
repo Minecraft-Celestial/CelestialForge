@@ -1,0 +1,28 @@
+{
+  "exp": 17,
+  "items": [
+    {
+      "item": "minecraft:netherite_scrap"
+    },
+    {
+      "item": "minecraft:netherite_scrap"
+    },
+    {
+      "item": "minecraft:diamond_hoe"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:trident"
+    },
+    {
+      "item": "minecraft:nautilus_shell"
+    },
+    {
+      "item": "minecraft:nether_brick"
+    }
+  ],
+  "level": 50,
+  "target": "celestial_forge:tool_advanced"
+}
