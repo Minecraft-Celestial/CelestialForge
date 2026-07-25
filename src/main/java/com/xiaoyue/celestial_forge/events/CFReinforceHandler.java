@@ -1,5 +1,6 @@
 package com.xiaoyue.celestial_forge.events;
 
+import com.xiaoyue.celestial_core.data.CCDamageTypes;
 import com.xiaoyue.celestial_forge.CelestialForge;
 import com.xiaoyue.celestial_forge.content.data.DataReinforce;
 import com.xiaoyue.celestial_forge.content.data.ModifierType;
@@ -8,6 +9,8 @@ import com.xiaoyue.celestial_forge.data.CFModConfig;
 import com.xiaoyue.celestial_forge.register.CFFlags;
 import com.xiaoyue.celestial_forge.utils.TypeTestUtils;
 import com.xiaoyue.celestial_invoker.content.common.Bindings;
+import dev.xkmc.l2core.events.SchedulerHandler;
+import dev.xkmc.l2damagetracker.events.L2DTGeneralEventHandler;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.Entity;
@@ -85,7 +88,7 @@ public class CFReinforceHandler {
             CFFlags.VOID_ESSENCE.postItemsFlag(player, (stack, size) -> {
                 if (player.getLastHurtMobTimestamp() <= 1 && player.getAttackStrengthScale(0.5f) > 0.9f && ModList.get().isLoaded("celestial_core")) {
                     float config = CFModConfig.COMMON.voidEssenceExtraDamage.get().floatValue();
-                    // GeneralEv.schedule(() -> target.hurt(CCDamageTypes.abyss(player), size * config));
+                    SchedulerHandler.schedule(() -> target.hurt(CCDamageTypes.abyss(player), size * config));
                 }
             });
         }
