@@ -10,6 +10,7 @@ import dev.xkmc.l2serial.serialization.marker.SerialField;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.ArrayList;
@@ -78,12 +79,23 @@ public class DataReinforce extends BaseConfig implements IReinforce {
         if (attrs.size() > 1) {
             list.add(CFFlags.item(key));
             for (AttributeEntry entry : attrs) {
-                list.add(CFLang.ATTR_BONUS.get(CFLang.attr(entry.attr()), CFLang.per(entry.val()))
-                        .withStyle(ChatFormatting.GRAY));
+                if (!entry.operation().equals(AttributeModifier.Operation.ADD_VALUE)) {
+                    list.add(CFLang.ATTR_BONUS.get(CFLang.attr(entry.attr()), CFLang.per(entry.val()))
+                            .withStyle(ChatFormatting.GRAY));
+                } else {
+                    list.add(CFLang.ATTR_BONUS.get(CFLang.attr(entry.attr()), CFLang.num(entry.val()))
+                            .withStyle(ChatFormatting.GRAY));
+                }
             }
         } else {
-            list.add(CFFlags.item(key, CFLang.ATTR_BONUS.get(CFLang.attr(attrs.get(0).attr()), CFLang.per(attrs.get(0).val()))
-                    .withStyle(ChatFormatting.GRAY)));
+            AttributeEntry first = attrs.getFirst();
+            if (!first.operation().equals(AttributeModifier.Operation.ADD_VALUE)) {
+                list.add(CFFlags.item(key, CFLang.ATTR_BONUS.get(CFLang.attr(first.attr()), CFLang.per(first.val()))
+                        .withStyle(ChatFormatting.GRAY)));
+            } else {
+                list.add(CFFlags.item(key, CFLang.ATTR_BONUS.get(CFLang.attr(first.attr()), CFLang.num(first.val()))
+                        .withStyle(ChatFormatting.GRAY)));
+            }
         }
         return list;
     }
