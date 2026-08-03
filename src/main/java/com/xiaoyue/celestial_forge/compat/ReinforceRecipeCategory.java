@@ -65,6 +65,9 @@ public class ReinforceRecipeCategory implements IRecipeCategory<ReinforceRecipeW
         if (!focus.isEmpty()) {
             focus.getItemStackFocuses(RecipeIngredientRole.CATALYST).findFirst().ifPresent(item -> {
                 ItemStack stack = item.getTypedValue().getIngredient().copy();
+                if (stack.getCount() > 1) {
+                    stack.setCount(1);
+                }
                 if (wrapper.temp().test(stack)) {
                     temp.setObject(Ingredient.of(stack));
                 }
