@@ -98,12 +98,12 @@
   "celestial_forge.configuration.pureStarDamageFactor": "纯净之星伤害倍率",
   "celestial_forge.configuration.pureStarDamageFactor.tooltip": "纯净之星强化: 攻击亡灵生物时附加的百分比伤害\n 默认: 0.01\n 范围: 0.01 ~ 1.0",
   "celestial_forge.configuration.reinforce": "强化",
-  "celestial_forge.configuration.section.celestial.forge.server.toml": "星月再锻服务端配置文件",
-  "celestial_forge.configuration.section.celestial.forge.server.toml.title": "",
   "celestial_forge.configuration.title": "星月再锻配置文件",
   "celestial_forge.configuration.voidEssenceExtraDamage": "虚空精华额外伤害",
   "celestial_forge.configuration.voidEssenceExtraDamage.tooltip": "虚空精华强化: 额外的深渊伤害\n 默认: 2.0\n 范围: 1.0 ~ 100000.0",
   "celestial_forge.title": "星月再锻",
-  "celestial_forge.configuration.section.celestial.forge.common.toml": "星月再锻配置文件",
-  "celestial_forge.configuration.section.celestial.forge.common.toml.title": ""
+  "celestial_forge.configuration.section.celestial_configs.celestial_forge.common.toml": "星月再锻配置文件",
+  "celestial_forge.configuration.section.celestial_configs.celestial_forge.common.toml.title": "",
+  "celestial_forge.configuration.section.celestial_configs.celestial_forge.server.toml": "星月再锻服务端配置文件",
+  "celestial_forge.configuration.section.celestial_configs.celestial_forge.server.toml.title": ""
 }

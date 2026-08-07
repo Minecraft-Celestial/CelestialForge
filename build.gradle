@@ -107,8 +107,8 @@ repositories {
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    implementation "xiaoyue.celestial_core:celestial_core:[2.0.0-test5,)"
-    implementation jarJar(group: 'xiaoyue.celestial_invoker', name: 'celestial_invoker', version: "[21nf10ca,)")
+    implementation "xiaoyue.celestial_core:celestial_core:[2.0.0-test13,)"
+    implementation jarJar(group: 'xiaoyue.celestial_invoker', name: 'celestial_invoker', version: "[21nf10cd2,)")
 
     implementation jarJar(group: 'dev.xkmc', name: 'l2serial', version: "[3.0.9,)")
     implementation jarJar(group: 'dev.xkmc', name: 'l2core', version: "[3.0.8+11,)")

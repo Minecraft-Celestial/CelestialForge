@@ -10,7 +10,6 @@ import com.xiaoyue.celestial_forge.register.CFFlags;
 import com.xiaoyue.celestial_forge.utils.TypeTestUtils;
 import com.xiaoyue.celestial_invoker.content.common.Bindings;
 import dev.xkmc.l2core.events.SchedulerHandler;
-import dev.xkmc.l2damagetracker.events.L2DTGeneralEventHandler;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.Entity;
