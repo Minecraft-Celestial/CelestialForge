@@ -111,8 +111,8 @@ dependencies {
     implementation jarJar(group: 'xiaoyue.celestial_invoker', name: 'celestial_invoker', version: "[21nf10cd2,)")
 
     implementation jarJar(group: 'dev.xkmc', name: 'l2serial', version: "[3.0.9,)")
-    implementation jarJar(group: 'dev.xkmc', name: 'l2core', version: "[3.0.8+11,)")
-    implementation jarJar(group: 'dev.xkmc', name: 'l2damagetracker', version: "[3.0.8+3,)")
+    implementation jarJar(group: 'dev.xkmc', name: 'l2core', version: "[3.0.8+17,)")
+    implementation jarJar(group: 'dev.xkmc', name: 'l2damagetracker', version: "[3.0.8+4,)")
     implementation jarJar(group: 'dev.xkmc', name: 'l2library', version: "[3.0.4,)")
     implementation jarJar(group: 'dev.xkmc', name: 'l2itemselector', version: "[3.0.7,)")
     implementation jarJar(group: 'dev.xkmc.l2modularblocks', name: 'l2modularblocks', version: "[3.0.0,)")
