@@ -22,5 +22,4 @@ public class ClientHandler {
             event.getToolTip().addAll(modifier.extraLines());
         }
 	}
-
 }

@@ -9,6 +9,7 @@ import com.xiaoyue.celestial_forge.data.CFModConfig;
 import com.xiaoyue.celestial_forge.register.CFFlags;
 import com.xiaoyue.celestial_forge.utils.TypeTestUtils;
 import com.xiaoyue.celestial_invoker.content.common.Bindings;
+import com.xiaoyue.celestial_invoker.content.common.helper.CooldownHelper;
 import dev.xkmc.l2core.events.SchedulerHandler;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.EntityTypeTags;
@@ -79,15 +80,21 @@ public class CFReinforceHandler {
         }
     }
 
+    public static final String COOLDOWN_ID = "celestial_forge:void_essence_reinforce";
+
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent.Pre event) {
         LivingEntity target = event.getEntity();
         Entity attacker = event.getSource().getEntity();
         if (attacker instanceof Player player) {
             CFFlags.VOID_ESSENCE.postItemsFlag(player, (stack, size) -> {
-                if (player.getLastHurtMobTimestamp() <= 1 && player.getAttackStrengthScale(0.5f) > 0.9f && ModList.get().isLoaded("celestial_core")) {
+                if (CooldownHelper.isCooldownReady(player, COOLDOWN_ID)
+                        && player.getAttackStrengthScale(0.5f) > 0.9f && ModList.get().isLoaded("celestial_core")) {
                     float config = CFModConfig.COMMON.voidEssenceExtraDamage.get().floatValue();
-                    SchedulerHandler.schedule(() -> target.hurt(CCDamageTypes.abyss(player), size * config));
+                    SchedulerHandler.schedule(() -> {
+                        target.hurt(CCDamageTypes.abyss(player), size * config);
+                        CooldownHelper.setCooldown(player, COOLDOWN_ID, 20);
+                    });
                 }
             });
         }

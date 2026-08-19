@@ -29,38 +29,32 @@ public class ReinforceRecipe implements SmithingRecipe {
 
     @Override
     public boolean isTemplateIngredient(ItemStack stack) {
-        boolean flag = false;
         for (IReinforce ref : CFFlags.DATA_MAP.values()) {
             if (ref.temp().test(stack)) {
-                flag = true;
-                break;
+                return true;
             }
         }
-        return flag;
+        return false;
     }
 
     @Override
     public boolean isBaseIngredient(ItemStack stack) {
-        boolean flag = false;
         for (IReinforce ref : CFFlags.DATA_MAP.values()) {
             if (ref.isInput(stack)) {
-                flag = true;
-                break;
+                return true;
             }
         }
-        return flag;
+        return false;
     }
 
     @Override
     public boolean isAdditionIngredient(ItemStack stack) {
-        boolean flag = false;
         for (IReinforce ref : CFFlags.DATA_MAP.values()) {
             if (ref.mate().test(stack)) {
-                flag = true;
-                break;
+                return true;
             }
         }
-        return flag;
+        return false;
     }
 
     @Override
@@ -91,7 +85,7 @@ public class ReinforceRecipe implements SmithingRecipe {
             if (value.mate().test(mate) && value.temp().test(temp)) {
                 if (!value.hasFlag(mainInput)) {
                     ItemStack output = mainInput.copy();
-                    ReinforceData data = new ReinforceData(output.getDescriptionId());
+                    ReinforceData data = new ReinforceData(value.flag());
                     output.set(CFObjects.REINFORCED_DATA, data);
                     return output;
                 }
