@@ -36,7 +36,7 @@ public class CuriosHandler {
 		if (TypeTestUtils.getType(stack) == ModifierType.CURIO) {
 			for (int i = 0; i < mod.size(); i++) {
 				var entry = mod.get(i);
-				String name = ctx.identifier() + "/" + ctx.index() + "/" + mod.holder().id() + "/" + i;
+				String name = ctx.identifier() + "_" + ctx.index() + "_" + mod.holder().id() + "_" + i;
 				event.addModifier(entry.entry().attr(), entry.getAttributeModifier(name));
 			}
 		}

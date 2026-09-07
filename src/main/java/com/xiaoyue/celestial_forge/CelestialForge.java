@@ -52,12 +52,12 @@ public class CelestialForge {
 		CFModConfig.init();
 		CFObjects.register();
 		CurioUtils.register();
-		REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, CFTagGen::onItemTagGen);
-		REGISTRATE.addDataGenerator(ProviderType.LANG, CFLang::addLang);
-		REGISTRATE.addDataGenerator(ProviderType.RECIPE, CFRecipeGen::onRecipeGen);
 		HANDLER.addAfterReloadListener(ModifierDataHolder::rebuild);
+		HANDLER.addClientAfterReloadListener(ModifierDataHolder::rebuild);
 		HANDLER.addAfterReloadListener(ReinforceDataHolder::rebuild);
+		HANDLER.addClientAfterReloadListener(ReinforceDataHolder::rebuild);
 		HANDLER.addAfterReloadListener(TypeTestUtils::clearCache);
+		HANDLER.addClientAfterReloadListener(TypeTestUtils::clearCache);
 	}
 
 	public static ResourceLocation loc(String id) {
@@ -67,6 +67,9 @@ public class CelestialForge {
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public static void gatherData(GatherDataEvent event) {
 		event.getGenerator().addProvider(event.includeServer(), new CFConfigGen(event.getGenerator(), event.getLookupProvider()));
+		REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, CFTagGen::onItemTagGen);
+		REGISTRATE.addDataGenerator(ProviderType.LANG, CFLang::addLang);
+		REGISTRATE.addDataGenerator(ProviderType.RECIPE, CFRecipeGen::onRecipeGen);
 	}
 
 }
